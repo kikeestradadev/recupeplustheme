@@ -1,0 +1,255 @@
+
+.community-split {
+	--community-split-shell-max: 3500px;
+	--community-split-container-max: 1600px;
+	--community-split-gutter: 15px;
+	--community-split-cta-bg: #e8dced;
+	--community-split-radius: 1rem;
+	padding-block: 2.5rem;
+
+	&__shell {
+		width: 100%;
+		max-width: var(--community-split-shell-max);
+		margin-inline: auto;
+		padding-inline: var(--community-split-gutter);
+		box-sizing: border-box;
+	}
+
+	&__container {
+		width: 100%;
+		max-width: var(--community-split-container-max);
+		margin-inline: auto;
+	}
+
+	&__inner {
+		width: 100%;
+	}
+
+	&__layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.5rem;
+		align-items: center;
+
+		@media (width >= $l) {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+			gap: 2rem;
+		}
+	}
+
+	&__media {
+		min-width: 0;
+		overflow: hidden;
+		border-radius: var(--community-split-radius);
+		background: #eee;
+		aspect-ratio: 19 / 9;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.85rem;
+		min-width: 0;
+	}
+
+	&__title {
+		margin: 0;
+		color: var(--header-color, #1f2024);
+		font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	&__text {
+		margin: 0;
+		max-width: 34rem;
+		color: #4a4a4a;
+		font-size: 0.9375rem;
+		line-height: 1.5;
+	}
+
+	&__cta {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		margin-top: 0.5rem;
+		padding: 1.25rem 1.15rem;
+		border-radius: var(--community-split-radius);
+		background: var(--community-split-cta-bg);
+
+		@media (width >= $sm) {
+			padding: 1.35rem 1.5rem;
+		}
+	}
+
+	&__deco {
+		position: absolute;
+		z-index: 0;
+		right: 0.5rem;
+		bottom: 0.5rem;
+		width: 3.5rem;
+		height: auto;
+		object-fit: cover;
+		opacity: 0.35;
+		pointer-events: none;
+		border-radius: 0.5rem;
+		mix-blend-mode: multiply;
+
+		@media (width >= $sm) {
+			width: 4.5rem;
+			right: 0.75rem;
+			top: 50%;
+			bottom: auto;
+			transform: translateY(-50%);
+		}
+	}
+
+	&__cta-title {
+		position: relative;
+		z-index: 1;
+		margin: 0 0 0.85rem;
+		max-width: 18rem;
+		color: var(--header-color, #1f2024);
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.3;
+	}
+
+	&__form {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		
+	}
+
+	&__field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		width: 100%;
+
+		@media (width >= $m) {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 0.5rem;
+		}
+
+		@media (width >= $l) {
+			display: flex;
+			flex-direction: column;
+			gap: 0.65rem;
+		}
+
+		@media (width >= $lg) {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 0.5rem;
+		}
+	}
+
+	&__input {
+		display: block;
+		width: 100%;
+		min-height: 2.85rem;
+		padding: 0.7rem 1rem;
+		border: 0;
+		border-radius: 0.65rem;
+		background: #fff;
+		color: var(--header-color, #1f2024);
+		font-family: inherit;
+		font-size: 0.9375rem;
+
+		&::placeholder {
+			color: #9a9a9a;
+		}
+
+		&:focus {
+			outline: 2px solid var(--color-orange, #ff9100);
+			outline-offset: 2px;
+		}
+	}
+
+	&__submit {
+		display: block;
+		width: 100%;
+		min-height: 2.85rem;
+		padding: 0.7rem 1.2rem;
+		border: 0;
+		border-radius: 0.65rem;
+		background: var(--color-orange, #ff9100);
+		color: #fff;
+		font-family: inherit;
+		font-size: 0.9375rem;
+		font-weight: 700;
+		white-space: nowrap;
+		cursor: pointer;
+		transition: background 0.2s ease, transform 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--color-orange-light, #ff4a00);
+			transform: translateY(-1px);
+		}
+
+		@media (width >= $m) {
+			width: auto;
+		}
+
+		@media (width >= $l) {
+			width: 100%;
+		}
+
+		@media (width >= $lg) {
+			width: auto;
+		}
+	}
+
+	&__sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	@media (width >= $m) {
+		padding-block: 3.25rem;
+
+		&__text {
+			font-size: 1rem;
+		}
+	}
+
+	@media (width >= $lg) {
+		padding-block: 4rem;
+		--community-split-radius: 1.15rem;
+
+		&__layout {
+			gap: 2.5rem;
+		}
+
+		&__title {
+			font-size: 1.875rem;
+		}
+
+		&__cta {
+			padding: 1.5rem 1.75rem;
+		}
+
+		&__cta-title {
+			font-size: 1.0625rem;
+		}
+	}
+}

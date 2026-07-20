@@ -1,0 +1,237 @@
+
+.reviews-slider {
+	--reviews-slider-shell-max: var(--main-container, 3500px);
+	--reviews-slider-container-max: var(--container, 1600px);
+	--reviews-slider-gutter: 15px;
+	--reviews-slider-card-width: 17rem;
+	padding-block: 2.5rem;
+	background: #f7f7f7;
+	overflow: hidden;
+
+	&__shell {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: var(--reviews-slider-shell-max, 3500px);
+		margin-inline: auto;
+		padding-inline: var(--reviews-slider-gutter, 15px);
+	}
+
+	&__container {
+		width: 100%;
+		max-width: var(--reviews-slider-container-max, 1600px);
+		margin-inline: auto;
+		overflow: hidden;
+	}
+
+	&__inner {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	&__title {
+		max-width: 40rem;
+		margin: 0 auto 1.75rem;
+		padding: 0 15px;
+		color: var(--header-color, #1f2024);
+		font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+		font-weight: 700;
+		line-height: 1.25;
+		text-align: center;
+	}
+
+	&__slider {
+		position: relative;
+	}
+
+	&__nav {
+		display: none;
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: #fff;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+		cursor: pointer;
+		transform: translateY(-50%);
+		transition: background 0.2s ease, opacity 0.2s ease;
+
+		&::before {
+			content: '';
+			display: block;
+			width: 0.55rem;
+			height: 0.55rem;
+			margin: 0 auto;
+			border-right: 2px solid var(--header-color, #1f2024);
+			border-bottom: 2px solid var(--header-color, #1f2024);
+		}
+
+		&--prev {
+			left: 0;
+
+			&::before {
+				transform: rotate(135deg) translate(-1px, -1px);
+			}
+		}
+
+		&--next {
+			right: 0;
+
+			&::before {
+				transform: rotate(-45deg) translate(-1px, -1px);
+			}
+		}
+
+		&:hover,
+		&:focus-visible {
+			background: #f0f0f0;
+		}
+
+		&.swiper-button-disabled {
+			opacity: 0.35;
+			cursor: default;
+		}
+
+		@media (width >= $l) {
+			display: block;
+		}
+	}
+
+	&__swiper {
+		overflow: visible;
+	}
+
+	&__wrapper {
+		align-items: stretch;
+	}
+
+	&__slide {
+		width: var(--reviews-slider-card-width);
+		height: auto;
+	}
+
+	&__card {
+		display: grid;
+		grid-template-columns: 5.5rem minmax(0, 1fr);
+		gap: 0.85rem;
+		align-items: stretch;
+		height: 100%;
+		min-height: 8.5rem;
+		padding: 0.85rem;
+		border-radius: 1rem;
+		background: #fff;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+	}
+
+	&__media {
+		overflow: hidden;
+		border-radius: 0.75rem;
+		background: #ebebeb;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+		padding: 0.15rem 0.15rem 0 0;
+	}
+
+	&__quote {
+		margin: 0;
+		color: var(--header-color, #1f2024);
+		font-size: 0.875rem;
+		font-weight: 500;
+		font-style: normal;
+		line-height: 1.4;
+	}
+
+	&__author {
+		margin: 0.5rem 0 0;
+		color: #6b6b6b;
+		font-size: 0.8125rem;
+		line-height: 1.3;
+	}
+
+	&__rating {
+		display: flex;
+		gap: 0.15rem;
+		margin-top: auto;
+		margin-left: auto;
+		padding-top: 0.75rem;
+		color: var(--color-orange, #ff9100);
+	}
+
+	&__star {
+		display: block;
+		flex-shrink: 0;
+	}
+
+	&__pagination {
+		display: flex;
+		justify-content: center;
+		gap: 0.35rem;
+		margin-top: 1.25rem;
+		position: static;
+
+		@media (width >= $l) {
+			display: none;
+		}
+
+		&.swiper-pagination-horizontal .swiper-pagination-bullet {
+			width: 0.5rem;
+			height: 0.5rem;
+			margin: 0;
+			background: #cfcfcf;
+			opacity: 1;
+
+			&.swiper-pagination-bullet-active {
+				background: var(--color-orange, #ff9100);
+			}
+		}
+	}
+
+	@media (width >= $m) {
+		--reviews-slider-card-width: 20rem;
+		padding-block: 3.25rem;
+
+		&__card {
+			grid-template-columns: 6.25rem minmax(0, 1fr);
+			gap: 1rem;
+			min-height: 9.5rem;
+			padding: 1rem;
+		}
+
+		&__quote {
+			font-size: 0.9375rem;
+		}
+	}
+
+	@media (width >= $l) {
+		--reviews-slider-card-width: 22rem;
+		padding-block: 4rem;
+
+		&__swiper {
+			padding-inline: 2.75rem;
+		}
+
+		&__card {
+			grid-template-columns: 7rem minmax(0, 1fr);
+			border-radius: 1.15rem;
+		}
+
+		&__quote {
+			font-size: 1rem;
+		}
+	}
+}

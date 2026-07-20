@@ -1,0 +1,10 @@
+/* Global Sass dependencies: Prepros compiles only this entrypoint. */
+@import "./core/breakpoints";
+@import "./core/normalize";
+@import "./core/layout";
+@import "./core/fonts";
+@import "./core/utilities";
+@import "./modules/modules";
+
+/* Project-specific overrides. */ 
+@import "./core/hacks"; 

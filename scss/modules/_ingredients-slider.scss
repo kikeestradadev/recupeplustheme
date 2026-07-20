@@ -1,0 +1,254 @@
+
+.ingredients-slider {
+	--ingredients-slider-shell-max: var(--main-container, 3500px);
+	--ingredients-slider-container-max: var(--container, 1600px);
+	--ingredients-slider-gutter: 15px;
+	--ingredients-slider-card-width: min(18rem, calc(100vw - 2.5rem));
+	--ingredients-slider-bg: #fff;
+	--ingredients-slider-radius: 1rem;
+	padding-block: 2.5rem 3rem;
+	background: #fff;
+	overflow: hidden;
+
+	&__shell {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: var(--ingredients-slider-shell-max, 3500px);
+		margin-inline: auto;
+		padding-inline: var(--ingredients-slider-gutter, 15px);
+	}
+
+	&__container {
+		width: 100%;
+		max-width: var(--ingredients-slider-container-max, 1600px);
+		margin-inline: auto;
+		overflow: hidden;
+	}
+
+	&__inner {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	&__header {
+		max-width: 40rem;
+		margin: 0 auto 1.75rem;
+		padding: 0 15px;
+		text-align: center;
+	}
+
+	&__title {
+		margin: 0 0 0.55rem;
+		color: var(--header-color, #1f2024);
+		font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	&__subtitle {
+		margin: 0;
+		color: #5a5a5a;
+		font-size: 0.9375rem;
+		line-height: 1.45;
+	}
+
+	&__slider {
+		position: relative;
+	}
+
+	&__nav {
+		display: none;
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: #fff;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+		cursor: pointer;
+		transform: translateY(-50%);
+		transition: background 0.2s ease, opacity 0.2s ease;
+
+		&::before {
+			content: '';
+			display: block;
+			width: 0.55rem;
+			height: 0.55rem;
+			margin: 0 auto;
+			border-right: 2px solid var(--header-color, #1f2024);
+			border-bottom: 2px solid var(--header-color, #1f2024);
+		}
+
+		&--prev {
+			left: 0;
+
+			&::before {
+				transform: rotate(135deg) translate(-1px, -1px);
+			}
+		}
+
+		&--next {
+			right: 0;
+
+			&::before {
+				transform: rotate(-45deg) translate(-1px, -1px);
+			}
+		}
+
+		&:hover,
+		&:focus-visible {
+			background: #f0f0f0;
+		}
+
+		&.swiper-button-disabled {
+			opacity: 0.35;
+			cursor: default;
+		}
+
+		@media (width >= $l) {
+			display: block;
+		}
+	}
+
+	&__swiper {
+		overflow: visible;
+
+		@media (width >= $l) {
+			padding-inline: 2.75rem;
+		}
+	}
+
+	&__wrapper {
+		align-items: stretch;
+	}
+
+	&__slide {
+		width: var(--ingredients-slider-card-width);
+		height: auto;
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 250px;
+		min-height: 250px;
+		overflow: hidden;
+		border: 1px solid #e6e6e6;
+		border-radius: var(--ingredients-slider-radius);
+		background: #fff;
+		padding-top: 15px;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		flex: 1 1 60%;
+		min-height: 0;
+		padding: 15px;
+		text-align: center;
+	}
+
+	&__name {
+		margin: 0;
+		color: var(--header-color, #1f2024);
+		font-size: 1.0625rem;
+		font-weight: 700;
+		line-height: 1.25;
+	}
+
+	&__text {
+		margin: 0;
+		color: #5a5a5a;
+		font-size: 0.8125rem;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	&__media {
+		flex: 0 0 70%;
+		width: 100%;
+		min-height: 0;
+		overflow: hidden;
+		background: #e8e8e8;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__pagination {
+		display: flex;
+		justify-content: center;
+		gap: 0.35rem;
+		margin-top: 1.25rem;
+		position: static;
+
+		@media (width >= $l) {
+			display: none;
+		}
+
+		&.swiper-pagination-horizontal .swiper-pagination-bullet {
+			width: 0.5rem;
+			height: 0.5rem;
+			margin: 0;
+			background: #cfcfcf;
+			opacity: 1;
+
+			&.swiper-pagination-bullet-active {
+				background: var(--color-orange, #ff9100);
+			}
+		}
+	}
+
+	@media (width >= $m) {
+		--ingredients-slider-card-width: 20rem;
+		padding-block: 3.25rem 3.5rem;
+
+		&__header {
+			margin-bottom: 2rem;
+		}
+
+		&__subtitle {
+			font-size: 1rem;
+		}
+
+		&__name {
+			font-size: 1.125rem;
+		}
+
+		&__text {
+			font-size: 0.875rem;
+		}
+	}
+
+	@media (width >= $l) {
+		--ingredients-slider-card-width: 22rem;
+		--ingredients-slider-radius: 1.15rem;
+		padding-block: 4rem;
+
+		&__header {
+			margin-bottom: 2.25rem;
+		}
+
+		&__title {
+			font-size: 1.75rem;
+		}
+
+		&__body {
+			padding: 1.15rem 1.15rem 0.95rem;
+		}
+	}
+
+	@media (width >= $lg) {
+		--ingredients-slider-card-width: 24rem;
+	}
+}
