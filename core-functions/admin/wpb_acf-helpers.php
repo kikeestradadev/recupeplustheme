@@ -1,6 +1,6 @@
 <?php
 /**
- * Shared ACF helpers for Home options pages.
+ * Shared ACF helpers for theme options pages.
  *
  * @package wpboilerplate
  */
@@ -10,7 +10,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers a field group on a Home options subpage.
+ * Registers a parent options menu and its ACF subpages.
+ *
+ * @param array<string, mixed> $args Menu args.
+ */
+function wpb_acf_register_options_menu( $args ) {
+	if ( ! is_admin() || ! function_exists( 'acf_add_options_page' ) ) {
+		return;
+	}
+
+	acf_add_options_page(
+		array(
+			'page_title' => $args['title'],
+			'menu_title' => $args['title'],
+			'menu_slug'  => $args['slug'],
+			'capability' => 'edit_pages',
+			'icon_url'   => isset( $args['icon'] ) ? $args['icon'] : 'dashicons-admin-generic',
+			'position'   => isset( $args['position'] ) ? $args['position'] : 10,
+			'redirect'   => true,
+		)
+	);
+
+	if ( empty( $args['pages'] ) || ! is_array( $args['pages'] ) ) {
+		return;
+	}
+
+	foreach ( $args['pages'] as $page ) {
+		acf_add_options_sub_page(
+			array(
+				'page_title'  => $page['title'],
+				'menu_title'  => $page['title'],
+				'menu_slug'   => $page['slug'],
+				'parent_slug' => $args['slug'],
+				'capability'  => 'edit_pages',
+			)
+		);
+	}
+}
+
+/**
+ * Registers a field group on an options subpage.
  *
  * @param string               $key    Group key.
  * @param string               $title  Group title.
@@ -126,12 +165,12 @@ function wpb_acf_link_field( $key, $name, $label ) {
 /**
  * Repeater field definition.
  *
- * @param string            $key        Field key.
- * @param string            $name       Field name.
- * @param string            $label      Field label.
- * @param array<int, mixed> $sub_fields Sub fields.
- * @param string            $collapsed  Collapsed subfield key.
- * @param string            $button     Button label.
+ * @param string            $key          Field key.
+ * @param string            $name         Field name.
+ * @param string            $label        Field label.
+ * @param array<int, mixed> $sub_fields   Sub fields.
+ * @param string            $collapsed    Collapsed subfield key.
+ * @param string            $button       Button label.
  * @param string            $instructions Help text.
  * @return array<string, mixed>
  */
@@ -210,7 +249,7 @@ function wpb_acf_image_data( $image ) {
 }
 
 /**
- * Reads one Home option. Same field is not fetched twice in one request.
+ * Reads one options field. Same field is not fetched twice in one request.
  *
  * @param string $name Field name.
  * @return mixed
@@ -247,6 +286,27 @@ function wpb_acf_option_text( $name ) {
  */
 function wpb_acf_option_image( $name ) {
 	return wpb_acf_image_data( wpb_acf_option( $name ) );
+}
+
+/**
+ * Desktop / tablet / mobile images with fallback to whichever exists.
+ *
+ * @param string $desktop_name Desktop field.
+ * @param string $tablet_name  Tablet field.
+ * @param string $mobile_name  Mobile field.
+ * @return array{desktop:?array,tablet:?array,mobile:?array}
+ */
+function wpb_acf_option_picture( $desktop_name, $tablet_name, $mobile_name ) {
+	$desktop  = wpb_acf_option_image( $desktop_name );
+	$tablet   = wpb_acf_option_image( $tablet_name );
+	$mobile   = wpb_acf_option_image( $mobile_name );
+	$fallback = $mobile ? $mobile : ( $tablet ? $tablet : $desktop );
+
+	return array(
+		'desktop' => $desktop ? $desktop : $fallback,
+		'tablet'  => $tablet ? $tablet : $fallback,
+		'mobile'  => $mobile ? $mobile : $fallback,
+	);
 }
 
 /**

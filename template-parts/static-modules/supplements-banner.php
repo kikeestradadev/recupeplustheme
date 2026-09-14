@@ -4,18 +4,56 @@
  *
  * @package wpboilerplate
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$title    = function_exists( 'wpb_acf_option_text' ) ? wpb_acf_option_text( 'supl_banner_title' ) : '';
+$text     = function_exists( 'wpb_acf_option_text' ) ? wpb_acf_option_text( 'supl_banner_text' ) : '';
+$picture  = function_exists( 'wpb_acf_option_picture' ) ? wpb_acf_option_picture( 'supl_banner_desktop', 'supl_banner_tablet', 'supl_banner_mobile' ) : array(
+	'desktop' => null,
+	'tablet'  => null,
+	'mobile'  => null,
+);
+$mobile   = $picture['mobile'];
+
+if ( '' === $title && '' === $text && ! $mobile ) {
+	return;
+}
 ?>
 <section class="supplements-banner" aria-label="Suplementos Recupé Plus">
-        <figure class="supplements-banner__figure">
-          <picture class="supplements-banner__picture">
-            <source media="(width >= 1280px)" srcset="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/suplementos/hero_banner/dk.webp">
-            <source media="(width >= 1024px)" srcset="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/suplementos/hero_banner/tb.webp"><img class="supplements-banner__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/suplementos/hero_banner/mb.webp" alt="Suplementos Recupé Plus" width="1600" height="600" loading="eager" fetchpriority="high">
-          </picture>
-          <div class="supplements-banner__content">
-            <div class="supplements-banner__copy">
-              <h1 class="supplements-banner__title">Suplementos para sentirte mejor todos los días.</h1>
-              <p class="supplements-banner__text">Ricos, naturales y fáciles de sumar a tu rutina. Gomitas y cápsulas para cada momento de tu día.</p>
-            </div>
-          </div>
-        </figure>
-      </section>
+	<figure class="supplements-banner__figure">
+		<?php if ( $mobile ) : ?>
+			<picture class="supplements-banner__picture">
+				<?php if ( $picture['desktop'] ) : ?>
+					<source media="(width >= 1280px)" srcset="<?php echo esc_url( $picture['desktop']['url'] ); ?>">
+				<?php endif; ?>
+				<?php if ( $picture['tablet'] ) : ?>
+					<source media="(width >= 1024px)" srcset="<?php echo esc_url( $picture['tablet']['url'] ); ?>">
+				<?php endif; ?>
+				<img
+					class="supplements-banner__image"
+					src="<?php echo esc_url( $mobile['url'] ); ?>"
+					alt="<?php echo esc_attr( $mobile['alt'] ? $mobile['alt'] : $title ); ?>"
+					width="<?php echo esc_attr( (string) $mobile['width'] ); ?>"
+					height="<?php echo esc_attr( (string) $mobile['height'] ); ?>"
+					loading="eager"
+					fetchpriority="high"
+				>
+			</picture>
+		<?php endif; ?>
+		<?php if ( '' !== $title || '' !== $text ) : ?>
+			<div class="supplements-banner__content">
+				<div class="supplements-banner__copy">
+					<?php if ( '' !== $title ) : ?>
+						<h1 class="supplements-banner__title"><?php echo esc_html( $title ); ?></h1>
+					<?php endif; ?>
+					<?php if ( '' !== $text ) : ?>
+						<p class="supplements-banner__text"><?php echo esc_html( $text ); ?></p>
+					<?php endif; ?>
+				</div>
+			</div>
+		<?php endif; ?>
+	</figure>
+</section>
