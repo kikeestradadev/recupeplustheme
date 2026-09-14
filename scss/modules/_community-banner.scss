@@ -5,7 +5,7 @@
 	--community-banner-gutter: 15px;
 	--community-banner-bg: #e8dced;
 	--community-banner-radius: 1.25rem;
-	padding-block: 2.5rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 
 	&__shell {
@@ -38,51 +38,7 @@
 		background: var(--community-banner-bg);
 	}
 
-	&__deco {
-		position: absolute;
-		z-index: 0;
-		width: 4.5rem;
-		height: auto;
-		object-fit: cover;
-		opacity: 0.35;
-		pointer-events: none;
-		border-radius: 0.75rem;
-		mix-blend-mode: multiply;
-
-		&--start {
-			top: 0.75rem;
-			left: 0.5rem;
-			transform: rotate(-8deg);
-		}
-
-		&--end {
-			right: 0.5rem;
-			bottom: 0.75rem;
-			transform: rotate(8deg);
-		}
-
-		@media (width >= $l) {
-			width: 6.5rem;
-			opacity: 0.45;
-
-			&--start {
-				top: 50%;
-				left: 1rem;
-				transform: translateY(-50%) rotate(-6deg);
-			}
-
-			&--end {
-				top: 50%;
-				right: 1rem;
-				bottom: auto;
-				transform: translateY(-50%) rotate(6deg);
-			}
-		}
-	}
-
 	&__content {
-		position: relative;
-		z-index: 1;
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.25rem;
@@ -101,7 +57,7 @@
 	&__title {
 		margin: 0;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1rem, 2.4vw, 1.25rem);
+		font-size: var(--section-title-size);
 		font-weight: 800;
 		line-height: 1.25;
 		letter-spacing: 0.02em;
@@ -111,9 +67,9 @@
 	&__text {
 		margin: 0;
 		color: var(--header-color, #1f2024);
-		font-size: 0.9375rem;
+		font-size: var(--section-subtitle-size);
 		font-weight: 400;
-		line-height: 1.45;
+		line-height: 1.5;
 	}
 
 	&__form {
@@ -190,6 +146,7 @@
 		border-radius: 999px;
 		background: var(--color-orange, #ff9100);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 		font-family: inherit;
 		font-size: 0.9375rem;
 		font-weight: 700;
@@ -232,33 +189,19 @@
 	}
 
 	@media (width >= $l) {
-		padding-block: 3.5rem;
-
 		&__card {
-			padding: 1.75rem 7.5rem;
+			padding: 1.75rem 2rem;
 		}
 
 		&__content {
 			grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.95fr);
 			gap: 2rem;
 		}
-
-		&__title {
-			font-size: 1.25rem;
-		}
-
-		&__text {
-			font-size: 1rem;
-		}
 	}
 
 	@media (width >= $lg) {
 		&__card {
-			padding: 2rem 8.5rem;
-		}
-
-		&__title {
-			font-size: 1.35rem;
+			padding: 2rem 2.5rem;
 		}
 	}
 }

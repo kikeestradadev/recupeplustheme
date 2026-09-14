@@ -6,7 +6,7 @@
 	--help-guides-bg: #f6f1ea;
 	--help-guides-radius: 1rem;
 	--help-guides-orange: var(--color-orange, #ff9100);
-	padding-block: 2.5rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 	overflow-x: clip;
 
@@ -88,7 +88,7 @@
 	&__help-title {
 		margin: 0;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1.05rem, 2vw, 1.25rem);
+		font-size: var(--section-title-size);
 		font-weight: 800;
 		line-height: 1.25;
 		text-transform: uppercase;
@@ -97,8 +97,8 @@
 	&__help-text {
 		margin: 0;
 		color: var(--header-color, #1f2024);
-		font-size: 0.9375rem;
-		line-height: 1.45;
+		font-size: var(--section-subtitle-size);
+		line-height: 1.5;
 	}
 
 	&__help-actions {
@@ -120,6 +120,7 @@
 		border-radius: 0.65rem;
 		background: var(--color-whatsapp, #25d366);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 		font-size: 0.9375rem;
 		font-weight: 700;
 		text-decoration: none;
@@ -129,6 +130,7 @@
 		&:focus-visible {
 			background: var(--color-whatsapp-dark, #1fbd59);
 			color: #fff;
+			text-shadow: var(--text-shadow-white);
 			text-decoration: none;
 			transform: translateY(-1px);
 		}
@@ -200,7 +202,7 @@
 	&__guides-title {
 		margin: 0;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1.05rem, 2vw, 1.25rem);
+		font-size: var(--section-title-size);
 		font-weight: 800;
 		line-height: 1.25;
 		text-transform: uppercase;
@@ -316,11 +318,9 @@
 	}
 
 	@media (width >= $m) {
-		padding-block: 3rem;
 	}
 
 	@media (width >= $l) {
-		padding-block: 3.5rem;
 		--help-guides-radius: 1.15rem;
 	}
 }

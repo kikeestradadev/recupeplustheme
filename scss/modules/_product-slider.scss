@@ -23,8 +23,9 @@
 	}
 
 	&__group {
-		padding-block: 2.5rem;
+		margin-bottom: var(--section-gap);
 		overflow: hidden;
+		scroll-margin-top: calc(var(--header-height, 3.5rem) + 1rem);
 
 		&--gomitas {
 			background: #fff;
@@ -35,7 +36,7 @@
 		}
 
 		&--capsulas {
-			background: #f6f3ee;
+			background: #fff;
 			border-radius: 1.5rem 1.5rem 0 0;
 
 			.product-slider__title {
@@ -56,15 +57,16 @@
 
 	&__title {
 		margin: 0 0 0.5rem;
-		font-size: clamp(1.5rem, 3vw, 2rem);
+		font-size: var(--section-title-size);
 		font-weight: 700;
 		line-height: 1.2;
+		text-transform: uppercase;
 	}
 
 	&__subtitle {
 		margin: 0;
 		color: var(--header-color, #1f2024);
-		font-size: 0.9375rem;
+		font-size: var(--section-subtitle-size);
 		font-weight: 400;
 		line-height: 1.5;
 	}
@@ -87,7 +89,7 @@
 		padding: 0;
 		border: 0;
 		border-radius: 50%;
-		background: #fff;
+		background: var(--color-orange, #ff9100);
 		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 		cursor: pointer;
 		transform: translateY(-50%);
@@ -99,8 +101,8 @@
 			width: 0.55rem;
 			height: 0.55rem;
 			margin: 0 auto;
-			border-right: 2px solid var(--header-color, #1f2024);
-			border-bottom: 2px solid var(--header-color, #1f2024);
+			border-right: 2px solid #fff;
+			border-bottom: 2px solid #fff;
 		}
 
 		&--prev {
@@ -121,7 +123,7 @@
 
 		&:hover,
 		&:focus-visible {
-			background: #f6f3ee;
+			background: var(--color-orange-light, #ff4a00);
 		}
 
 		&.swiper-button-disabled {
@@ -149,10 +151,11 @@
 			width: 0.5rem;
 			height: 0.5rem;
 			margin: 0;
-			background: #cfcfcf;
-			opacity: 1;
+			background: var(--color-orange, #ff9100);
+			opacity: 0.35;
 
 			&.swiper-pagination-bullet-active {
+				opacity: 1;
 				background: var(--color-orange, #ff9100);
 			}
 		}
@@ -192,7 +195,7 @@
 			--product-accent: #7a29ff;
 		}
 
-		&--memento {
+		&--Momento {
 			--product-accent: #00beda;
 		}
 
@@ -210,9 +213,12 @@
 	}
 
 	&__media {
+		display: block;
 		aspect-ratio: 1 / 1;
 		overflow: hidden;
 		background: #fff;
+		color: inherit;
+		text-decoration: none;
 	}
 
 	&__image {
@@ -238,6 +244,16 @@
 		font-size: 1.125rem;
 		font-weight: 700;
 		line-height: 1.15;
+	}
+
+	&__name-link {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
 	}
 
 	&__text {
@@ -272,7 +288,6 @@
 		--product-slider-card-gap: 1rem;
 
 		&__group {
-			padding-block: 3.25rem;
 		}
 
 		&__body {
@@ -298,7 +313,6 @@
 		--product-slider-card-gap: 1.5rem;
 
 		&__group {
-			padding-block: 4rem;
 
 			&--capsulas {
 				border-radius: 2rem 2rem 0 0;

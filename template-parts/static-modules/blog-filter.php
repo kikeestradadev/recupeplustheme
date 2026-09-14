@@ -64,128 +64,128 @@
               </div>
             </div>
             <div class="blog-filter__grid" data-blog-grid>
-              <article class="blog-filter__card" data-category="rutina"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="rutina"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/1.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Rutina</p>
-                <h3 class="blog-filter__name"><a href="#">¿Cómo elegir tu Recupé Plus según tu rutina?</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">¿Cómo elegir tu Recupé Plus según tu rutina?</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="hongos"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="hongos"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/2.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Hongos</p>
-                <h3 class="blog-filter__name"><a href="#">Hongos medicinales: qué son y cómo sumarlos a tu día.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">Hongos medicinales: qué son y cómo sumarlos a tu día.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="descanso"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="descanso"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/3.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Descanso</p>
-                <h3 class="blog-filter__name"><a href="#">Cómo crear un ritual simple antes de dormir.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">Cómo crear un ritual simple antes de dormir.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="ingredientes"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="ingredientes"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/5.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Ingredientes</p>
-                <h3 class="blog-filter__name"><a href="#">Vitamina C, magnesio y antioxidantes: cuándo elegir cada uno.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">Vitamina C, magnesio y antioxidantes: cuándo elegir cada uno.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="rutina"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="bienestar"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/6.png" alt="" width="400" height="260" loading="lazy"></a>
+                <p class="blog-filter__category">Bienestar diario</p>
+                <h3 class="blog-filter__name"><a href="post.html">Energía constante: hábitos simples para empezar el día.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+              </article>
+              <article class="blog-filter__card" data-category="rutina"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/7.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Rutina</p>
-                <h3 class="blog-filter__name"><a href="#">Rutinas cortas para días intensos.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">Recuperación después de entrenar: qué tener en cuenta.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="hongos"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                <p class="blog-filter__category">Hongos</p>
-                <h3 class="blog-filter__name"><a href="#">Qué hongos funcionan mejor según tu objetivo.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+              <article class="blog-filter__card" data-category="bienestar"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/8.png" alt="" width="400" height="260" loading="lazy"></a>
+                <p class="blog-filter__category">Bienestar diario</p>
+                <h3 class="blog-filter__name"><a href="post.html">Bienestar diario: cómo armar una rutina realista.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="descanso"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="rutina"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/9.png" alt="" width="400" height="260" loading="lazy"></a>
+                <p class="blog-filter__category">Rutina</p>
+                <h3 class="blog-filter__name"><a href="post.html">Guía rápida para acompañar tu concentración.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+              </article>
+              <article class="blog-filter__card" data-category="descanso"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/10.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Descanso</p>
-                <h3 class="blog-filter__name"><a href="#">Rituales de descanso que sí puedes mantener.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">Rituales de descanso que sí puedes mantener.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="ingredientes"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="ingredientes"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/11.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Ingredientes</p>
-                <h3 class="blog-filter__name"><a href="#">Cómo leer una etiqueta de suplementos sin volverte loco.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">Cómo leer una etiqueta de suplementos sin volverte loco.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
-              <article class="blog-filter__card" data-category="bienestar"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                <p class="blog-filter__category">Bienestar diario</p>
-                <h3 class="blog-filter__name"><a href="#">Hábitos simples para recuperar energía cada mañana.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
-              </article>
-              <article class="blog-filter__card" data-category="rutina"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                <p class="blog-filter__category">Rutina</p>
-                <h3 class="blog-filter__name"><a href="#">Cómo armar tu kit de recuperación para la semana.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
-              </article>
-              <article class="blog-filter__card" data-category="bienestar"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                <p class="blog-filter__category">Bienestar diario</p>
-                <h3 class="blog-filter__name"><a href="#">Pequeños cambios que mejoran tu bienestar diario.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
-              </article>
-              <article class="blog-filter__card" data-category="hongos"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+              <article class="blog-filter__card" data-category="hongos"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/12.png" alt="" width="400" height="260" loading="lazy"></a>
                 <p class="blog-filter__category">Hongos</p>
-                <h3 class="blog-filter__name"><a href="#">Guía rápida de hongos funcionales para principiantes.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                <h3 class="blog-filter__name"><a href="post.html">Guía rápida de hongos funcionales para principiantes.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+              </article>
+              <article class="blog-filter__card" data-category="bienestar"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/13.png" alt="" width="400" height="260" loading="lazy"></a>
+                <p class="blog-filter__category">Bienestar diario</p>
+                <h3 class="blog-filter__name"><a href="post.html">Pequeños cambios que mejoran tu bienestar diario.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
               </article>
             </div>
             <div class="blog-filter__mobile">
               <div class="blog-filter__swiper swiper" data-blog-swiper>
                 <div class="blog-filter__wrapper swiper-wrapper" data-blog-mobile-track>
                   <article class="blog-filter__slide swiper-slide" data-category="rutina">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/1.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Rutina</p>
-                      <h3 class="blog-filter__name"><a href="#">¿Cómo elegir tu Recupé Plus según tu rutina?</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">¿Cómo elegir tu Recupé Plus según tu rutina?</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                   <article class="blog-filter__slide swiper-slide" data-category="hongos">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/2.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Hongos</p>
-                      <h3 class="blog-filter__name"><a href="#">Hongos medicinales: qué son y cómo sumarlos a tu día.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">Hongos medicinales: qué son y cómo sumarlos a tu día.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                   <article class="blog-filter__slide swiper-slide" data-category="descanso">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/3.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Descanso</p>
-                      <h3 class="blog-filter__name"><a href="#">Cómo crear un ritual simple antes de dormir.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">Cómo crear un ritual simple antes de dormir.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                   <article class="blog-filter__slide swiper-slide" data-category="ingredientes">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/5.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Ingredientes</p>
-                      <h3 class="blog-filter__name"><a href="#">Vitamina C, magnesio y antioxidantes: cuándo elegir cada uno.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">Vitamina C, magnesio y antioxidantes: cuándo elegir cada uno.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                    </div>
+                  </article>
+                  <article class="blog-filter__slide swiper-slide" data-category="bienestar">
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/6.png" alt="" width="400" height="260" loading="lazy"></a>
+                      <p class="blog-filter__category">Bienestar diario</p>
+                      <h3 class="blog-filter__name"><a href="post.html">Energía constante: hábitos simples para empezar el día.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                   <article class="blog-filter__slide swiper-slide" data-category="rutina">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/7.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Rutina</p>
-                      <h3 class="blog-filter__name"><a href="#">Rutinas cortas para días intensos.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">Recuperación después de entrenar: qué tener en cuenta.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
-                  <article class="blog-filter__slide swiper-slide" data-category="hongos">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                      <p class="blog-filter__category">Hongos</p>
-                      <h3 class="blog-filter__name"><a href="#">Qué hongos funcionan mejor según tu objetivo.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                  <article class="blog-filter__slide swiper-slide" data-category="bienestar">
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/8.png" alt="" width="400" height="260" loading="lazy"></a>
+                      <p class="blog-filter__category">Bienestar diario</p>
+                      <h3 class="blog-filter__name"><a href="post.html">Bienestar diario: cómo armar una rutina realista.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                    </div>
+                  </article>
+                  <article class="blog-filter__slide swiper-slide" data-category="rutina">
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/9.png" alt="" width="400" height="260" loading="lazy"></a>
+                      <p class="blog-filter__category">Rutina</p>
+                      <h3 class="blog-filter__name"><a href="post.html">Guía rápida para acompañar tu concentración.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                   <article class="blog-filter__slide swiper-slide" data-category="descanso">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/10.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Descanso</p>
-                      <h3 class="blog-filter__name"><a href="#">Rituales de descanso que sí puedes mantener.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">Rituales de descanso que sí puedes mantener.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                   <article class="blog-filter__slide swiper-slide" data-category="ingredientes">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/11.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Ingredientes</p>
-                      <h3 class="blog-filter__name"><a href="#">Cómo leer una etiqueta de suplementos sin volverte loco.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
-                    </div>
-                  </article>
-                  <article class="blog-filter__slide swiper-slide" data-category="bienestar">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                      <p class="blog-filter__category">Bienestar diario</p>
-                      <h3 class="blog-filter__name"><a href="#">Hábitos simples para recuperar energía cada mañana.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
-                    </div>
-                  </article>
-                  <article class="blog-filter__slide swiper-slide" data-category="rutina">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                      <p class="blog-filter__category">Rutina</p>
-                      <h3 class="blog-filter__name"><a href="#">Cómo armar tu kit de recuperación para la semana.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
-                    </div>
-                  </article>
-                  <article class="blog-filter__slide swiper-slide" data-category="bienestar">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
-                      <p class="blog-filter__category">Bienestar diario</p>
-                      <h3 class="blog-filter__name"><a href="#">Pequeños cambios que mejoran tu bienestar diario.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">Cómo leer una etiqueta de suplementos sin volverte loco.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                   <article class="blog-filter__slide swiper-slide" data-category="hongos">
-                    <div class="blog-filter__card"><a class="blog-filter__media" href="#"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/item_filtro.png" alt="" width="400" height="260" loading="lazy"></a>
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/12.png" alt="" width="400" height="260" loading="lazy"></a>
                       <p class="blog-filter__category">Hongos</p>
-                      <h3 class="blog-filter__name"><a href="#">Guía rápida de hongos funcionales para principiantes.</a></h3><a class="blog-filter__link" href="#"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="blog-filter__name"><a href="post.html">Guía rápida de hongos funcionales para principiantes.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
+                    </div>
+                  </article>
+                  <article class="blog-filter__slide swiper-slide" data-category="bienestar">
+                    <div class="blog-filter__card"><a class="blog-filter__media" href="post.html"><img class="blog-filter__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/13.png" alt="" width="400" height="260" loading="lazy"></a>
+                      <p class="blog-filter__category">Bienestar diario</p>
+                      <h3 class="blog-filter__name"><a href="post.html">Pequeños cambios que mejoran tu bienestar diario.</a></h3><a class="blog-filter__link" href="post.html"><span>Leer guía</span><span class="blog-filter__link-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                 </div>

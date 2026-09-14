@@ -3,7 +3,7 @@
 	--newsletter-banner-shell-max: 3500px;
 	--newsletter-banner-container-max: 1600px;
 	--newsletter-banner-gutter: 15px;
-	padding-block: 2.5rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 
 	&__shell {
@@ -51,6 +51,7 @@
 		border-radius: 50%;
 		background: var(--color-orange, #ff9100);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 	}
 
 	&__icon-svg {
@@ -81,13 +82,25 @@
 		grid-template-columns: 1fr;
 		gap: 0.5rem;
 
-		@media (width >= $sm) {
+		@media (width >= $m) {
+			grid-template-columns: 1fr auto;
+			gap: 0;
+		}
+
+		@media (width >= $l) {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+
+		@media (width >= $lg) {
 			grid-template-columns: 1fr auto;
 			gap: 0;
 		}
 	}
 
 	&__input {
+		display: block;
+		box-sizing: border-box;
 		width: 100%;
 		min-height: 3rem;
 		padding: 0.75rem 1rem;
@@ -107,19 +120,33 @@
 			outline-offset: 2px;
 		}
 
-		@media (width >= $sm) {
+		@media (width >= 480px) {
+			border-right: 0;
+			border-radius: 0.5rem 0 0 0.5rem;
+		}
+
+		@media (width >= $l) {
+			border-right: 1px solid #e8e0d6;
+			border-radius: 0.5rem;
+		}
+
+		@media (width >= $lg) {
 			border-right: 0;
 			border-radius: 0.5rem 0 0 0.5rem;
 		}
 	}
 
 	&__submit {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
 		min-height: 3rem;
 		padding: 0.75rem 1.35rem;
 		border: 0;
 		border-radius: 0.5rem;
 		background: var(--color-orange, #ff9100);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 		font-family: inherit;
 		font-size: 0.9375rem;
 		font-weight: 700;
@@ -132,7 +159,18 @@
 			transform: translateY(-1px);
 		}
 
-		@media (width >= $sm) {
+		@media (width >= 480px) {
+			width: auto;
+			border-radius: 0 0.5rem 0.5rem 0;
+		}
+
+		@media (width >= $l) {
+			width: 100%;
+			border-radius: 0.5rem;
+		}
+
+		@media (width >= $lg) {
+			width: auto;
 			border-radius: 0 0.5rem 0.5rem 0;
 		}
 	}
@@ -157,7 +195,6 @@
 	}
 
 	@media (width >= $l) {
-		padding-block: 3.5rem;
 
 		&__card {
 			grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.9fr);

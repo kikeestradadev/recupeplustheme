@@ -1,6 +1,8 @@
+import { swiperRoots } from './swiperRoots';
+
 const momentSlider = (scope = document) => {
 	const instances = [];
-	const roots = scope.querySelectorAll('.moment-slider');
+	const roots = swiperRoots(scope, '.moment-slider');
 
 	if (roots.length > 0 && typeof Swiper !== 'undefined') {
 		roots.forEach((root) => {

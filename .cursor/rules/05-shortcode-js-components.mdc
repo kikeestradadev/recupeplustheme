@@ -1,0 +1,55 @@
+---
+description: Cada shortcode tiene un módulo JS camelCase en js/components e import en theme-scripts.js
+alwaysApply: true
+---
+
+# JS de shortcodes (componentes)
+
+Cada shortcode que necesite JS tiene un módulo ES en `js/components/`, estilo `module1.js`, registrado en `js/theme-scripts.js`.
+
+## Naming
+
+| Shortcode | Archivo JS | Export |
+|---|---|---|
+| `sc_name` | `js/components/name.js` | `export const name` |
+| `sc_top_banner` | `js/components/topBanner.js` | `export const topBanner` |
+| `sc_main_slider_test` | `js/components/mainSliderTest.js` | `export const mainSliderTest` |
+
+Conversión:
+
+1. Quitar prefijo `sc_`.
+2. Convertir snake_case a **camelCase** → nombre del archivo y del export.
+3. Misma forma que el callback PHP sin el prefijo `sc` del shortcode tag… en la práctica: `main_slider_test` → `mainSliderTest`.
+
+Ejemplo del proyecto: `js/components/module1.js` → `export const module1 = () => { ... }`.
+
+## Obligatorio al crear el JS del shortcode
+
+1. Crear `js/components/<camelCase>.js`.
+2. Exportar una const con el **mismo nombre** que el archivo:
+
+```js
+export const mainSliderTest = () => {
+  // lógica del componente
+};
+```
+
+3. En `js/theme-scripts.js`:
+
+```js
+import { mainSliderTest } from './components/mainSliderTest';
+// ...
+(() => {
+  $ = jQuery.noConflict();
+  mainSliderTest();
+})();
+```
+
+4. Prepros recompila el entry `js/theme-scripts.js` → `theme-scripts.js` (raíz).
+
+## Prohibido
+
+- Módulo del shortcode fuera de `js/components/`
+- Código del shortcode solo en `theme-scripts.js` sin módulo
+- Export sin `import` + llamada en `theme-scripts.js`
+- Naming kebab-case o snake_case en el archivo (`main-slider-test.js`, `main_slider_test.js`)

@@ -1,0 +1,16 @@
+---
+description: Sliders Swiper livianos — no cargar el CDN en todas las páginas ni inicializar offscreen
+globs: js/components/**/*.js,js/theme-scripts.js,header.php,footer.php,core-functions/**/*.php
+alwaysApply: true
+---
+
+# Rendimiento de sliders Swiper
+
+- **No** pegar el CDN de Swiper en `header.php` / `footer.php`. Se encola solo si `wpb_front_needs_swiper()` es true (`core-functions/core/wpb_swiper-assets.php`).
+- Página nueva con slider: `add_filter( 'wpb_front_needs_swiper', '__return_true' );` o ampliar el helper. No volver a cargar Swiper “por las dudas”.
+- **Hero** (`main-banner`): init inmediato en `theme-scripts.js`.
+- **Resto de sliders**: `initWhenVisible` (200px antes de entrar al viewport). No inicializar todos al `DOMContentLoaded`.
+- `loop: false` salvo que el diseño lo pida (loop duplica slides en el DOM).
+- Autoplay solo en el hero. Respetar `prefers-reduced-motion`.
+- Imágenes: WebP liviano. Primera del hero `loading="eager"`; las demás `loading="lazy"`.
+- Skill: `wpb-swiper-slider` (patrón + rendimiento).

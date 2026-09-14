@@ -1,6 +1,8 @@
+import { swiperRoots } from './swiperRoots';
+
 const mainSlider = (scope = document) => {
 	const instances = [];
-	const roots = scope.querySelectorAll('[data-main-slider], .main-slider');
+	const roots = swiperRoots(scope, '[data-main-slider], .main-slider');
 
 	if (roots.length > 0 && typeof Swiper !== 'undefined') {
 		roots.forEach((root) => {

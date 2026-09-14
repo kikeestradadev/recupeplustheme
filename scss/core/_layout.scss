@@ -4,6 +4,9 @@
 	/*text set up*/
 	--header-color			: #1F2024;
 	--paragraph-color		:#1F2024;
+	--section-title-size: clamp(1.25rem, 2.5vw, 1.75rem);
+	--section-subtitle-size: 0.9375rem;
+	--section-gap: 2.5rem;
 
 	/*breakpoints*/
 	--s: #{$s};
@@ -32,10 +35,17 @@
 	--color-blue: #00BEDA;
 	--color-purple: #7A29FF;
 	--color-fuchsia: #BA1CFF;
+	--text-shadow-white: 0 2px 12px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.35);
 
+
+	@media (width >= $m) {
+		--section-gap: 3.5rem;
+	}
 
 	@media (width >= $l) {
 		--header-height: 4.5rem;
+		--section-subtitle-size: 1rem;
+		--section-gap: 4rem;
 	}
 
 	//native color vars
@@ -52,7 +62,7 @@
 
 ::selection {
 	color: white;
-	background: #00CBFF;
+	background: var(--color-orange);
 }
 
 strong {

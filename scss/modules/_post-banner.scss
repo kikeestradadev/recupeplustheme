@@ -1,0 +1,20 @@
+.post-banner {
+	margin-bottom: var(--section-gap);
+	background: #fff;
+	overflow: clip;
+
+	&__figure {
+		display: block;
+		width: 100%;
+		margin: 0;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		max-height: min(70vh, 40rem);
+		height: auto;
+		object-fit: cover;
+		object-position: center;
+	}
+}

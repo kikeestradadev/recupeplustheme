@@ -1,0 +1,50 @@
+---
+description: Al crear PHP en el theme, el archivo DEBE ir en la subcarpeta correcta de core-functions
+alwaysApply: true
+---
+
+# Colocar funciones PHP en la carpeta correcta
+
+**ANTES de crear o mover cualquier función PHP del theme**, elige la carpeta. No escribas código en la raíz de `core-functions/` ni en la raíz del theme.
+
+`functions.php` incluye solo y de forma recursiva los `.php` bajo `core-functions/`. No agregues `require`/`include` en `functions.php`.
+
+## Mapa obligatorio
+
+| Si estás creando… | Archivo en… | Nombre de archivo |
+|---|---|---|
+| Shortcode (`add_shortcode`) | `core-functions/shortcodes/` | `sc_<nombre>.php` (naming completo → rule `03-shortcode-naming`) |
+| Menú o pantalla del admin (`add_menu_page`, settings de admin) | `core-functions/admin/` | `wpb_<nombre>.php` |
+| Widget o sidebar (`register_sidebar`, `WP_Widget`) | `core-functions/widgets/` | `wpb_<nombre>.php` |
+| Setup del theme, supports, menús front, enqueue CSS/JS, base del theme | `core-functions/core/` | `wpb_<nombre>.php` |
+
+## Tipo nuevo
+
+Si no encaja en la tabla, crea `core-functions/<tipo>/` en minúsculas y un solo propósito (`ajax`, `cpt`, `api`, etc.). Un tipo = una carpeta. **No** uses `setup/` (el setup va en `core/`).
+
+## Checklist al crear una función
+
+1. Identificar el tipo (shortcode / admin / widget / core / otro).
+2. Crear o reutilizar el `.php` **dentro** de esa carpeta.
+3. Prefijo de funciones PHP: `wpb_` (shortcodes de archivo: `sc_`).
+4. Guard de acceso: `if ( ! defined( 'ABSPATH' ) ) { exit; }`
+5. No tocar `functions.php` para registrar el include.
+
+## Prohibido
+
+- PHP de lógica en la raíz del theme
+- PHP suelto en `core-functions/*.php` (salvo nada: todo en subcarpeta)
+- Shortcodes fuera de `shortcodes/`
+- Setup o enqueues fuera de `core/`
+- Widgets fuera de `widgets/`
+- Admin fuera de `admin/`
+
+## Estructura real del proyecto
+
+```
+core-functions/
+├── admin/       → menús y pantallas del admin
+├── core/        → setup + CSS/JS enqueues + base del theme
+├── shortcodes/  → shortcodes
+└── widgets/     → widgets y sidebars
+```

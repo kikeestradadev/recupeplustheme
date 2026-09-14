@@ -23,7 +23,7 @@
                         <h3 class="believe-cards__name">Ingredientes elegidos con intención</h3>
                         <p class="believe-cards__text">Seleccionamos ingredientes naturales y de calidad, con respaldo científico y propósito real.</p>
                       </div>
-                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/creemos.png" alt="" width="400" height="260" loading="lazy"></div>
+                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_31_agosto/Nosotras/lo_que_creemos/ingredientes.png" alt="" width="1254" height="1254" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="believe-cards__slide swiper-slide">
@@ -32,7 +32,7 @@
                         <h3 class="believe-cards__name">Fácil de sumar a tu rutina</h3>
                         <p class="believe-cards__text">Productos prácticos, deliciosos y pensados para adaptarse a tu día, sin complicaciones.</p>
                       </div>
-                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/creemos.png" alt="" width="400" height="260" loading="lazy"></div>
+                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_31_agosto/Nosotras/lo_que_creemos/facil_sumar.webp" alt="" width="1254" height="1254" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="believe-cards__slide swiper-slide">
@@ -41,7 +41,7 @@
                         <h3 class="believe-cards__name">Bienestar para todos los días</h3>
                         <p class="believe-cards__text">Creemos en hábitos simples que generan cambios reales y sostenibles en el tiempo.</p>
                       </div>
-                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/creemos.png" alt="" width="400" height="260" loading="lazy"></div>
+                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_31_agosto/Nosotras/lo_que_creemos/bienestar.webp" alt="" width="1254" height="1254" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="believe-cards__slide swiper-slide">
@@ -50,7 +50,7 @@
                         <h3 class="believe-cards__name">Hecho en Costa Rica</h3>
                         <p class="believe-cards__text">Orgullosamente costarricenses. Apoyamos lo local y producimos con altos estándares de calidad.</p>
                       </div>
-                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/creemos.png" alt="" width="400" height="260" loading="lazy"></div>
+                      <div class="believe-cards__media"><img class="believe-cards__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_31_agosto/Nosotras/lo_que_creemos/hecho_cr.png" alt="" width="1254" height="1254" loading="lazy"></div>
                     </div>
                   </article>
                 </div>

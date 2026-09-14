@@ -30,7 +30,6 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="MobileOptimized" content="width">
   <meta name="HandheldFriendly" content="true">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet">
@@ -41,28 +40,6 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<header>
-		<?php get_template_part( 'template-parts/menu' );?>
-	</header>
+	<?php get_template_part( 'template-parts/menu' ); ?>
 	<main>
-		<?php get_template_part( 'template-parts/static-modules/main-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/moment-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/format-cards' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/product-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/allies-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/store-locator' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/ways-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/reviews-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/start-banner' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/brand-story' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/believe-cards' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/ingredients-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/founders-cards' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/guide-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/blog-slider' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/blog-filter' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/community-banner' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/community-split' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/help-guides' ); ?>
-		<?php get_template_part( 'template-parts/static-modules/newsletter-banner' ); ?>
 

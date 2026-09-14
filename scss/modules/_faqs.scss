@@ -1,0 +1,137 @@
+.faqs {
+	--faqs-border: #ded8d1;
+	--faqs-surface: #f8f4ef;
+	--faqs-accent: var(--color-orange, #ff9100);
+	margin-bottom: var(--section-gap);
+	background: #fff;
+
+	&__shell {
+		width: 100%;
+		max-width: var(--main-container);
+		margin-inline: auto;
+		padding-inline: 15px;
+	}
+
+	&__container {
+		width: 100%;
+		max-width: var(--container);
+		margin-inline: auto;
+	}
+
+	&__header {
+		max-width: 44rem;
+		margin: 0 auto 1.5rem;
+		text-align: center;
+	}
+
+	&__title {
+		margin: 0;
+		color: var(--header-color, #1f2024);
+		font-size: var(--section-title-size);
+		font-weight: 700;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+
+	&__intro {
+		margin: 0.75rem 0 0;
+		color: var(--paragraph-color, #1f2024);
+		font-size: var(--section-subtitle-size);
+		line-height: 1.5;
+	}
+
+	&__list {
+		display: grid;
+		gap: 0.75rem;
+		width: 100%;
+		max-width: 58rem;
+		margin-inline: auto;
+	}
+
+	&__item {
+		overflow: hidden;
+		border: 1px solid var(--faqs-border);
+		border-radius: 0.75rem;
+		background: #fff;
+		transition: border-color 0.2s ease, background 0.2s ease;
+
+		&[open] {
+			border-color: var(--faqs-accent);
+			background: var(--faqs-surface);
+		}
+
+		&[open] .faqs__arrow {
+			transform: rotate(225deg);
+		}
+	}
+
+	&__question {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem;
+		color: var(--header-color, #1f2024);
+		font-size: 0.9375rem;
+		font-weight: 700;
+		line-height: 1.35;
+		cursor: pointer;
+		list-style: none;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::marker {
+			content: '';
+		}
+
+		&:focus-visible {
+			outline: 3px solid rgba(255, 145, 0, 0.35);
+			outline-offset: -3px;
+		}
+	}
+
+	&__question-text {
+		flex: 1;
+	}
+
+	&__arrow {
+		display: block;
+		flex: 0 0 auto;
+		width: 0.7rem;
+		height: 0.7rem;
+		margin-top: -0.25rem;
+		border-right: 2px solid var(--faqs-accent);
+		border-bottom: 2px solid var(--faqs-accent);
+		transform: rotate(45deg);
+		transition: transform 0.2s ease;
+	}
+
+	&__answer {
+		padding: 0 1rem 1rem;
+		color: var(--paragraph-color, #1f2024);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	@media (width >= $m) {
+		&__header {
+			margin-bottom: 2rem;
+		}
+
+		&__question {
+			padding: 1.25rem 1.5rem;
+			font-size: 1rem;
+		}
+
+		&__answer {
+			padding: 0 1.5rem 1.25rem;
+			font-size: 1rem;
+		}
+	}
+}

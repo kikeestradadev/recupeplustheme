@@ -4,7 +4,7 @@
 	--allies-slider-container-max: var(--container, 1600px);
 	--allies-slider-gutter: 15px;
 	--allies-slider-card-width: 8.5rem;
-	padding-block: 2.5rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 	overflow: hidden;
 
@@ -32,9 +32,10 @@
 		margin: 0 0 1.75rem;
 		padding: 0 15px;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+		font-size: var(--section-title-size);
 		font-weight: 700;
 		line-height: 1.3;
+		text-transform: uppercase;
 		text-align: center;
 	}
 
@@ -91,10 +92,11 @@
 			width: 0.5rem;
 			height: 0.5rem;
 			margin: 0;
-			background: #cfcfcf;
-			opacity: 1;
+			background: var(--color-orange, #ff9100);
+			opacity: 0.35;
 
 			&.swiper-pagination-bullet-active {
+				opacity: 1;
 				background: var(--color-orange, #ff9100);
 			}
 		}
@@ -102,7 +104,6 @@
 
 	@media (width >= $m) {
 		--allies-slider-card-width: 9.5rem;
-		padding-block: 3rem;
 
 		&__card {
 			min-height: 5rem;
@@ -117,7 +118,6 @@
 
 	@media (width >= $l) {
 		--allies-slider-card-width: 10.5rem;
-		padding-block: 3.5rem;
 
 		&__card {
 			min-height: 5.25rem;

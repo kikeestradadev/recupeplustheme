@@ -6,7 +6,7 @@
 	--blog-filter-orange: var(--color-orange, #ff9100);
 	--blog-filter-chip-border: #e6e6e6;
 	--blog-filter-card-radius: 1rem;
-	padding-block: 2.5rem 3rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 	overflow: hidden;
 
@@ -38,9 +38,10 @@
 	&__title {
 		margin: 0;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+		font-size: var(--section-title-size);
 		font-weight: 700;
 		line-height: 1.2;
+		text-transform: uppercase;
 	}
 
 	&__more {
@@ -191,9 +192,11 @@
 			border-color: var(--blog-filter-orange, #ff9100);
 			background: var(--blog-filter-orange, #ff9100);
 			color: #fff;
+			text-shadow: var(--text-shadow-white);
 
 			.blog-filter__chip-icon {
 				color: #fff;
+				text-shadow: var(--text-shadow-white);
 			}
 		}
 	}
@@ -400,6 +403,7 @@
 			border-color: var(--blog-filter-orange, #ff9100);
 			background: var(--blog-filter-orange, #ff9100);
 			color: #fff;
+			text-shadow: var(--text-shadow-white);
 			cursor: default;
 		}
 
@@ -416,7 +420,6 @@
 	}
 
 	@media (width >= $m) {
-		padding-block: 3rem 3.5rem;
 
 		&__filters {
 			margin-bottom: 2rem;
@@ -428,7 +431,6 @@
 	}
 
 	@media (width >= $l) {
-		padding-block: 4rem;
 
 		&__filters-swiper {
 			overflow: visible;

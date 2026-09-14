@@ -4,176 +4,81 @@
  *
  * @package wpboilerplate
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$title   = function_exists( 'wpb_acf_option_text' ) ? wpb_acf_option_text( 'home_reviews_title' ) : '';
+$rows    = function_exists( 'wpb_acf_option_rows' ) ? wpb_acf_option_rows( 'home_reviews_slider' ) : array();
+$reviews = array();
+
+foreach ( $rows as $row ) {
+	$image  = wpb_acf_image_data( isset( $row['image'] ) ? $row['image'] : null );
+	$quote  = isset( $row['quote'] ) ? $row['quote'] : '';
+	$author = isset( $row['author'] ) ? $row['author'] : '';
+	$rating = isset( $row['rating'] ) ? (int) $row['rating'] : 5;
+
+	if ( ! $image && '' === $quote && '' === $author ) {
+		continue;
+	}
+
+	$reviews[] = array(
+		'image'  => $image,
+		'quote'  => $quote,
+		'author' => $author,
+		'rating' => $rating,
+	);
+}
+
+if ( '' === $title && empty( $reviews ) ) {
+	return;
+}
 ?>
 <section class="reviews-slider">
-        <div class="main-container reviews-slider__shell">
-          <div class="container reviews-slider__container reviews-slider__inner">
-            <h2 class="reviews-slider__title">Personas que ya sumaron Recupé Plus a su rutina.</h2>
-            <div class="reviews-slider__slider">
-              <button class="reviews-slider__nav reviews-slider__nav--prev" type="button" aria-label="Anterior"></button>
-              <button class="reviews-slider__nav reviews-slider__nav--next" type="button" aria-label="Siguiente"></button>
-              <div class="reviews-slider__swiper swiper">
-                <div class="reviews-slider__wrapper swiper-wrapper">
-                  <article class="reviews-slider__slide swiper-slide">
-                    <div class="reviews-slider__card">
-                      <div class="reviews-slider__media"><img class="reviews-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/rating.jpeg" alt="" width="120" height="120" loading="lazy"></div>
-                      <div class="reviews-slider__body">
-                        <blockquote class="reviews-slider__quote">“Me encanta porque es rico y fácil de tomar todos los días.”</blockquote>
-                        <p class="reviews-slider__author">— Mariana, 38</p>
-                        <div class="reviews-slider__rating" aria-label="5 de 5 estrellas">
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="reviews-slider__slide swiper-slide">
-                    <div class="reviews-slider__card">
-                      <div class="reviews-slider__media"><img class="reviews-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/rating.jpeg" alt="" width="120" height="120" loading="lazy"></div>
-                      <div class="reviews-slider__body">
-                        <blockquote class="reviews-slider__quote">“Serenity se volvió parte de mi rutina de noche.”</blockquote>
-                        <p class="reviews-slider__author">— Andrés, 45</p>
-                        <div class="reviews-slider__rating" aria-label="5 de 5 estrellas">
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="reviews-slider__slide swiper-slide">
-                    <div class="reviews-slider__card">
-                      <div class="reviews-slider__media"><img class="reviews-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/rating.jpeg" alt="" width="120" height="120" loading="lazy"></div>
-                      <div class="reviews-slider__body">
-                        <blockquote class="reviews-slider__quote">“Memento me acompaña en días de mucho trabajo.”</blockquote>
-                        <p class="reviews-slider__author">— Carolina, 34</p>
-                        <div class="reviews-slider__rating" aria-label="5 de 5 estrellas">
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="reviews-slider__slide swiper-slide">
-                    <div class="reviews-slider__card">
-                      <div class="reviews-slider__media"><img class="reviews-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/rating.jpeg" alt="" width="120" height="120" loading="lazy"></div>
-                      <div class="reviews-slider__body">
-                        <blockquote class="reviews-slider__quote">“Me encanta porque es rico y fácil de tomar todos los días.”</blockquote>
-                        <p class="reviews-slider__author">— Mariana, 38</p>
-                        <div class="reviews-slider__rating" aria-label="5 de 5 estrellas">
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="reviews-slider__slide swiper-slide">
-                    <div class="reviews-slider__card">
-                      <div class="reviews-slider__media"><img class="reviews-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/rating.jpeg" alt="" width="120" height="120" loading="lazy"></div>
-                      <div class="reviews-slider__body">
-                        <blockquote class="reviews-slider__quote">“Serenity se volvió parte de mi rutina de noche.”</blockquote>
-                        <p class="reviews-slider__author">— Andrés, 45</p>
-                        <div class="reviews-slider__rating" aria-label="5 de 5 estrellas">
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="reviews-slider__slide swiper-slide">
-                    <div class="reviews-slider__card">
-                      <div class="reviews-slider__media"><img class="reviews-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/rating.jpeg" alt="" width="120" height="120" loading="lazy"></div>
-                      <div class="reviews-slider__body">
-                        <blockquote class="reviews-slider__quote">“Memento me acompaña en días de mucho trabajo.”</blockquote>
-                        <p class="reviews-slider__author">— Carolina, 34</p>
-                        <div class="reviews-slider__rating" aria-label="5 de 5 estrellas">
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                          <svg class="reviews-slider__star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" fill="currentColor"></path>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="reviews-slider__pagination swiper-pagination"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+	<div class="main-container reviews-slider__shell">
+		<div class="container reviews-slider__container reviews-slider__inner">
+			<?php if ( '' !== $title ) : ?>
+				<h2 class="reviews-slider__title"><?php echo esc_html( $title ); ?></h2>
+			<?php endif; ?>
+			<?php if ( ! empty( $reviews ) ) : ?>
+				<div class="reviews-slider__slider">
+					<button class="reviews-slider__nav reviews-slider__nav--prev" type="button" aria-label="Anterior"></button>
+					<button class="reviews-slider__nav reviews-slider__nav--next" type="button" aria-label="Siguiente"></button>
+					<div class="reviews-slider__swiper swiper">
+						<div class="reviews-slider__wrapper swiper-wrapper">
+							<?php foreach ( $reviews as $review ) : ?>
+								<article class="reviews-slider__slide swiper-slide">
+									<div class="reviews-slider__card">
+										<?php if ( $review['image'] ) : ?>
+											<div class="reviews-slider__media">
+												<img
+													class="reviews-slider__image"
+													src="<?php echo esc_url( $review['image']['url'] ); ?>"
+													alt="<?php echo esc_attr( $review['image']['alt'] ? $review['image']['alt'] : $review['author'] ); ?>"
+													width="<?php echo esc_attr( (string) $review['image']['width'] ); ?>"
+													height="<?php echo esc_attr( (string) $review['image']['height'] ); ?>"
+													loading="lazy"
+												>
+											</div>
+										<?php endif; ?>
+										<div class="reviews-slider__body">
+											<?php if ( '' !== $review['quote'] ) : ?>
+												<blockquote class="reviews-slider__quote"><?php echo esc_html( $review['quote'] ); ?></blockquote>
+											<?php endif; ?>
+											<?php if ( '' !== $review['author'] ) : ?>
+												<p class="reviews-slider__author"><?php echo esc_html( $review['author'] ); ?></p>
+											<?php endif; ?>
+											<?php echo wpb_reviews_stars_html( $review['rating'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										</div>
+									</div>
+								</article>
+							<?php endforeach; ?>
+						</div>
+						<div class="reviews-slider__pagination swiper-pagination"></div>
+					</div>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</section>

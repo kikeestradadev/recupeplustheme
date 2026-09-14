@@ -3,7 +3,7 @@
 	--format-cards-shell-max: 3500px;
 	--format-cards-container-max: 1600px;
 	--format-cards-gutter: 15px;
-	padding-block: 3rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 
 	&__shell {
@@ -28,7 +28,7 @@
 		max-width: 42rem;
 		margin: 0 auto 2rem;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+		font-size: var(--section-title-size);
 		font-weight: 700;
 		letter-spacing: 0.02em;
 		line-height: 1.25;
@@ -40,10 +40,15 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.25rem;
+		width: 100%;
+		max-width: 640px;
+		margin-inline: auto;
 
 		@media (width >= $l) {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 1.5rem;
+			max-width: none;
+			margin-inline: 0;
 		}
 	}
 
@@ -55,14 +60,14 @@
 		min-width: 0;
 		padding: 1.5rem;
 		border-radius: 1.25rem;
-		background: #f6f3ee;
+		background: #fff;
 
 		@media (width >= $l) {
 			padding: 1.75rem;
 		}
 
-		@media (width >= $lg) {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+		@media (width >= $xl) {
+			grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
 			gap: 1.5rem;
 			padding: 2rem 1.5rem 2rem 2rem;
 		}
@@ -75,6 +80,7 @@
 	&__card--gomitas &__cta {
 		background: var(--color-orange, #ff9100);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 	}
 
 	&__card--gomitas &__cta:hover,
@@ -89,6 +95,7 @@
 	&__card--capsulas &__cta {
 		background: var(--header-color, #1f2024);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 	}
 
 	&__card--capsulas &__cta:hover,
@@ -101,6 +108,7 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 0.75rem;
+		width: 100%;
 		min-width: 0;
 	}
 
@@ -175,14 +183,12 @@
 	&__image {
 		display: block;
 		width: 100%;
-		max-width: 400px;
 		height: auto;
 		margin: 0 auto;
 		object-fit: contain;
 	}
 
 	@media (width >= $l) {
-		padding-block: 4rem;
 
 		&__title {
 			margin-bottom: 2.5rem;

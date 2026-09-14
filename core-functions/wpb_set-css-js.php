@@ -34,12 +34,20 @@ if ( !function_exists( 'wpb_enqueue_scripts' ) ) :
         // Encolar JS personalizado del tema hijo
         $child_theme_js_path = get_stylesheet_directory() . '/theme-scripts.js';
         if (file_exists($child_theme_js_path)) {
+            $script_deps = array( 'jquery' );
+            if ( function_exists( 'wpb_front_needs_swiper' ) && wpb_front_needs_swiper() ) {
+                $script_deps[] = 'wpb-swiper';
+            }
+
             wp_enqueue_script(
-                'child-theme-scripts', // Handle
-                get_stylesheet_directory_uri() . '/theme-scripts.js', // Ruta al archivo JS del tema hijo
-                ['jquery'], // Un array de scripts de los que depende
-                filemtime($child_theme_js_path), // Número de versión para el control de cache
-                true // Cargar en el footer
+                'child-theme-scripts',
+                get_stylesheet_directory_uri() . '/theme-scripts.js',
+                $script_deps,
+                filemtime($child_theme_js_path),
+                array(
+                    'in_footer' => true,
+                    'strategy'  => 'defer',
+                )
             );
         }
     }

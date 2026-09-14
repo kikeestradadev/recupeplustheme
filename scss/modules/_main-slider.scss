@@ -133,6 +133,7 @@
 	&__title {
 		margin: 0;
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 		font-size: clamp(2.25rem, 6vw, 4.75rem);
 		font-weight: 800;
 		letter-spacing: -0.045em;
@@ -153,6 +154,7 @@
 		max-width: 36rem;
 		margin: 1.15rem 0 0;
 		color: rgba(255, 255, 255, 0.88);
+		text-shadow: var(--text-shadow-white);
 		font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
 		line-height: 1.6;
 	}
@@ -200,12 +202,14 @@
 			border-color: rgba(255, 255, 255, 0.5);
 			background: rgba(255, 255, 255, 0.08);
 			color: #fff;
+			text-shadow: var(--text-shadow-white);
 
 			&:hover,
 			&:focus-visible {
 				border-color: #fff;
 				background: #fff;
 				color: #10251c;
+				text-shadow: none;
 			}
 		}
 	}
@@ -220,10 +224,11 @@
 		width: 3rem;
 		height: 3rem;
 		padding: 0;
-		border: 1px solid rgba(255, 255, 255, 0.35);
+		border: 0;
 		border-radius: 50%;
-		background: rgba(7, 25, 19, 0.62);
+		background: var(--color-orange, #ff9100);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 		box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.18);
 		backdrop-filter: blur(8px);
 		cursor: pointer;
@@ -236,8 +241,7 @@
 
 		&:hover,
 		&:focus-visible {
-			border-color: #fff;
-			background: rgba(7, 25, 19, 0.9);
+			background: var(--color-orange-light, #ff4a00);
 		}
 
 		&--prev {
@@ -290,14 +294,14 @@
 			width: 0.55rem;
 			height: 0.55rem;
 			margin: 0 0.25rem;
-			background: rgba(255, 255, 255, 0.7);
-			opacity: 1;
+			background: var(--color-orange, #ff9100);
+			opacity: 0.45;
 			transition: width 0.25s ease, background 0.25s ease;
 
 			&.swiper-pagination-bullet-active {
 				width: 1.75rem;
 				border-radius: 999px;
-				background: #fff;
+				background: var(--color-orange, #ff9100);
 			}
 		}
 	}
@@ -312,6 +316,7 @@
 		border-radius: 999px;
 		background: transparent;
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 		font-size: 0.6875rem;
 		font-weight: 700;
 		cursor: pointer;

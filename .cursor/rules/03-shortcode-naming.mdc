@@ -1,0 +1,79 @@
+---
+description: Naming convention de shortcodes — archivo sc_nombre, función camelCase, tag sc_nombre, atributos camelCase
+globs: core-functions/shortcodes/**/*.php
+alwaysApply: true
+---
+
+# Naming de shortcodes
+
+Un shortcode = un archivo en `core-functions/shortcodes/`. Sigue este naming sin excepciones.
+
+## Convención
+
+| Pieza | Formato | Ejemplo simple | Ejemplo compuesto |
+|---|---|---|---|
+| Archivo | `sc_<nombre>.php` snake_case | `sc_name.php` | `sc_top_banner.php` |
+| Tag en `add_shortcode` | `sc_<nombre>` snake_case | `sc_name` | `sc_top_banner` |
+| Función callback | `sc` + PascalCase → camelCase total | `scName` | `scTopBanner` |
+| Atributos del shortcode | camelCase | `titleText` | `bgImage`, `showButton` |
+
+- Prefijo de archivo y tag: **`sc_`** (shortcode).
+- Nombre multi-palabra: **guion bajo** entre palabras (`sc_top_banner`), nunca `sc-top-banner` ni `scTopBanner.php`.
+- Callback: quitar guiones bajos del nombre y usar camelCase (`sc_top_banner` → `scTopBanner`).
+
+## Plantilla (referencia: `sc_name.php`)
+
+```php
+<?php
+// Función que maneja el shortcode
+function scName() {
+	return '<h1>This is a ShortCode Example</h1>';
+}
+// Registrando el shortcode en WordPress
+add_shortcode( 'sc_name', 'scName' );
+```
+
+## Con atributos
+
+```php
+<?php
+// Función que maneja el shortcode
+function scTopBanner( $atts ) {
+	$atts = shortcode_atts(
+		array(
+			'titleText' => '',
+			'bgImage'   => '',
+		),
+		$atts,
+		'sc_top_banner'
+	);
+
+	// Usar $atts['titleText'], $atts['bgImage'], etc.
+	return '';
+}
+// Registrando el shortcode en WordPress
+add_shortcode( 'sc_top_banner', 'scTopBanner' );
+```
+
+Uso en contenido:
+
+```
+[sc_top_banner titleText="Hola" bgImage="..."]
+```
+
+## Prohibido
+
+- Archivo o tag sin prefijo `sc_`
+- Callback tipo `wpb_top_banner` o `sc_top_banner` (la función no va en snake_case)
+- Atributos en kebab-case o snake_case (`title-text`, `title_text`)
+- Más de un `add_shortcode` no relacionado en el mismo archivo (1 shortcode principal por archivo)
+
+## Checklist
+
+1. Archivo en `core-functions/shortcodes/sc_<nombre>.php`
+2. Función `scNombreEnCamelCase`
+3. `add_shortcode( 'sc_<nombre>', 'scNombreEnCamelCase' )`
+4. Atributos en camelCase
+5. Partial SCSS del componente (ver rule `04-shortcode-scss-components`)
+6. Módulo JS del componente (ver rule `05-shortcode-js-components`)
+7. Si es slider Swiper: skill `wpb-swiper-slider` (validar elementos + CDN global)

@@ -1,0 +1,16 @@
+---
+description: Checklist al crear archivos PHP — siempre en subcarpeta de core-functions, nunca sueltos
+globs: core-functions/**/*.php
+alwaysApply: false
+---
+
+# Checklist al editar PHP de `core-functions`
+
+Si este archivo es nuevo o se está creando lógica nueva en un archivo PHP del theme:
+
+1. ¿Está bajo `core-functions/<tipo>/`? (admin | core | shortcodes | widgets | otro tipo)
+2. ¿El tipo coincide con el contenido? (no shortcodes en `core/`, no admin en `widgets/`)
+3. ¿Nombre `wpb_*.php` o shortcode `sc_*.php`?
+4. ¿Sin modificar `functions.php` para incluir el archivo?
+
+Si el archivo está en la **raíz** de `core-functions/`, **muévelo** a la subcarpeta correcta antes de seguir.

@@ -11,6 +11,7 @@
 	border-radius: 50%;
 	background: var(--color-whatsapp, #25d366);
 	color: #fff;
+	text-shadow: var(--text-shadow-white);
 	box-shadow: 0 0.65rem 1.75rem rgba(11, 61, 46, 0.25);
 	text-decoration: none;
 	transition: background 0.2s ease, transform 0.2s ease;
@@ -19,6 +20,7 @@
 	&:focus-visible {
 		background: var(--color-whatsapp-dark, #1fbd59);
 		color: #fff;
+		text-shadow: var(--text-shadow-white);
 		text-decoration: none;
 		transform: translateY(-2px);
 	}

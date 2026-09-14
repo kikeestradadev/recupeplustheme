@@ -3,7 +3,7 @@
 	--store-locator-shell-max: var(--main-container, 3500px);
 	--store-locator-container-max: var(--container, 1600px);
 	--store-locator-gutter: 15px;
-	padding-block: 2.5rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 
 	&__shell {
@@ -32,16 +32,17 @@
 	&__title {
 		margin: 0 0 0.5rem;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+		font-size: var(--section-title-size);
 		font-weight: 700;
 		line-height: 1.25;
+		text-transform: uppercase;
 	}
 
 	&__subtitle {
 		margin: 0;
 		color: #5a5a5a;
-		font-size: 1rem;
-		line-height: 1.4;
+		font-size: var(--section-subtitle-size);
+		line-height: 1.45;
 	}
 
 	&__layout {
@@ -294,7 +295,6 @@
 	}
 
 	@media (width >= $l) {
-		padding-block: 3.5rem;
 
 		&__panel {
 			padding: 1.5rem;

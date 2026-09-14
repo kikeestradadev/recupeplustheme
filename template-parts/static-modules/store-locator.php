@@ -49,7 +49,7 @@
                 </ul><a class="store-locator__more" href="#">Ver más tiendas →</a>
               </div>
               <div class="store-locator__map" aria-label="Mapa de tiendas">
-                <iframe class="store-locator__map-frame" title="Mapa de tiendas en San José" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.170%2C9.900%2C-84.000%2C9.980&amp;layer=mapnik"></iframe>
+                <iframe class="store-locator__map-frame" title="Mapa de tiendas en San José" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.170%2C9.900%2C-84.000%2C9.980&layer=mapnik"></iframe>
                 <div class="store-locator__pins" aria-hidden="true"><span class="store-locator__pin store-locator__pin--green store-locator__pin--active" data-store="0" style="top: 42%; left: 28%;"></span><span class="store-locator__pin store-locator__pin--orange" data-store="1" style="top: 48%; left: 46%;"></span><span class="store-locator__pin store-locator__pin--purple" data-store="2" style="top: 55%; left: 68%;"></span></div>
               </div>
             </div>

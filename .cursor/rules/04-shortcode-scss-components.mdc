@@ -1,0 +1,52 @@
+---
+description: Cada shortcode tiene un partial SCSS en components con kebab-case e import en _components.scss
+alwaysApply: true
+---
+
+# SCSS de shortcodes (componentes)
+
+Este theme compila SASS. **Cada shortcode es un componente visual** y debe tener su partial SCSS.
+
+## Naming
+
+| Origen (shortcode) | Partial SCSS |
+|---|---|
+| `sc_name` | `scss/components/_name.scss` |
+| `sc_top_banner` | `scss/components/_top-banner.scss` |
+| `sc_main_slider_test` | `scss/components/_main-slider-test.scss` |
+
+Regla de conversión:
+
+1. Quitar el prefijo `sc_`.
+2. Cambiar `_` por `-` (kebab-case).
+3. Prefijar el archivo con `_` (partial de SASS): `_<nombre-kebab>.scss`.
+
+## Obligatorio al crear un shortcode
+
+1. Crear `scss/components/_<nombre-kebab>.scss`.
+2. Agregar el import en `scss/components/_components.scss`:
+
+```scss
+@import "main-slider-test";
+```
+
+(SASS resuelve `_main-slider-test.scss` sin el guion bajo ni la extensión.)
+
+3. No poner estilos del shortcode en `_components.scss` ni en layout/global: solo en su partial.
+4. Recompilar SASS (Prepros) para que salga en `theme-styles.css`.
+
+## Estructura
+
+```
+scss/components/
+├── _components.scss          ← solo imports de componentes
+├── _main-menu.scss           ← ejemplo de componente
+└── _main-slider-test.scss    ← shortcode sc_main_slider_test
+```
+
+## Prohibido
+
+- Shortcode PHP sin su partial SCSS
+- Estilos del shortcode solo en `_components.scss` inline
+- Partial sin `@import` en `_components.scss`
+- Usar snake_case en el nombre del partial (`_main_slider_test.scss`)

@@ -6,7 +6,7 @@
 	--ingredients-slider-card-width: min(18rem, calc(100vw - 2.5rem));
 	--ingredients-slider-bg: #fff;
 	--ingredients-slider-radius: 1rem;
-	padding-block: 2.5rem 3rem;
+	margin-bottom: var(--section-gap);
 	background: #fff;
 	overflow: hidden;
 
@@ -40,16 +40,17 @@
 	&__title {
 		margin: 0 0 0.55rem;
 		color: var(--header-color, #1f2024);
-		font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+		font-size: var(--section-title-size);
 		font-weight: 800;
 		line-height: 1.2;
+		text-transform: uppercase;
 	}
 
 	&__subtitle {
 		margin: 0;
 		color: #5a5a5a;
-		font-size: 0.9375rem;
-		line-height: 1.45;
+		font-size: var(--section-subtitle-size);
+		line-height: 1.5;
 	}
 
 	&__slider {
@@ -66,7 +67,7 @@
 		padding: 0;
 		border: 0;
 		border-radius: 50%;
-		background: #fff;
+		background: var(--color-orange, #ff9100);
 		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 		cursor: pointer;
 		transform: translateY(-50%);
@@ -78,8 +79,8 @@
 			width: 0.55rem;
 			height: 0.55rem;
 			margin: 0 auto;
-			border-right: 2px solid var(--header-color, #1f2024);
-			border-bottom: 2px solid var(--header-color, #1f2024);
+			border-right: 2px solid #fff;
+			border-bottom: 2px solid #fff;
 		}
 
 		&--prev {
@@ -100,7 +101,7 @@
 
 		&:hover,
 		&:focus-visible {
-			background: #f0f0f0;
+			background: var(--color-orange-light, #ff4a00);
 		}
 
 		&.swiper-button-disabled {
@@ -200,10 +201,11 @@
 			width: 0.5rem;
 			height: 0.5rem;
 			margin: 0;
-			background: #cfcfcf;
-			opacity: 1;
+			background: var(--color-orange, #ff9100);
+			opacity: 0.35;
 
 			&.swiper-pagination-bullet-active {
+				opacity: 1;
 				background: var(--color-orange, #ff9100);
 			}
 		}
@@ -211,14 +213,9 @@
 
 	@media (width >= $m) {
 		--ingredients-slider-card-width: 20rem;
-		padding-block: 3.25rem 3.5rem;
 
 		&__header {
 			margin-bottom: 2rem;
-		}
-
-		&__subtitle {
-			font-size: 1rem;
 		}
 
 		&__name {
@@ -233,14 +230,9 @@
 	@media (width >= $l) {
 		--ingredients-slider-card-width: 22rem;
 		--ingredients-slider-radius: 1.15rem;
-		padding-block: 4rem;
 
 		&__header {
 			margin-bottom: 2.25rem;
-		}
-
-		&__title {
-			font-size: 1.75rem;
 		}
 
 		&__body {

@@ -1,36 +1,48 @@
 ;
-console.log('Hello WordPress');
-import {module1} from './components/module1';
-import {module2} from './components/module2';
+import { initWhenVisible } from './components/initWhenVisible';
 import mainMenu from './components/mainMenu';
 import momentSlider from './components/momentSlider';
 import productSlider from './components/productSlider';
 import alliesSlider from './components/alliesSlider';
 import storeLocator from './components/storeLocator';
 import waysSlider from './components/waysSlider';
-import foundersCards from './components/foundersCards';
 import believeCards from './components/believeCards';
 import reviewsSlider from './components/reviewsSlider';
 import guideSlider from './components/guideSlider';
 import ingredientsSlider from './components/ingredientsSlider';
 import blogSlider from './components/blogSlider';
 import blogFilter from './components/blogFilter';
+import productShowcase from './components/productShowcase';
+import mushroomsSplit from './components/mushroomsSplit';
 import mainSlider from './components/mainSlider';
+import mainBanner from './components/mainBanner';
+import foundersCards from './components/foundersCards';
+
+const lazyInit = (selector, init) => {
+	document.querySelectorAll(selector).forEach((el) => {
+		initWhenVisible(el, () => init(el));
+	});
+};
 
 const initComponents = () => {
 	mainMenu();
-	mainSlider();
-	momentSlider();
-	productSlider();
-	alliesSlider();
+	mainBanner();
+
+	lazyInit('[data-main-slider], .main-slider', mainSlider);
+	lazyInit('.moment-slider', momentSlider);
+	lazyInit('.product-slider', productSlider);
+	lazyInit('.allies-slider', alliesSlider);
+	lazyInit('.ways-slider', waysSlider);
+	lazyInit('.reviews-slider', reviewsSlider);
+	lazyInit('.guide-slider', guideSlider);
+	lazyInit('.ingredients-slider', ingredientsSlider);
+	lazyInit('.blog-slider', blogSlider);
+
+	productShowcase();
+	mushroomsSplit();
 	storeLocator();
-	waysSlider();
 	believeCards();
 	foundersCards();
-	reviewsSlider();
-	guideSlider();
-	ingredientsSlider();
-	blogSlider();
 	blogFilter();
 
 	if (

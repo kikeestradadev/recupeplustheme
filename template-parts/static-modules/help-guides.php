@@ -26,19 +26,19 @@
               <aside class="help-guides__guides">
                 <h2 class="help-guides__guides-title">Explorá más guías</h2>
                 <div class="help-guides__guides-list">
-                  <article class="help-guides__guide"><a class="help-guides__guide-media" href="#"><img class="help-guides__guide-image" src="https://kikeestradadev.github.io/recupepluslp/assets/producto_1.png" alt="" width="280" height="180" loading="lazy"></a>
+                  <article class="help-guides__guide"><a class="help-guides__guide-media" href="post.html"><img class="help-guides__guide-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/1.png" alt="" width="280" height="180" loading="lazy"></a>
                     <div class="help-guides__guide-body">
-                      <h3 class="help-guides__guide-name">Elegí según tu momento</h3><a class="help-guides__guide-link" href="#"><span>Ver guía</span><span class="help-guides__guide-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="help-guides__guide-name">¿Cómo elegir tu Recupé Plus según tu rutina?</h3><a class="help-guides__guide-link" href="post.html"><span>Ver guía</span><span class="help-guides__guide-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
-                  <article class="help-guides__guide"><a class="help-guides__guide-media" href="#"><img class="help-guides__guide-image" src="https://kikeestradadev.github.io/recupepluslp/assets/producto_1.png" alt="" width="280" height="180" loading="lazy"></a>
+                  <article class="help-guides__guide"><a class="help-guides__guide-media" href="post.html"><img class="help-guides__guide-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/2.png" alt="" width="280" height="180" loading="lazy"></a>
                     <div class="help-guides__guide-body">
-                      <h3 class="help-guides__guide-name">Gomitas</h3><a class="help-guides__guide-link" href="#"><span>Ver guía</span><span class="help-guides__guide-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="help-guides__guide-name">Hongos medicinales: qué son y cómo sumarlos a tu día.</h3><a class="help-guides__guide-link" href="post.html"><span>Ver guía</span><span class="help-guides__guide-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
-                  <article class="help-guides__guide"><a class="help-guides__guide-media" href="#"><img class="help-guides__guide-image" src="https://kikeestradadev.github.io/recupepluslp/assets/producto_1.png" alt="" width="280" height="180" loading="lazy"></a>
+                  <article class="help-guides__guide"><a class="help-guides__guide-media" href="post.html"><img class="help-guides__guide-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/3.png" alt="" width="280" height="180" loading="lazy"></a>
                     <div class="help-guides__guide-body">
-                      <h3 class="help-guides__guide-name">Cápsulas</h3><a class="help-guides__guide-link" href="#"><span>Ver guía</span><span class="help-guides__guide-arrow" aria-hidden="true">→</span></a>
+                      <h3 class="help-guides__guide-name">Cómo crear un ritual simple antes de dormir.</h3><a class="help-guides__guide-link" href="post.html"><span>Ver guía</span><span class="help-guides__guide-arrow" aria-hidden="true">→</span></a>
                     </div>
                   </article>
                 </div>

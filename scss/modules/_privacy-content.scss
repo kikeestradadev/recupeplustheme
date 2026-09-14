@@ -1,0 +1,78 @@
+.privacy-content {
+	margin-bottom: var(--section-gap);
+	padding-block: 2rem;
+	background: #fff;
+
+	&__shell {
+		width: 100%;
+		max-width: var(--main-container);
+		margin-inline: auto;
+		padding-inline: 15px;
+	}
+
+	&__container {
+		width: 100%;
+		max-width: 48rem;
+		margin-inline: auto;
+	}
+
+	&__header {
+		margin-bottom: 2rem;
+	}
+
+	&__title {
+		margin: 0;
+		color: var(--header-color, #1f2024);
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		text-transform: uppercase;
+	}
+
+	&__updated {
+		margin: 0.75rem 0 0;
+		color: #6b675f;
+		font-size: 0.875rem;
+		line-height: 1.4;
+	}
+
+	&__intro {
+		margin: 1rem 0 0;
+		color: var(--paragraph-color, #1f2024);
+		font-size: var(--section-subtitle-size);
+		line-height: 1.6;
+	}
+
+	&__body {
+		display: grid;
+		gap: 1.75rem;
+	}
+
+	&__section-title {
+		margin: 0 0 0.75rem;
+		color: var(--header-color, #1f2024);
+		font-size: 1.125rem;
+		font-weight: 700;
+		line-height: 1.3;
+	}
+
+	&__text {
+		margin: 0 0 0.85rem;
+		color: var(--paragraph-color, #1f2024);
+		font-size: 1rem;
+		line-height: 1.65;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	@media (width >= $m) {
+		padding-block: 3rem;
+	}
+
+	@media (width >= $l) {
+		padding-block: 4rem;
+	}
+}
