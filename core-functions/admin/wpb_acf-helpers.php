@@ -249,6 +249,45 @@ function wpb_acf_image_data( $image ) {
 }
 
 /**
+ * Resolves image alt text: ACF field first, then Media library alt, then fallback.
+ *
+ * @param mixed                    $acf_alt  Explicit ACF alt text.
+ * @param array<string, mixed>|null $image   Normalized image data.
+ * @param string                   $fallback Fallback when both are empty.
+ * @return string
+ */
+function wpb_acf_image_alt( $acf_alt, $image = null, $fallback = '' ) {
+	$acf_alt = is_string( $acf_alt ) ? trim( $acf_alt ) : '';
+
+	if ( '' !== $acf_alt ) {
+		return $acf_alt;
+	}
+
+	if ( is_array( $image ) && ! empty( $image['alt'] ) ) {
+		return (string) $image['alt'];
+	}
+
+	return is_string( $fallback ) ? $fallback : '';
+}
+
+/**
+ * Text field for image alt (SEO / accessibility).
+ *
+ * @param string $key  Field key.
+ * @param string $name Field name.
+ * @return array<string, mixed>
+ */
+function wpb_acf_image_alt_field( $key, $name = 'image_alt' ) {
+	return array(
+		'key'          => $key,
+		'label'        => __( 'Texto alternativo', 'wpboilerplate' ),
+		'name'         => $name,
+		'type'         => 'text',
+		'instructions' => __( 'Descripción de la imagen para SEO y accesibilidad. Si lo dejás vacío, se usa el alt de Medios.', 'wpboilerplate' ),
+	);
+}
+
+/**
  * Reads one options field. Same field is not fetched twice in one request.
  *
  * @param string $name Field name.

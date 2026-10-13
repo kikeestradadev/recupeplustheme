@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF fields for the Home main slider.
+ * ACF fields for the Home main slider (image-only slides).
  *
  * @package wpboilerplate
  */
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the repeater used on Home → Slider principal.
+ * Registers the repeater used on Home → Banner principal.
  */
 function wpb_register_home_slider_fields() {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
@@ -20,28 +20,28 @@ function wpb_register_home_slider_fields() {
 	acf_add_local_field_group(
 		array(
 			'key'                   => 'group_wpb_home_slider',
-			'title'                 => __( 'Slider uno', 'wpboilerplate' ),
+			'title'                 => __( 'Banner principal', 'wpboilerplate' ),
 			'fields'                => array(
 				array(
-					'key'          => 'field_wpb_home_main_slider',
-					'label'        => __( 'Slides', 'wpboilerplate' ),
-					'name'         => 'home_main_slider',
-					'type'         => 'repeater',
-					'instructions' => __( 'Agrega un slide por fila. Puedes subir una sola imagen o las tres (desktop, tablet y móvil). Si falta alguna, se usa la que sí esté cargada.', 'wpboilerplate' ),
-					'required'     => 0,
-					'layout'       => 'block',
-					'collapsed'    => 'field_wpb_home_slide_title',
-					'button_label' => __( 'Agregar slide', 'wpboilerplate' ),
-					'min'          => 0,
-					'max'          => 0,
+					'key'           => 'field_wpb_home_main_slider',
+					'label'         => __( 'Slides', 'wpboilerplate' ),
+					'name'          => 'home_main_slider',
+					'type'          => 'repeater',
+					'instructions'  => __( 'Solo imágenes. Podés subir una sola o las tres (desktop, tablet y móvil). Si falta alguna, se usa la que sí esté cargada. Completá el texto alternativo de cada slide.', 'wpboilerplate' ),
+					'required'      => 0,
+					'layout'        => 'block',
+					'collapsed'     => 'field_wpb_home_slide_image_desktop',
+					'button_label'  => __( 'Agregar slide', 'wpboilerplate' ),
+					'min'           => 0,
+					'max'           => 0,
 					'default_value' => array(),
-					'sub_fields'   => array(
+					'sub_fields'    => array(
 						array(
 							'key'           => 'field_wpb_home_slide_image_desktop',
 							'label'         => __( 'Imagen desktop', 'wpboilerplate' ),
 							'name'          => 'image_desktop',
 							'type'          => 'image',
-							'instructions'  => __( 'Opcional. Se muestra desde 1280px. Recomendado: 1920px de ancho.', 'wpboilerplate' ),
+							'instructions'  => __( 'Desde 960px. Recomendado WebP liviano.', 'wpboilerplate' ),
 							'required'      => 0,
 							'return_format' => 'array',
 							'preview_size'  => 'medium',
@@ -52,7 +52,7 @@ function wpb_register_home_slider_fields() {
 							'label'         => __( 'Imagen tablet', 'wpboilerplate' ),
 							'name'          => 'image_tablet',
 							'type'          => 'image',
-							'instructions'  => __( 'Opcional. Se muestra de 960px a 1279px.', 'wpboilerplate' ),
+							'instructions'  => __( 'De 640px a 959px.', 'wpboilerplate' ),
 							'required'      => 0,
 							'return_format' => 'array',
 							'preview_size'  => 'medium',
@@ -63,25 +63,13 @@ function wpb_register_home_slider_fields() {
 							'label'         => __( 'Imagen móvil', 'wpboilerplate' ),
 							'name'          => 'image_mobile',
 							'type'          => 'image',
-							'instructions'  => __( 'Opcional. Imagen por defecto debajo de 960px.', 'wpboilerplate' ),
+							'instructions'  => __( 'Debajo de 640px. Proporción típica ~500×625.', 'wpboilerplate' ),
 							'required'      => 0,
 							'return_format' => 'array',
 							'preview_size'  => 'medium',
 							'library'       => 'all',
 						),
-						array(
-							'key'   => 'field_wpb_home_slide_title',
-							'label' => __( 'Título', 'wpboilerplate' ),
-							'name'  => 'title',
-							'type'  => 'text',
-						),
-						array(
-							'key'   => 'field_wpb_home_slide_text',
-							'label' => __( 'Texto', 'wpboilerplate' ),
-							'name'  => 'text',
-							'type'  => 'textarea',
-							'rows'  => 2,
-						),
+						wpb_acf_image_alt_field( 'field_wpb_home_slide_image_alt' ),
 					),
 				),
 			),
@@ -110,13 +98,9 @@ wpb_acf_filter_empty_repeater(
 		'image_desktop',
 		'image_tablet',
 		'image_mobile',
-		'title',
-		'text',
 		'field_wpb_home_slide_image_desktop',
 		'field_wpb_home_slide_image_tablet',
 		'field_wpb_home_slide_image_mobile',
-		'field_wpb_home_slide_title',
-		'field_wpb_home_slide_text',
 	)
 );
 
@@ -131,28 +115,25 @@ function wpb_normalize_home_slide( $row ) {
 		return null;
 	}
 
-	$desktop = wpb_acf_image_data( isset( $row['image_desktop'] ) ? $row['image_desktop'] : null );
-	$tablet  = wpb_acf_image_data( isset( $row['image_tablet'] ) ? $row['image_tablet'] : null );
-	$mobile  = wpb_acf_image_data( isset( $row['image_mobile'] ) ? $row['image_mobile'] : null );
+	$desktop  = wpb_acf_image_data( isset( $row['image_desktop'] ) ? $row['image_desktop'] : null );
+	$tablet   = wpb_acf_image_data( isset( $row['image_tablet'] ) ? $row['image_tablet'] : null );
+	$mobile   = wpb_acf_image_data( isset( $row['image_mobile'] ) ? $row['image_mobile'] : null );
 	$fallback = $mobile ? $mobile : ( $tablet ? $tablet : $desktop );
 
 	if ( ! $fallback ) {
 		return null;
 	}
 
-	$alt = '';
-	if ( ! empty( $fallback['alt'] ) ) {
-		$alt = $fallback['alt'];
-	} elseif ( ! empty( $row['title'] ) ) {
-		$alt = $row['title'];
-	}
+	$alt = wpb_acf_image_alt(
+		isset( $row['image_alt'] ) ? $row['image_alt'] : '',
+		$fallback,
+		__( 'Recupé Plus', 'wpboilerplate' )
+	);
 
 	return array(
 		'desktop' => $desktop ? $desktop : $fallback,
 		'tablet'  => $tablet ? $tablet : $fallback,
 		'mobile'  => $mobile ? $mobile : $fallback,
-		'title'   => isset( $row['title'] ) ? $row['title'] : '',
-		'text'    => isset( $row['text'] ) ? $row['text'] : '',
 		'alt'     => $alt,
 	);
 }

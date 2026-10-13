@@ -21,11 +21,11 @@ function wpb_register_donde_comprar_options_pages() {
 			'position' => 5,
 			'pages'    => array(
 				array(
-					'title' => __( 'Panel principal', 'wpboilerplate' ),
+					'title' => __( 'Banner principal', 'wpboilerplate' ),
 					'slug'  => 'wpb-buy-banner',
 				),
 				array(
-					'title' => __( '3 formas simples', 'wpboilerplate' ),
+					'title' => __( 'Formas de comprar', 'wpboilerplate' ),
 					'slug'  => 'wpb-buy-ways',
 				),
 				array(

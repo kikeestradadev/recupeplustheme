@@ -9,4 +9,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-get_template_part( 'template-parts/static-modules/contact-form' );
+get_template_part( 'template-parts/static-modules/contacto/contact-form' );

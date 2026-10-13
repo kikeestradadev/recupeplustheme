@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wpb_register_donde_comprar_fields() {
 	wpb_acf_home_field_group(
 		'group_wpb_buy_banner',
-		__( 'Panel principal', 'wpboilerplate' ),
+		__( 'Banner principal', 'wpboilerplate' ),
 		'wpb-buy-banner',
 		array(
 			wpb_acf_image_field( 'field_wpb_buy_banner_desktop', 'buy_banner_desktop', __( 'Imagen desktop', 'wpboilerplate' ), __( 'Desde 1280px. Si subís una sola, se usa en todos los tamaños.', 'wpboilerplate' ) ),
@@ -26,7 +26,7 @@ function wpb_register_donde_comprar_fields() {
 
 	wpb_acf_home_field_group(
 		'group_wpb_buy_ways',
-		__( '3 formas simples', 'wpboilerplate' ),
+		__( 'Formas de comprar', 'wpboilerplate' ),
 		'wpb-buy-ways',
 		array(
 			wpb_acf_text_field( 'field_wpb_buy_ways_title', 'buy_ways_title', __( 'Título de la sección', 'wpboilerplate' ) ),

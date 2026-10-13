@@ -9,5 +9,5 @@
  */
 
 get_header();
-get_template_part( 'template-parts/static-modules/guias-modules' );
+get_template_part( 'template-parts/static-modules/guias/guias-modules' );
 get_footer();

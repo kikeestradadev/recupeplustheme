@@ -25,6 +25,7 @@ function wpb_register_home_reviews_slider_fields() {
 				__( 'Reseñas', 'wpboilerplate' ),
 				array(
 					wpb_acf_image_field( 'field_wpb_home_reviews_image', 'image', __( 'Foto', 'wpboilerplate' ) ),
+					wpb_acf_image_alt_field( 'field_wpb_home_reviews_image_alt' ),
 					wpb_acf_textarea_field( 'field_wpb_home_reviews_quote', 'quote', __( 'Cita', 'wpboilerplate' ), 3 ),
 					wpb_acf_text_field( 'field_wpb_home_reviews_author', 'author', __( 'Autor', 'wpboilerplate' ) ),
 					array(

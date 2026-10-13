@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers fields used on Home → Slider Moment Slider.
+ * Registers fields used on Home → Por momento.
  */
 function wpb_register_home_moment_slider_fields() {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
@@ -20,7 +20,7 @@ function wpb_register_home_moment_slider_fields() {
 	acf_add_local_field_group(
 		array(
 			'key'                   => 'group_wpb_home_moment_slider',
-			'title'                 => __( 'Slider Moment Slider', 'wpboilerplate' ),
+			'title'                 => __( 'Por momento', 'wpboilerplate' ),
 			'fields'                => array(
 				array(
 					'key'   => 'field_wpb_home_moment_title',
@@ -59,6 +59,7 @@ function wpb_register_home_moment_slider_fields() {
 							'preview_size'  => 'medium',
 							'library'       => 'all',
 						),
+						wpb_acf_image_alt_field( 'field_wpb_home_moment_slide_image_alt' ),
 						array(
 							'key'   => 'field_wpb_home_moment_slide_title',
 							'label' => __( 'Título', 'wpboilerplate' ),
@@ -156,19 +157,18 @@ function wpb_normalize_home_moment_slide( $row ) {
 		return null;
 	}
 
-	$alt = '';
-	if ( $image && ! empty( $image['alt'] ) ) {
-		$alt = $image['alt'];
-	} elseif ( $title ) {
-		$alt = $title;
-	}
+	$alt = wpb_acf_image_alt(
+		isset( $row['image_alt'] ) ? $row['image_alt'] : '',
+		$image,
+		$title
+	);
 
 	return array(
-		'image'  => $image,
-		'title'  => $title,
-		'text'   => $text,
-		'alt'    => $alt,
-		'link'   => $link,
+		'image' => $image,
+		'title' => $title,
+		'text'  => $text,
+		'alt'   => $alt,
+		'link'  => $link,
 	);
 }
 

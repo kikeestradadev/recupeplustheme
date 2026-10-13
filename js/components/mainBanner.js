@@ -26,15 +26,13 @@ const mainBanner = (scope = document) => {
 				fadeEffect: {
 					crossFade: true,
 				},
-				speed: prefersReducedMotion ? 0 : 900,
+				speed: prefersReducedMotion ? 0 : 800,
 				loop: true,
-				grabCursor: true,
 				autoplay: prefersReducedMotion
 					? false
 					: {
 							delay: 6000,
 							disableOnInteraction: false,
-							pauseOnMouseEnter: true,
 						},
 				pagination: {
 					el: paginationEl,

@@ -1,0 +1,15 @@
+---
+description: Cómo nombrar el WordPress viejo de Recupé Plus vs este theme
+alwaysApply: true
+---
+
+# Sitio original vs este proyecto
+
+Cuando compares o menciones la instalación WordPress vieja de Recupé Plus en MAMP (`/Applications/MAMP/htdocs/recupeplus`), dilo **el sitio original**.
+
+No la llames Digital, proyecto Digital, ni Click Digital.
+
+| Nombre | Qué es |
+|---|---|
+| **Este proyecto** / **este theme** | `/Applications/MAMP/htdocs/recupeplustheme` (theme actual) |
+| **El sitio original** | `/Applications/MAMP/htdocs/recupeplus` (Woodmart / Elementor / WooCommerce que ya vende) |

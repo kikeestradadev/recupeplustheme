@@ -9,5 +9,5 @@
  */
 
 get_header();
-get_template_part( 'template-parts/static-modules/donde-comprar-modules' );
+get_template_part( 'template-parts/static-modules/donde-comprar/donde-comprar-modules' );
 get_footer();

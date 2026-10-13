@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wpb_register_suplementos_fields() {
 	wpb_acf_home_field_group(
 		'group_wpb_suplementos_banner',
-		__( 'Slider', 'wpboilerplate' ),
+		__( 'Banner principal', 'wpboilerplate' ),
 		'wpb-suplementos-banner',
 		array(
 			wpb_acf_text_field( 'field_wpb_supl_banner_title', 'supl_banner_title', __( 'Título', 'wpboilerplate' ) ),
@@ -28,7 +28,7 @@ function wpb_register_suplementos_fields() {
 
 	wpb_acf_home_field_group(
 		'group_wpb_suplementos_ingredients',
-		__( 'Ingredientes para todos los días', 'wpboilerplate' ),
+		__( 'Ingredientes', 'wpboilerplate' ),
 		'wpb-suplementos-ingredients',
 		array(
 			wpb_acf_text_field( 'field_wpb_supl_ing_eyebrow', 'supl_ing_eyebrow', __( 'Antetítulo', 'wpboilerplate' ) ),
@@ -51,7 +51,7 @@ function wpb_register_suplementos_fields() {
 
 	wpb_acf_home_field_group(
 		'group_wpb_suplementos_features',
-		__( 'Hecho en Costa Rica', 'wpboilerplate' ),
+		__( 'Beneficios', 'wpboilerplate' ),
 		'wpb-suplementos-features',
 		array(
 			wpb_acf_repeater_field(

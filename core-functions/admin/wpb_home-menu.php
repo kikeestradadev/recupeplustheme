@@ -31,11 +31,11 @@ function wpb_register_home_options_pages() {
 
 	$pages = array(
 		array(
-			'title' => __( 'Slider uno', 'wpboilerplate' ),
+			'title' => __( 'Banner principal', 'wpboilerplate' ),
 			'slug'  => 'wpb-home-slider',
 		),
 		array(
-			'title' => __( 'Slider Moment Slider', 'wpboilerplate' ),
+			'title' => __( 'Por momento', 'wpboilerplate' ),
 			'slug'  => 'wpb-home-moment-slider',
 		),
 		array(
@@ -55,11 +55,11 @@ function wpb_register_home_options_pages() {
 			'slug'  => 'wpb-home-reviews-slider',
 		),
 		array(
-			'title' => __( 'No sabés por dónde empezar', 'wpboilerplate' ),
+			'title' => __( 'Cómo empezar', 'wpboilerplate' ),
 			'slug'  => 'wpb-home-start-banner',
 		),
 		array(
-			'title' => __( 'Guías para sentirte mejor', 'wpboilerplate' ),
+			'title' => __( 'Guías', 'wpboilerplate' ),
 			'slug'  => 'wpb-home-blog-slider',
 		),
 		array(

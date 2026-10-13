@@ -17,6 +17,11 @@ foreach ( $rows as $row ) {
 	$image = wpb_acf_image_data( isset( $row['image'] ) ? $row['image'] : null );
 	$name  = isset( $row['name'] ) ? $row['name'] : '';
 	$link  = wpb_acf_link_data( isset( $row['link'] ) ? $row['link'] : null );
+	$alt   = wpb_acf_image_alt(
+		isset( $row['image_alt'] ) ? $row['image_alt'] : '',
+		$image,
+		$name
+	);
 
 	if ( ! $image && '' === $name ) {
 		continue;
@@ -25,6 +30,7 @@ foreach ( $rows as $row ) {
 	$cards[] = array(
 		'image' => $image,
 		'name'  => $name,
+		'alt'   => $alt,
 		'link'  => $link,
 	);
 }
@@ -65,7 +71,7 @@ if ( '' === $title && empty( $cards ) ) {
 												<img
 													class="blog-slider__image"
 													src="<?php echo esc_url( $card['image']['url'] ); ?>"
-													alt="<?php echo esc_attr( $card['image']['alt'] ? $card['image']['alt'] : $card['name'] ); ?>"
+													alt="<?php echo esc_attr( $card['alt'] ); ?>"
 													width="<?php echo esc_attr( (string) $card['image']['width'] ); ?>"
 													height="<?php echo esc_attr( (string) $card['image']['height'] ); ?>"
 													loading="lazy"

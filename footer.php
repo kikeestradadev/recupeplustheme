@@ -12,8 +12,8 @@
    */
 ?>
 	</main>
-	<?php get_template_part( 'template-parts/static-modules/alt-footer' ); ?>
-	<?php get_template_part( 'template-parts/static-modules/whatsapp-button' ); ?>
+	<?php get_template_part( 'template-parts/static-modules/shared/alt-footer' ); ?>
+	<?php get_template_part( 'template-parts/static-modules/shared/whatsapp-button' ); ?>
 	<?php wp_footer(); ?>
 	</body>
 </html>

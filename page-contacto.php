@@ -9,5 +9,5 @@
  */
 
 get_header();
-get_template_part( 'template-parts/static-modules/contacto-modules' );
+get_template_part( 'template-parts/static-modules/contacto/contacto-modules' );
 get_footer();

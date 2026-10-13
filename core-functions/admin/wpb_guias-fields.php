@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wpb_register_guias_fields() {
 	wpb_acf_home_field_group(
 		'group_wpb_guias_banner',
-		__( 'Panel principal', 'wpboilerplate' ),
+		__( 'Banner principal', 'wpboilerplate' ),
 		'wpb-guias-banner',
 		array(
 			wpb_acf_image_field( 'field_wpb_guias_banner_desktop', 'guias_banner_desktop', __( 'Imagen desktop', 'wpboilerplate' ), __( 'Desde 960px. Si subís una sola, se usa en todos los tamaños.', 'wpboilerplate' ) ),
@@ -37,7 +37,7 @@ function wpb_register_guias_fields() {
 
 	wpb_acf_home_field_group(
 		'group_wpb_guias_help',
-		__( 'No sabés por dónde empezar', 'wpboilerplate' ),
+		__( 'Cómo empezar', 'wpboilerplate' ),
 		'wpb-guias-help',
 		array(
 			wpb_acf_image_field( 'field_wpb_guias_help_image', 'guias_help_image', __( 'Imagen', 'wpboilerplate' ) ),

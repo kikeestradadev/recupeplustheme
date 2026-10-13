@@ -18,6 +18,11 @@ foreach ( $rows as $row ) {
 	$quote  = isset( $row['quote'] ) ? $row['quote'] : '';
 	$author = isset( $row['author'] ) ? $row['author'] : '';
 	$rating = isset( $row['rating'] ) ? (int) $row['rating'] : 5;
+	$alt    = wpb_acf_image_alt(
+		isset( $row['image_alt'] ) ? $row['image_alt'] : '',
+		$image,
+		$author
+	);
 
 	if ( ! $image && '' === $quote && '' === $author ) {
 		continue;
@@ -27,6 +32,7 @@ foreach ( $rows as $row ) {
 		'image'  => $image,
 		'quote'  => $quote,
 		'author' => $author,
+		'alt'    => $alt,
 		'rating' => $rating,
 	);
 }
@@ -55,7 +61,7 @@ if ( '' === $title && empty( $reviews ) ) {
 												<img
 													class="reviews-slider__image"
 													src="<?php echo esc_url( $review['image']['url'] ); ?>"
-													alt="<?php echo esc_attr( $review['image']['alt'] ? $review['image']['alt'] : $review['author'] ); ?>"
+													alt="<?php echo esc_attr( $review['alt'] ); ?>"
 													width="<?php echo esc_attr( (string) $review['image']['width'] ); ?>"
 													height="<?php echo esc_attr( (string) $review['image']['height'] ); ?>"
 													loading="lazy"

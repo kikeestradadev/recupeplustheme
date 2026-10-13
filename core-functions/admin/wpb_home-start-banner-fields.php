@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers fields for Home → No sabés por dónde empezar.
+ * Registers fields for Home → Cómo empezar.
  */
 function wpb_register_home_start_banner_fields() {
 	wpb_acf_home_field_group(
 		'group_wpb_home_start_banner',
-		__( 'No sabés por dónde empezar', 'wpboilerplate' ),
+		__( 'Cómo empezar', 'wpboilerplate' ),
 		'wpb-home-start-banner',
 		array(
 			wpb_acf_text_field( 'field_wpb_home_start_title', 'home_start_title', __( 'Título', 'wpboilerplate' ) ),

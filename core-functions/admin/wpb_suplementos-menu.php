@@ -21,15 +21,15 @@ function wpb_register_suplementos_options_pages() {
 			'position' => 4,
 			'pages'    => array(
 				array(
-					'title' => __( 'Slider', 'wpboilerplate' ),
+					'title' => __( 'Banner principal', 'wpboilerplate' ),
 					'slug'  => 'wpb-suplementos-banner',
 				),
 				array(
-					'title' => __( 'Ingredientes para todos los días', 'wpboilerplate' ),
+					'title' => __( 'Ingredientes', 'wpboilerplate' ),
 					'slug'  => 'wpb-suplementos-ingredients',
 				),
 				array(
-					'title' => __( 'Hecho en Costa Rica', 'wpboilerplate' ),
+					'title' => __( 'Beneficios', 'wpboilerplate' ),
 					'slug'  => 'wpb-suplementos-features',
 				),
 			),

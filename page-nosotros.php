@@ -9,5 +9,5 @@
  */
 
 get_header();
-get_template_part( 'template-parts/static-modules/nosotros-modules' );
+get_template_part( 'template-parts/static-modules/nosotros/nosotros-modules' );
 get_footer();

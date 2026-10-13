@@ -9,5 +9,5 @@
  */
 
 get_header();
-get_template_part( 'template-parts/static-modules/suplementos-modules' );
+get_template_part( 'template-parts/static-modules/suplementos/suplementos-modules' );
 get_footer();

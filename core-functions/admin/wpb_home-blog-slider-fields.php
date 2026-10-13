@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers fields for Home → Guías para sentirte mejor.
+ * Registers fields for Home → Guías.
  */
 function wpb_register_home_blog_slider_fields() {
 	wpb_acf_home_field_group(
 		'group_wpb_home_blog_slider',
-		__( 'Guías para sentirte mejor', 'wpboilerplate' ),
+		__( 'Guías', 'wpboilerplate' ),
 		'wpb-home-blog-slider',
 		array(
 			wpb_acf_text_field( 'field_wpb_home_blog_title', 'home_blog_title', __( 'Título de la sección', 'wpboilerplate' ) ),
@@ -25,6 +25,7 @@ function wpb_register_home_blog_slider_fields() {
 				__( 'Guías', 'wpboilerplate' ),
 				array(
 					wpb_acf_image_field( 'field_wpb_home_blog_image', 'image', __( 'Imagen', 'wpboilerplate' ) ),
+					wpb_acf_image_alt_field( 'field_wpb_home_blog_image_alt' ),
 					wpb_acf_text_field( 'field_wpb_home_blog_name', 'name', __( 'Título', 'wpboilerplate' ) ),
 					wpb_acf_link_field( 'field_wpb_home_blog_link', 'link', __( 'Enlace', 'wpboilerplate' ) ),
 				),
