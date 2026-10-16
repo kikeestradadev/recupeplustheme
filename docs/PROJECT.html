@@ -143,6 +143,14 @@
 <li><code>data-category</code> is space-separated chip slugs (<code>bienestar-diario</code> → <code>bienestar</code> for the chip).</li>
 <li>Client filter/pagination: <code>js/components/blogFilter.js</code> (supports multiple categories per card).</li>
 </ul>
+<h3>Home blog slider (Block Slider)</h3>
+<ul>
+<li>File: <code>template-parts/static-modules/home/blog-slider.php</code></li>
+<li>Slides: <code>WP_Query</code> of the <strong>5 most recent</strong> published <code>post</code>s (same source as Guías grid; no separate guías CPT).</li>
+<li>Section title still from ACF <code>home_blog_title</code> (fallback: “Guías para sentirte mejor”).</li>
+<li>“Ver más” below the slider → permalink of the <code>guias</code> page (<code>/guias/</code>), same tab (no <code>target=&quot;_blank&quot;</code>).</li>
+<li>Styles: <code>scss/modules/_blog-slider.scss</code> (<code>blog-slider__more</code> / <code>blog-slider__more-link</code>). JS unchanged (<code>blogSlider.js</code>).</li>
+</ul>
 <hr>
 <h2>4. ACF field groups (high level)</h2>
 <p>Admin parent menu: <strong>Mantenimientos</strong> (<code>wpb-mantenimientos</code>) — flat submenu + accordion JS (<code>js/admin/mantenimientosMenu.js</code>).</p>

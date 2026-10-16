@@ -92,6 +92,14 @@ recupeplustheme/
 - `data-category` is space-separated chip slugs (`bienestar-diario` → `bienestar` for the chip).
 - Client filter/pagination: `js/components/blogFilter.js` (supports multiple categories per card).
 
+### Home blog slider (Block Slider)
+
+- File: `template-parts/static-modules/home/blog-slider.php`
+- Slides: `WP_Query` of the **5 most recent** published `post`s (same source as Guías grid; no separate guías CPT).
+- Section title still from ACF `home_blog_title` (fallback: “Guías para sentirte mejor”).
+- “Ver más” below the slider → permalink of the `guias` page (`/guias/`), same tab (no `target="_blank"`).
+- Styles: `scss/modules/_blog-slider.scss` (`blog-slider__more` / `blog-slider__more-link`). JS unchanged (`blogSlider.js`).
+
 ---
 
 ## 4. ACF field groups (high level)
