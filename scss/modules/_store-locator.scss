@@ -38,13 +38,6 @@
 		text-transform: uppercase;
 	}
 
-	&__subtitle {
-		margin: 0;
-		color: #5a5a5a;
-		font-size: var(--section-subtitle-size);
-		line-height: 1.45;
-	}
-
 	&__layout {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -69,48 +62,6 @@
 		box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
 	}
 
-	&__search {
-		position: relative;
-	}
-
-	&__input {
-		width: 100%;
-		min-height: 3rem;
-		padding: 0.75rem 2.75rem 0.75rem 1rem;
-		border: 1px solid #e4e4e4;
-		border-radius: 0.75rem;
-		background: #fff;
-		color: var(--header-color, #1f2024);
-		font-family: inherit;
-		font-size: 0.9375rem;
-
-		&::placeholder {
-			color: #9a9a9a;
-		}
-
-		&:focus {
-			outline: 2px solid var(--color-purple, #7a29ff);
-			outline-offset: 2px;
-		}
-	}
-
-	&__search-btn {
-		position: absolute;
-		top: 50%;
-		right: 0.65rem;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2rem;
-		height: 2rem;
-		padding: 0;
-		border: 0;
-		background: transparent;
-		color: #8a8a8a;
-		cursor: pointer;
-		transform: translateY(-50%);
-	}
-
 	&__list {
 		display: flex;
 		flex-direction: column;
@@ -121,6 +72,10 @@
 
 	&__item {
 		border-bottom: 1px solid #f0f0f0;
+
+		&:last-child {
+			border-bottom: 0;
+		}
 
 		&--active {
 			.store-locator__item-btn {
@@ -141,11 +96,11 @@
 		width: 100%;
 		padding: 0.9rem 0.35rem;
 		border: 0;
+		border-radius: 0.5rem;
 		background: transparent;
 		text-align: left;
 		cursor: pointer;
 		transition: background 0.2s ease;
-		border-radius: 0.5rem;
 
 		&:hover,
 		&:focus-visible {
@@ -156,6 +111,7 @@
 	&__item-icon {
 		display: inline-flex;
 		color: #9a9a9a;
+		transition: color 0.2s ease;
 	}
 
 	&__item-content {
@@ -172,50 +128,35 @@
 		line-height: 1.25;
 	}
 
-	&__item-place {
-		color: #7a7a7a;
-		font-size: 0.8125rem;
-		line-height: 1.3;
-	}
-
-	&__item-meta {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		color: #6b6b6b;
-		font-size: 0.8125rem;
-		white-space: nowrap;
-	}
-
 	&__item-arrow {
 		color: #a0a0a0;
-	}
-
-	&__more {
-		margin-top: auto;
-		padding-top: 0.35rem;
-		color: var(--color-purple, #7a29ff);
-		font-size: 0.9375rem;
-		font-weight: 600;
-		text-decoration: none;
-		width: fit-content;
-
-		&:hover,
-		&:focus-visible {
-			text-decoration: underline;
-		}
 	}
 
 	&__map {
 		position: relative;
 		overflow: hidden;
 		min-height: 20rem;
+		border: 1px solid #ebebeb;
 		border-radius: 1.25rem;
 		background: #e8eee8;
-		border: 1px solid #ebebeb;
 
 		@media (width >= $l) {
-			min-height: 100%;
+			min-height: 26rem;
+		}
+	}
+
+	&__map-panel {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.35s ease, visibility 0.35s ease;
+		pointer-events: none;
+
+		&--active {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
 		}
 	}
 
@@ -234,74 +175,9 @@
 		}
 	}
 
-	&__pins {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		z-index: 1;
-	}
-
-	&__pin {
-		position: absolute;
-		width: 1.75rem;
-		height: 1.75rem;
-		border-radius: 50% 50% 50% 0;
-		transform: translate(-50%, -100%) rotate(-45deg);
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-		opacity: 0.85;
-		transition: transform 0.2s ease, opacity 0.2s ease;
-
-		&::after {
-			content: '';
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			width: 0.45rem;
-			height: 0.45rem;
-			border-radius: 50%;
-			background: #fff;
-			transform: translate(-50%, -50%);
-		}
-
-		&--active {
-			opacity: 1;
-			transform: translate(-50%, -100%) rotate(-45deg) scale(1.15);
-			z-index: 2;
-		}
-
-		&--green {
-			background: var(--color-green-deep, #0b3d2e);
-		}
-
-		&--orange {
-			background: var(--color-orange, #ff9100);
-		}
-
-		&--purple {
-			background: var(--color-purple, #7a29ff);
-		}
-	}
-
-	&__sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border: 0;
-	}
-
 	@media (width >= $l) {
-
 		&__panel {
 			padding: 1.5rem;
-		}
-
-		&__map {
-			min-height: 26rem;
 		}
 	}
 }

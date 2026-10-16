@@ -8,6 +8,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+$whatsapp_url = function_exists( 'wpb_acf_global_whatsapp_url' ) ? wpb_acf_global_whatsapp_url() : '';
 ?>
 <section class="contact-form" aria-label="<?php esc_attr_e( 'Contacto', 'wpboilerplate' ); ?>">
 	<div class="main-container contact-form__shell">
@@ -54,17 +56,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<p class="contact-form__info-text"><strong><?php esc_html_e( 'Dirección:', 'wpboilerplate' ); ?> </strong><span>Santa Ana, 100 mts sur del Centro Comercial Santa Ana 2000, Bodegas, Local 1</span></p>
 							</div>
 						</li>
-						<li class="contact-form__info-item contact-form__info-item--whatsapp">
-							<span class="contact-form__info-icon" aria-hidden="true">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-									<path d="M12 3.2a8.3 8.3 0 0 0-7.2 12.4L4 20.8l5.4-.8A8.3 8.3 0 1 0 12 3.2Z" stroke="currentColor" stroke-width="1.5"></path>
-									<path d="M9.2 9.4c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.6l-.4.5c-.1.2-.1.3 0 .5.4.7 1.1 1.4 1.8 1.8.2.1.3.1.5 0l.5-.4c.2-.1.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7A5 5 0 0 1 12 16.5 5 5 0 0 1 9.2 9.4Z" fill="currentColor"></path>
-								</svg>
-							</span>
-							<div class="contact-form__info-copy">
-								<a class="contact-form__info-link" href="https://wa.me/50685128000" target="_blank" rel="noopener noreferrer"><strong><?php esc_html_e( 'WhatsApp:', 'wpboilerplate' ); ?> </strong><span>8512-8000</span></a>
-							</div>
-						</li>
+						<?php if ( '' !== $whatsapp_url ) : ?>
+							<li class="contact-form__info-item contact-form__info-item--whatsapp">
+								<span class="contact-form__info-icon" aria-hidden="true">
+									<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+										<path d="M12 3.2a8.3 8.3 0 0 0-7.2 12.4L4 20.8l5.4-.8A8.3 8.3 0 1 0 12 3.2Z" stroke="currentColor" stroke-width="1.5"></path>
+										<path d="M9.2 9.4c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.6l-.4.5c-.1.2-.1.3 0 .5.4.7 1.1 1.4 1.8 1.8.2.1.3.1.5 0l.5-.4c.2-.1.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7A5 5 0 0 1 12 16.5 5 5 0 0 1 9.2 9.4Z" fill="currentColor"></path>
+									</svg>
+								</span>
+								<div class="contact-form__info-copy">
+									<a class="contact-form__info-link" href="<?php echo esc_url( $whatsapp_url ); ?>" target="_blank" rel="noopener noreferrer"><strong><?php esc_html_e( 'WhatsApp:', 'wpboilerplate' ); ?> </strong><span><?php esc_html_e( 'Escribinos', 'wpboilerplate' ); ?></span></a>
+								</div>
+							</li>
+						<?php endif; ?>
 						<li class="contact-form__info-item contact-form__info-item--email">
 							<span class="contact-form__info-icon" aria-hidden="true">
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none">

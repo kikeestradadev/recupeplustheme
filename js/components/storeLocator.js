@@ -10,10 +10,7 @@ const storeLocator = (scope = document) => {
 			if (storeLocatorInstances.has(root)) return;
 
 			const items = Array.from(root.querySelectorAll('.store-locator__item[data-store]'));
-			const pins = Array.from(root.querySelectorAll('.store-locator__pin[data-store]'));
-			const form = root.querySelector('[data-store-locator-search], .store-locator__search');
-			const input = form?.querySelector('.store-locator__input');
-			const status = root.querySelector('[data-store-locator-status]');
+			const panels = Array.from(root.querySelectorAll('.store-locator__map-panel[data-store]'));
 			const controller = new AbortController();
 			const { signal } = controller;
 
@@ -21,18 +18,18 @@ const storeLocator = (scope = document) => {
 			const setActive = (storeId) => {
 				items.forEach((item) => {
 					const active = item.getAttribute('data-store') === storeId;
+					const button = item.querySelector('.store-locator__item-btn');
 					item.classList.toggle('store-locator__item--active', active);
-					item.querySelector('.store-locator__item-btn')?.setAttribute(
-						'aria-pressed',
-						String(active)
-					);
+					if (button) {
+						button.setAttribute('aria-selected', String(active));
+						button.setAttribute('tabindex', active ? '0' : '-1');
+					}
 				});
 
-				pins.forEach((pin) => {
-					pin.classList.toggle(
-						'store-locator__pin--active',
-						pin.getAttribute('data-store') === storeId
-					);
+				panels.forEach((panel) => {
+					const active = panel.getAttribute('data-store') === storeId;
+					panel.classList.toggle('store-locator__map-panel--active', active);
+					panel.setAttribute('aria-hidden', String(!active));
 				});
 			};
 
@@ -46,31 +43,6 @@ const storeLocator = (scope = document) => {
 					{ signal }
 				);
 			});
-
-			form?.addEventListener(
-				'submit',
-				(event) => {
-					event.preventDefault();
-					const query = input?.value.trim().toLocaleLowerCase('es') || '';
-					const matches = items.filter(
-						(item) => !query || item.textContent.toLocaleLowerCase('es').includes(query)
-					);
-
-					items.forEach((item) => {
-						item.hidden = !matches.includes(item);
-					});
-
-					const firstMatch = matches[0];
-					setActive(firstMatch?.getAttribute('data-store') || undefined);
-					if (status) {
-						status.textContent =
-							matches.length === 1
-								? 'Se encontró una tienda.'
-								: `Se encontraron ${matches.length} tiendas.`;
-					}
-				},
-				{ signal }
-			);
 
 			const initialItem =
 				items.find((item) => item.classList.contains('store-locator__item--active')) ||

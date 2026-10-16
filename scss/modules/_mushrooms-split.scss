@@ -5,9 +5,6 @@
 	--mushrooms-split-gutter: 15px;
 	--mushrooms-split-bg: #141414;
 	--mushrooms-split-yellow: var(--color-yellow, #ffb824);
-	--mushrooms-split-blue: var(--color-blue, #00beda);
-	--mushrooms-split-green: var(--color-green, #3df500);
-	--mushrooms-split-magenta: var(--color-magenta, #f20059);
 	margin-bottom: var(--section-gap);
 	background: var(--mushrooms-split-bg);
 	color: #fff;
@@ -128,22 +125,6 @@
 		text-align: center;
 	}
 
-	&__item--cordyceps {
-		color: var(--mushrooms-split-yellow);
-	}
-
-	&__item--lions-mane {
-		color: var(--mushrooms-split-blue);
-	}
-
-	&__item--reishi {
-		color: var(--mushrooms-split-green);
-	}
-
-	&__item--cola-de-pavo {
-		color: var(--mushrooms-split-magenta);
-	}
-
 	&__icon {
 		display: block;
 		width: 100%;
@@ -156,16 +137,6 @@
 		width: 100%;
 		height: auto;
 		mix-blend-mode: lighten;
-	}
-
-	&__name {
-		margin: 0;
-		color: currentColor;
-		font-size: 0.9375rem;
-		font-weight: 800;
-		letter-spacing: 0.06em;
-		line-height: 1.2;
-		text-transform: uppercase;
 	}
 
 	&__item-text {
@@ -292,10 +263,6 @@
 
 		&__icon {
 			max-width: 13.5rem;
-		}
-
-		&__name {
-			font-size: 1rem;
 		}
 
 		&__item-text {

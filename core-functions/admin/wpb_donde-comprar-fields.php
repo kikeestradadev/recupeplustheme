@@ -71,9 +71,36 @@ function wpb_register_donde_comprar_fields() {
 				__( 'Logos', 'wpboilerplate' ),
 				array(
 					wpb_acf_image_field( 'field_wpb_buy_allies_logo', 'logo', __( 'Logo', 'wpboilerplate' ) ),
+					wpb_acf_image_alt_field( 'field_wpb_buy_allies_logo_alt' ),
 				),
 				'field_wpb_buy_allies_logo',
 				__( 'Agregar aliado', 'wpboilerplate' )
+			),
+		)
+	);
+
+	wpb_acf_home_field_group(
+		'group_wpb_buy_locator',
+		__( 'Encontranos cerca de vos', 'wpboilerplate' ),
+		'wpb-buy-locator',
+		array(
+			wpb_acf_repeater_field(
+				'field_wpb_buy_locator_tabs',
+				'buy_locator_tabs',
+				__( 'Tabs', 'wpboilerplate' ),
+				array(
+					wpb_acf_text_field( 'field_wpb_buy_locator_tab_title', 'title', __( 'Título de la tab', 'wpboilerplate' ) ),
+					array(
+						'key'          => 'field_wpb_buy_locator_tab_map_embed',
+						'label'        => __( 'Código de inserción de Google Maps', 'wpboilerplate' ),
+						'name'         => 'map_embed',
+						'type'         => 'textarea',
+						'rows'         => 6,
+						'instructions' => __( 'Pegá el código iframe de Google Maps (Compartir → Insertar un mapa).', 'wpboilerplate' ),
+					),
+				),
+				'field_wpb_buy_locator_tab_title',
+				__( 'Agregar tab', 'wpboilerplate' )
 			),
 		)
 	);
@@ -85,5 +112,9 @@ wpb_acf_filter_empty_repeater(
 );
 wpb_acf_filter_empty_repeater(
 	'buy_allies_slides',
-	array( 'logo', 'field_wpb_buy_allies_logo' )
+	array( 'logo', 'image_alt', 'field_wpb_buy_allies_logo', 'field_wpb_buy_allies_logo_alt' )
+);
+wpb_acf_filter_empty_repeater(
+	'buy_locator_tabs',
+	array( 'title', 'map_embed', 'field_wpb_buy_locator_tab_title', 'field_wpb_buy_locator_tab_map_embed' )
 );

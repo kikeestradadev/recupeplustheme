@@ -10,22 +10,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the Contactos admin menu.
+ * Registers the Contactos admin menu under Mantenimientos.
  */
 function wpb_register_contact_messages_menu() {
-	$hook = add_menu_page(
+	$parent = function_exists( 'wpb_mantenimientos_menu_slug' )
+		? wpb_mantenimientos_menu_slug()
+		: 'wpb-mantenimientos';
+
+	$hook = add_submenu_page(
+		$parent,
 		__( 'Contactos', 'wpboilerplate' ),
 		__( 'Contactos', 'wpboilerplate' ),
 		'edit_pages',
 		'wpb-contact-messages',
-		'wpb_render_contact_messages_page',
-		'dashicons-email',
-		59
+		'wpb_render_contact_messages_page'
 	);
 
-	add_action( "admin_print_scripts-{$hook}", 'wpb_contact_messages_enqueue_admin_assets' );
+	if ( $hook ) {
+		add_action( "admin_print_scripts-{$hook}", 'wpb_contact_messages_enqueue_admin_assets' );
+	}
 }
-add_action( 'admin_menu', 'wpb_register_contact_messages_menu' );
+add_action( 'admin_menu', 'wpb_register_contact_messages_menu', 100 );
 
 /**
  * Enqueues list-page JS for Contactos admin.

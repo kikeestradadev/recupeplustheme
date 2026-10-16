@@ -3,7 +3,7 @@
 	--allies-slider-shell-max: var(--main-container, 3500px);
 	--allies-slider-container-max: var(--container, 1600px);
 	--allies-slider-gutter: 15px;
-	--allies-slider-card-width: 8.5rem;
+	--allies-slider-card-width: 11rem;
 	margin-bottom: var(--section-gap);
 	background: #fff;
 	overflow: hidden;
@@ -61,19 +61,17 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		min-height: 4.5rem;
-		padding: 0.75rem 1rem;
-		border: 1px solid #e6e6e6;
+		padding: 0;
+		border: 0;
 		border-radius: 0.75rem;
-		background: #fff;
+		background: transparent;
+		overflow: hidden;
 	}
 
 	&__logo {
 		display: block;
 		width: 100%;
-		max-width: 5.5rem;
 		height: auto;
-		max-height: 2.5rem;
 		object-fit: contain;
 	}
 
@@ -103,30 +101,10 @@
 	}
 
 	@media (width >= $m) {
-		--allies-slider-card-width: 9.5rem;
-
-		&__card {
-			min-height: 5rem;
-			padding: 0.875rem 1.1rem;
-		}
-
-		&__logo {
-			max-width: 6rem;
-			max-height: 2.75rem;
-		}
+		--allies-slider-card-width: 12.5rem;
 	}
 
 	@media (width >= $l) {
-		--allies-slider-card-width: 10.5rem;
-
-		&__card {
-			min-height: 5.25rem;
-			border-radius: 0.875rem;
-		}
-
-		&__logo {
-			max-width: 6.5rem;
-			max-height: 3rem;
-		}
+		--allies-slider-card-width: 14rem;
 	}
 }

@@ -22,7 +22,6 @@ function wpb_register_nosotros_fields() {
 			wpb_acf_textarea_field( 'field_wpb_nos_banner_title', 'nos_banner_title', __( 'Título (una línea por renglón)', 'wpboilerplate' ), 4 ),
 			wpb_acf_textarea_field( 'field_wpb_nos_banner_text', 'nos_banner_text', __( 'Texto', 'wpboilerplate' ), 3 ),
 			wpb_acf_link_field( 'field_wpb_nos_banner_products', 'nos_banner_products', __( 'Botón productos', 'wpboilerplate' ) ),
-			wpb_acf_link_field( 'field_wpb_nos_banner_whatsapp', 'nos_banner_whatsapp', __( 'Botón WhatsApp', 'wpboilerplate' ) ),
 		)
 	);
 

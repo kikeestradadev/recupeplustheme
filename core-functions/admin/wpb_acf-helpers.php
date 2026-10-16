@@ -10,38 +10,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers a parent options menu and its ACF subpages.
+ * Registers a section of ACF options pages under Mantenimientos.
+ *
+ * WordPress only supports two menu levels, so leaf pages are attached
+ * directly to Mantenimientos with a "Section — Page" menu title.
+ * Slugs stay unchanged so field-group locations keep working.
  *
  * @param array<string, mixed> $args Menu args.
  */
 function wpb_acf_register_options_menu( $args ) {
-	if ( ! is_admin() || ! function_exists( 'acf_add_options_page' ) ) {
+	if ( ! is_admin() || ! function_exists( 'acf_add_options_sub_page' ) ) {
 		return;
 	}
 
-	acf_add_options_page(
-		array(
-			'page_title' => $args['title'],
-			'menu_title' => $args['title'],
-			'menu_slug'  => $args['slug'],
-			'capability' => 'edit_pages',
-			'icon_url'   => isset( $args['icon'] ) ? $args['icon'] : 'dashicons-admin-generic',
-			'position'   => isset( $args['position'] ) ? $args['position'] : 10,
-			'redirect'   => true,
-		)
-	);
+	$parent_slug = function_exists( 'wpb_mantenimientos_menu_slug' )
+		? wpb_mantenimientos_menu_slug()
+		: 'wpb-mantenimientos';
+	$section     = isset( $args['title'] ) ? $args['title'] : '';
 
 	if ( empty( $args['pages'] ) || ! is_array( $args['pages'] ) ) {
 		return;
 	}
 
 	foreach ( $args['pages'] as $page ) {
+		$menu_title = $section
+			? sprintf(
+				/* translators: 1: section name, 2: page title */
+				__( '%1$s — %2$s', 'wpboilerplate' ),
+				$section,
+				$page['title']
+			)
+			: $page['title'];
+
 		acf_add_options_sub_page(
 			array(
 				'page_title'  => $page['title'],
-				'menu_title'  => $page['title'],
+				'menu_title'  => $menu_title,
 				'menu_slug'   => $page['slug'],
-				'parent_slug' => $args['slug'],
+				'parent_slug' => $parent_slug,
 				'capability'  => 'edit_pages',
 			)
 		);
@@ -380,6 +386,36 @@ function wpb_acf_link_data( $link ) {
  */
 function wpb_acf_option_link( $name ) {
 	return wpb_acf_link_data( wpb_acf_option( $name ) );
+}
+
+/**
+ * Global WhatsApp URL from Contacto global options.
+ *
+ * @return string
+ */
+function wpb_acf_global_whatsapp_url() {
+	$value = wpb_acf_option( 'global_whatsapp' );
+
+	if ( ! is_string( $value ) ) {
+		return '';
+	}
+
+	return esc_url_raw( trim( $value ) );
+}
+
+/**
+ * Global WhatsApp as link-shaped array for CTA templates.
+ *
+ * @return array{url:string,title:string,target:string}
+ */
+function wpb_acf_global_whatsapp_link() {
+	$url = wpb_acf_global_whatsapp_url();
+
+	return array(
+		'url'    => $url,
+		'title'  => '',
+		'target' => '' !== $url ? '_blank' : '',
+	);
 }
 
 /**

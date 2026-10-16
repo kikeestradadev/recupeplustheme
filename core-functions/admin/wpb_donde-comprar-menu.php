@@ -32,6 +32,10 @@ function wpb_register_donde_comprar_options_pages() {
 					'title' => __( 'Aliados', 'wpboilerplate' ),
 					'slug'  => 'wpb-buy-allies',
 				),
+				array(
+					'title' => __( 'Encontranos cerca de vos', 'wpboilerplate' ),
+					'slug'  => 'wpb-buy-locator',
+				),
 			),
 		)
 	);

@@ -18,7 +18,7 @@ $products = function_exists( 'wpb_acf_option_link' ) ? wpb_acf_option_link( 'nos
 	'title'  => '',
 	'target' => '',
 );
-$whatsapp = function_exists( 'wpb_acf_option_link' ) ? wpb_acf_option_link( 'nos_banner_whatsapp' ) : array(
+$whatsapp = function_exists( 'wpb_acf_global_whatsapp_link' ) ? wpb_acf_global_whatsapp_link() : array(
 	'url'    => '',
 	'title'  => '',
 	'target' => '',

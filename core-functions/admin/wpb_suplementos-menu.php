@@ -32,6 +32,10 @@ function wpb_register_suplementos_options_pages() {
 					'title' => __( 'Beneficios', 'wpboilerplate' ),
 					'slug'  => 'wpb-suplementos-features',
 				),
+				array(
+					'title' => __( 'Hongos funcionales', 'wpboilerplate' ),
+					'slug'  => 'wpb-suplementos-mushrooms',
+				),
 			),
 		)
 	);

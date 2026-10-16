@@ -43,7 +43,6 @@ function wpb_register_guias_fields() {
 			wpb_acf_image_field( 'field_wpb_guias_help_image', 'guias_help_image', __( 'Imagen', 'wpboilerplate' ) ),
 			wpb_acf_text_field( 'field_wpb_guias_help_title', 'guias_help_title', __( 'Título', 'wpboilerplate' ) ),
 			wpb_acf_textarea_field( 'field_wpb_guias_help_text', 'guias_help_text', __( 'Texto', 'wpboilerplate' ), 3 ),
-			wpb_acf_link_field( 'field_wpb_guias_help_whatsapp', 'guias_help_whatsapp', __( 'Botón WhatsApp', 'wpboilerplate' ) ),
 			wpb_acf_link_field( 'field_wpb_guias_help_products', 'guias_help_products', __( 'Botón productos', 'wpboilerplate' ) ),
 		)
 	);

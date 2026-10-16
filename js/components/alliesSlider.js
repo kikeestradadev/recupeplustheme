@@ -17,11 +17,15 @@ const alliesSlider = (scope = document) => {
 			}
 
 			const paginationEl = root.querySelector('.allies-slider__pagination');
+			const slideCount = swiperEl.querySelectorAll('.swiper-slide').length;
+			// loop needs enough slides; with few logos Swiper can stall imagesReady
+			// and leave .slider-loader without --ready (opacity: 0).
+			const canLoop = slideCount > 4;
 			const instance = new Swiper(
 				swiperEl,
 				withSliderLoader(root, {
 					slidesPerView: 'auto',
-					loop: true,
+					loop: canLoop,
 					spaceBetween: 12,
 					grabCursor: true,
 					autoplay: {

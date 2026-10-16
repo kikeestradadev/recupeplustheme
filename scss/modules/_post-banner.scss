@@ -1,3 +1,4 @@
+// Matches LP: recupepluslp/src/scss/modules/_post-banner.scss
 .post-banner {
 	margin-bottom: var(--section-gap);
 	background: #fff;
@@ -12,6 +13,7 @@
 	&__image {
 		display: block;
 		width: 100%;
+		max-width: none;
 		max-height: min(70vh, 40rem);
 		height: auto;
 		object-fit: cover;

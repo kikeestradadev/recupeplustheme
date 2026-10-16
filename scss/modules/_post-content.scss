@@ -32,6 +32,29 @@
 	&__body {
 		display: grid;
 		gap: 1.25rem;
+
+		// WP content images (the_content) — same layout as LP .post-content__figure / __image
+		figure {
+			display: block;
+			width: fit-content;
+			max-width: min(100%, 400px);
+			margin: 0.35rem 0 0.15rem;
+		}
+
+		img {
+			display: block;
+			width: 100%;
+			max-width: 400px;
+			height: auto;
+			border-radius: 0.35rem;
+		}
+
+		figcaption {
+			margin: 0.45rem 0 0;
+			color: #6b675f;
+			font-size: 0.875rem;
+			line-height: 1.4;
+		}
 	}
 
 	&__section {

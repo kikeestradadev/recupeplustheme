@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $title     = function_exists( 'wpb_acf_option_text' ) ? wpb_acf_option_text( 'home_start_title' ) : '';
 $text      = function_exists( 'wpb_acf_option_text' ) ? wpb_acf_option_text( 'home_start_text' ) : '';
-$whatsapp  = function_exists( 'wpb_acf_option_link' ) ? wpb_acf_option_link( 'home_start_whatsapp' ) : array(
+$whatsapp  = function_exists( 'wpb_acf_global_whatsapp_link' ) ? wpb_acf_global_whatsapp_link() : array(
 	'url'    => '',
 	'title'  => '',
 	'target' => '',

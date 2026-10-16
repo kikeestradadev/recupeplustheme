@@ -67,6 +67,30 @@ function wpb_register_suplementos_fields() {
 			),
 		)
 	);
+
+	wpb_acf_home_field_group(
+		'group_wpb_suplementos_mushrooms',
+		__( 'Hongos funcionales', 'wpboilerplate' ),
+		'wpb-suplementos-mushrooms',
+		array(
+			wpb_acf_text_field( 'field_wpb_supl_mush_eyebrow', 'supl_mush_eyebrow', __( 'Antetítulo', 'wpboilerplate' ) ),
+			wpb_acf_text_field( 'field_wpb_supl_mush_title', 'supl_mush_title', __( 'Título', 'wpboilerplate' ) ),
+			wpb_acf_text_field( 'field_wpb_supl_mush_badge', 'supl_mush_badge', __( 'Texto del badge', 'wpboilerplate' ) ),
+			wpb_acf_textarea_field( 'field_wpb_supl_mush_text', 'supl_mush_text', __( 'Texto', 'wpboilerplate' ), 4 ),
+			wpb_acf_repeater_field(
+				'field_wpb_supl_mush_items',
+				'supl_mush_items',
+				__( 'Hongos', 'wpboilerplate' ),
+				array(
+					wpb_acf_image_field( 'field_wpb_supl_mush_item_image', 'image', __( 'Imagen', 'wpboilerplate' ) ),
+					wpb_acf_image_alt_field( 'field_wpb_supl_mush_item_image_alt' ),
+					wpb_acf_textarea_field( 'field_wpb_supl_mush_item_description', 'description', __( 'Descripción', 'wpboilerplate' ), 2 ),
+				),
+				'field_wpb_supl_mush_item_description',
+				__( 'Agregar hongo', 'wpboilerplate' )
+			),
+		)
+	);
 }
 add_action( 'acf/init', 'wpb_register_suplementos_fields' );
 wpb_acf_filter_empty_repeater(
@@ -76,4 +100,8 @@ wpb_acf_filter_empty_repeater(
 wpb_acf_filter_empty_repeater(
 	'supl_features',
 	array( 'icon', 'label', 'field_wpb_supl_feature_icon', 'field_wpb_supl_feature_label' )
+);
+wpb_acf_filter_empty_repeater(
+	'supl_mush_items',
+	array( 'image', 'image_alt', 'description', 'field_wpb_supl_mush_item_image', 'field_wpb_supl_mush_item_image_alt', 'field_wpb_supl_mush_item_description' )
 );

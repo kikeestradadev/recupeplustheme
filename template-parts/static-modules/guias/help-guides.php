@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $image    = function_exists( 'wpb_acf_option_image' ) ? wpb_acf_option_image( 'guias_help_image' ) : null;
 $title    = function_exists( 'wpb_acf_option_text' ) ? wpb_acf_option_text( 'guias_help_title' ) : '';
 $text     = function_exists( 'wpb_acf_option_text' ) ? wpb_acf_option_text( 'guias_help_text' ) : '';
-$whatsapp = function_exists( 'wpb_acf_option_link' ) ? wpb_acf_option_link( 'guias_help_whatsapp' ) : array(
+$whatsapp = function_exists( 'wpb_acf_global_whatsapp_link' ) ? wpb_acf_global_whatsapp_link() : array(
 	'url'    => '',
 	'title'  => '',
 	'target' => '',
