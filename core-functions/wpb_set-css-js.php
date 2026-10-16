@@ -34,7 +34,7 @@ if ( !function_exists( 'wpb_enqueue_scripts' ) ) :
         // Encolar JS personalizado del tema hijo
         $child_theme_js_path = get_stylesheet_directory() . '/theme-scripts.js';
         if (file_exists($child_theme_js_path)) {
-            $script_deps = array( 'jquery' );
+            $script_deps = array( 'jquery', 'wpb-lazysizes' );
             if ( function_exists( 'wpb_front_needs_swiper' ) && wpb_front_needs_swiper() ) {
                 $script_deps[] = 'wpb-swiper';
             }

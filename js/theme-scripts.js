@@ -1,5 +1,4 @@
-;
-import { initWhenVisible } from './components/initWhenVisible';
+import componentLoader from './components/componentLoader';
 import mainMenu from './components/mainMenu';
 import momentSlider from './components/momentSlider';
 import productSlider from './components/productSlider';
@@ -18,32 +17,13 @@ import mainSlider from './components/mainSlider';
 import mainBanner from './components/mainBanner';
 import foundersCards from './components/foundersCards';
 
-const lazyInit = (selector, init) => {
-	document.querySelectorAll(selector).forEach((el) => {
-		initWhenVisible(el, () => init(el));
-	});
-};
-
-const initComponents = () => {
+const initEagerComponents = () => {
 	mainMenu();
+	mainSlider();
 	mainBanner();
-
-	lazyInit('[data-main-slider], .main-slider', mainSlider);
-	lazyInit('.moment-slider', momentSlider);
-	lazyInit('.product-slider', productSlider);
-	lazyInit('.allies-slider', alliesSlider);
-	lazyInit('.ways-slider', waysSlider);
-	lazyInit('.reviews-slider', reviewsSlider);
-	lazyInit('.guide-slider', guideSlider);
-	lazyInit('.ingredients-slider', ingredientsSlider);
-	lazyInit('.blog-slider', blogSlider);
-
 	productShowcase();
-	mushroomsSplit();
-	storeLocator();
-	believeCards();
-	foundersCards();
 	blogFilter();
+	foundersCards();
 
 	if (
 		typeof window.Prism !== 'undefined' &&
@@ -51,6 +31,27 @@ const initComponents = () => {
 	) {
 		window.Prism.highlightAll();
 	}
+};
+
+const initComponents = () => {
+	document.documentElement.classList.remove('no-js');
+	document.documentElement.classList.add('js');
+	document.documentElement.dataset.componentsReady = 'true';
+
+	initEagerComponents();
+	componentLoader([
+		{ selector: '.moment-slider', init: momentSlider },
+		{ selector: '.product-slider', init: productSlider },
+		{ selector: '.mushrooms-split', init: mushroomsSplit },
+		{ selector: '.allies-slider', init: alliesSlider },
+		{ selector: '.store-locator', init: storeLocator },
+		{ selector: '.ways-slider', init: waysSlider },
+		{ selector: '.believe-cards', init: believeCards },
+		{ selector: '.reviews-slider', init: reviewsSlider },
+		{ selector: '.guide-slider', init: guideSlider },
+		{ selector: '.ingredients-slider', init: ingredientsSlider },
+		{ selector: '.blog-slider', init: blogSlider },
+	]);
 };
 
 if (document.readyState === 'loading') {

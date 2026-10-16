@@ -1,0 +1,92 @@
+@keyframes component-loader-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+img.lazyload,
+iframe.lazyload {
+	background-color: #f3f0eb;
+}
+
+html.js {
+	/* Section-level lazy reveal (componentLoader + lazysizes). */
+	.lazy-sections {
+		> section:not(:first-of-type),
+		[data-lazy-component] {
+			> * {
+				opacity: 0;
+				transition: opacity 0.45s ease;
+			}
+
+			&.component-loader--ready > * {
+				opacity: 1;
+			}
+		}
+
+		> section:not(:first-of-type):not(.component-loader--ready),
+		[data-lazy-component]:not(.component-loader--ready) {
+			position: relative;
+			overflow: hidden;
+			min-height: 18rem;
+			max-height: 22rem;
+			content-visibility: auto;
+			contain-intrinsic-size: auto 22rem;
+
+			&::before {
+				content: "";
+				position: absolute;
+				z-index: 2;
+				inset: 0;
+				margin: auto;
+				width: 2.5rem;
+				height: 2.5rem;
+				border: 3px solid rgba(11, 61, 46, 0.14);
+				border-top-color: var(--color-orange, #ff9100);
+				border-radius: 50%;
+				pointer-events: none;
+				animation: component-loader-spin 0.7s linear infinite;
+			}
+		}
+	}
+
+	/* Per-slider Easy Loader reveal (sliderLoader + Swiper imagesReady). */
+	.slider-loader {
+		.swiper {
+			opacity: 0;
+			transition: opacity 0.45s ease;
+		}
+
+		&:not(.slider-loader--ready) .swiper {
+			min-height: 8rem;
+			background-color: #f3f0eb;
+		}
+
+		&.slider-loader--ready .swiper {
+			opacity: 1;
+			background-color: transparent;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.js .lazy-sections > section:not(:first-of-type),
+	html.js .lazy-sections [data-lazy-component] {
+		> * {
+			opacity: 1;
+			transition: none;
+		}
+
+		&:not(.component-loader--ready)::before {
+			content: none;
+			animation: none;
+		}
+	}
+
+	html.js .slider-loader .swiper {
+		opacity: 1;
+		transition: none;
+		min-height: 0;
+		background-color: transparent;
+	}
+}

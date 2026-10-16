@@ -1,3 +1,5 @@
+import { markExistingSlider, revealSlider, withSliderLoader } from './sliderLoader';
+
 const mushroomsSplitInstances = new WeakMap();
 
 const mushroomsSplit = (scope = document) => {
@@ -22,21 +24,31 @@ const mushroomsSplit = (scope = document) => {
 		const initSwiper = () => {
 			if (typeof Swiper === 'undefined' || !swiperEl || swiper) return;
 
-			swiper = new Swiper(swiperEl, {
-				slidesPerView: 1,
-				spaceBetween: 16,
-				grabCursor: true,
-				watchOverflow: true,
-				pagination: {
-					el: paginationEl,
-					clickable: true,
-				},
-			});
+			if (swiperEl.swiper) {
+				markExistingSlider(root);
+				swiper = swiperEl.swiper;
+				return;
+			}
+
+			swiper = new Swiper(
+				swiperEl,
+				withSliderLoader(root, {
+					slidesPerView: 1,
+					spaceBetween: 16,
+					grabCursor: true,
+					watchOverflow: true,
+					pagination: {
+						el: paginationEl,
+						clickable: true,
+					},
+				})
+			);
 		};
 
 		const updateEnhancement = () => {
 			if (gridQuery.matches) {
 				destroySwiper();
+				revealSlider(root);
 				return;
 			}
 

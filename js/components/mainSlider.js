@@ -1,4 +1,5 @@
 import { swiperRoots } from './swiperRoots';
+import { markExistingSlider, withSliderLoader } from './sliderLoader';
 
 const mainSlider = (scope = document) => {
 	const instances = [];
@@ -10,6 +11,7 @@ const mainSlider = (scope = document) => {
 			if (!swiperEl) return;
 
 			if (swiperEl.swiper) {
+				markExistingSlider(root);
 				instances.push(swiperEl.swiper);
 				return;
 			}
@@ -22,45 +24,48 @@ const mainSlider = (scope = document) => {
 				'(prefers-reduced-motion: reduce)'
 			).matches;
 
-			const instance = new Swiper(swiperEl, {
-				effect: 'fade',
-				fadeEffect: {
-					crossFade: true,
-				},
-				speed: prefersReducedMotion ? 0 : 900,
-				loop: true,
-				grabCursor: true,
-				keyboard: {
-					enabled: true,
-					onlyInViewport: true,
-				},
-				autoplay: prefersReducedMotion
-					? false
-					: {
-							delay: 6000,
-							disableOnInteraction: false,
-							pauseOnMouseEnter: true,
-						},
-				pagination: {
-					el: paginationEl,
-					clickable: true,
-				},
-				navigation: {
-					prevEl,
-					nextEl,
-				},
-				a11y: {
-					enabled: true,
-					prevSlideMessage: 'Diapositiva anterior',
-					nextSlideMessage: 'Diapositiva siguiente',
-					firstSlideMessage: 'Esta es la primera diapositiva',
-					lastSlideMessage: 'Esta es la última diapositiva',
-					paginationBulletMessage: 'Ir a la diapositiva {{index}}',
-				},
-				on: {
-					init: () => root.classList.add('main-slider--ready'),
-				},
-			});
+			const instance = new Swiper(
+				swiperEl,
+				withSliderLoader(root, {
+					effect: 'fade',
+					fadeEffect: {
+						crossFade: true,
+					},
+					speed: prefersReducedMotion ? 0 : 900,
+					loop: true,
+					grabCursor: true,
+					keyboard: {
+						enabled: true,
+						onlyInViewport: true,
+					},
+					autoplay: prefersReducedMotion
+						? false
+						: {
+								delay: 6000,
+								disableOnInteraction: false,
+								pauseOnMouseEnter: true,
+							},
+					pagination: {
+						el: paginationEl,
+						clickable: true,
+					},
+					navigation: {
+						prevEl,
+						nextEl,
+					},
+					a11y: {
+						enabled: true,
+						prevSlideMessage: 'Diapositiva anterior',
+						nextSlideMessage: 'Diapositiva siguiente',
+						firstSlideMessage: 'Esta es la primera diapositiva',
+						lastSlideMessage: 'Esta es la última diapositiva',
+						paginationBulletMessage: 'Ir a la diapositiva {{index}}',
+					},
+					on: {
+						init: () => root.classList.add('main-slider--ready'),
+					},
+				})
+			);
 
 			if (autoplayToggle) {
 				if (prefersReducedMotion || !instance.autoplay) {

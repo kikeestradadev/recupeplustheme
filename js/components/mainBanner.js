@@ -1,4 +1,5 @@
 import { swiperRoots } from './swiperRoots';
+import { markExistingSlider, withSliderLoader } from './sliderLoader';
 
 const mainBanner = (scope = document) => {
 	const instances = [];
@@ -10,6 +11,7 @@ const mainBanner = (scope = document) => {
 			if (!swiperEl) return;
 
 			if (swiperEl.swiper) {
+				markExistingSlider(root);
 				instances.push(swiperEl.swiper);
 				return;
 			}
@@ -21,28 +23,31 @@ const mainBanner = (scope = document) => {
 				'(prefers-reduced-motion: reduce)'
 			).matches;
 
-			const instance = new Swiper(swiperEl, {
-				effect: 'fade',
-				fadeEffect: {
-					crossFade: true,
-				},
-				speed: prefersReducedMotion ? 0 : 800,
-				loop: true,
-				autoplay: prefersReducedMotion
-					? false
-					: {
-							delay: 6000,
-							disableOnInteraction: false,
-						},
-				pagination: {
-					el: paginationEl,
-					clickable: true,
-				},
-				navigation: {
-					prevEl,
-					nextEl,
-				},
-			});
+			const instance = new Swiper(
+				swiperEl,
+				withSliderLoader(root, {
+					effect: 'fade',
+					fadeEffect: {
+						crossFade: true,
+					},
+					speed: prefersReducedMotion ? 0 : 800,
+					loop: true,
+					autoplay: prefersReducedMotion
+						? false
+						: {
+								delay: 6000,
+								disableOnInteraction: false,
+							},
+					pagination: {
+						el: paginationEl,
+						clickable: true,
+					},
+					navigation: {
+						prevEl,
+						nextEl,
+					},
+				})
+			);
 
 			instances.push(instance);
 		});
