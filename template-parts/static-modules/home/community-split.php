@@ -55,12 +55,17 @@ if ( ! $image && '' === $title && '' === $text && '' === $cta_title ) {
 						<?php if ( '' !== $cta_title ) : ?>
 							<p class="community-split__cta-title"><?php echo esc_html( $cta_title ); ?></p>
 						<?php endif; ?>
-						<form class="community-split__form" action="#" method="post">
+						<form class="community-split__form" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" novalidate>
 							<label class="community-split__sr-only" for="communitySplitEmail"><?php echo esc_html( $placeholder ); ?></label>
 							<div class="community-split__field">
 								<input class="community-split__input" id="communitySplitEmail" type="email" name="email" placeholder="<?php echo esc_attr( $placeholder ); ?>" autocomplete="email" required>
 								<button class="community-split__submit" type="submit"><?php echo esc_html( $button ); ?></button>
 							</div>
+							<p class="community-split__honeypot" aria-hidden="true">
+								<label for="communitySplitWebsite"><?php esc_html_e( 'Sitio web', 'wpboilerplate' ); ?></label>
+								<input id="communitySplitWebsite" type="text" name="website" value="" tabindex="-1" autocomplete="off">
+							</p>
+							<p class="community-split__status" data-community-split-status role="status" aria-live="polite" hidden></p>
 						</form>
 					</div>
 				</div>

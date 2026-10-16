@@ -37,6 +37,7 @@
 	}
 
 	&__form {
+		position: relative;
 		display: grid;
 		gap: 1rem;
 	}
@@ -95,6 +96,40 @@
 		&:focus-visible {
 			background: #008f46;
 			transform: translateY(-1px);
+		}
+
+		&:disabled {
+			opacity: 0.7;
+			cursor: wait;
+			transform: none;
+		}
+	}
+
+	&__honeypot {
+		position: absolute;
+		left: -10000px;
+		top: auto;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	&__status {
+		margin: 0.85rem 0 0;
+		font-size: 0.875rem;
+		font-weight: 600;
+		line-height: 1.35;
+
+		&--pending {
+			color: #4a4a4a;
+		}
+
+		&--success {
+			color: #1b7a3d;
+		}
+
+		&--error {
+			color: #b42318;
 		}
 	}
 

@@ -16,6 +16,9 @@ import mushroomsSplit from './components/mushroomsSplit';
 import mainSlider from './components/mainSlider';
 import mainBanner from './components/mainBanner';
 import foundersCards from './components/foundersCards';
+import communitySplit from './components/communitySplit';
+import newsletterBanner from './components/newsletterBanner';
+import contactForm from './components/contactForm';
 
 const initEagerComponents = () => {
 	mainMenu();
@@ -24,6 +27,9 @@ const initEagerComponents = () => {
 	productShowcase();
 	blogFilter();
 	foundersCards();
+	communitySplit();
+	newsletterBanner();
+	contactForm();
 
 	if (
 		typeof window.Prism !== 'undefined' &&

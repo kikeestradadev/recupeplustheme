@@ -67,9 +67,8 @@
 		}
 
 		@media (width >= $xl) {
-			grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
 			gap: 1.5rem;
-			padding: 2rem 1.5rem 2rem 2rem;
+			padding: 2rem;
 		}
 	}
 
