@@ -23,7 +23,7 @@
                         <h3 class="ingredients-slider__name">Hongos medicinales</h3>
                         <p class="ingredients-slider__text">Lion’s Mane • Cordyceps • Reishi • Turkey Tail</p>
                       </div>
-                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/verduras.png" alt="" width="480" height="200" loading="lazy"></div>
+                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'verduras.png' ) ); ?>" alt="" width="480" height="200" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="ingredients-slider__slide swiper-slide">
@@ -32,7 +32,7 @@
                         <h3 class="ingredients-slider__name">Micronutrientes</h3>
                         <p class="ingredients-slider__text">Vitamina C • Magnesio</p>
                       </div>
-                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/verduras.png" alt="" width="480" height="200" loading="lazy"></div>
+                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'verduras.png' ) ); ?>" alt="" width="480" height="200" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="ingredients-slider__slide swiper-slide">
@@ -41,7 +41,7 @@
                         <h3 class="ingredients-slider__name">Activos naturales</h3>
                         <p class="ingredients-slider__text">Ashwagandha • Manzanilla • Cúrcuma • Jengibre • Mora</p>
                       </div>
-                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/verduras.png" alt="" width="480" height="200" loading="lazy"></div>
+                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'verduras.png' ) ); ?>" alt="" width="480" height="200" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="ingredients-slider__slide swiper-slide">
@@ -50,7 +50,7 @@
                         <h3 class="ingredients-slider__name">Hongos medicinales</h3>
                         <p class="ingredients-slider__text">Lion’s Mane • Cordyceps • Reishi • Turkey Tail</p>
                       </div>
-                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/verduras.png" alt="" width="480" height="200" loading="lazy"></div>
+                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'verduras.png' ) ); ?>" alt="" width="480" height="200" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="ingredients-slider__slide swiper-slide">
@@ -59,7 +59,7 @@
                         <h3 class="ingredients-slider__name">Micronutrientes</h3>
                         <p class="ingredients-slider__text">Vitamina C • Magnesio</p>
                       </div>
-                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/verduras.png" alt="" width="480" height="200" loading="lazy"></div>
+                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'verduras.png' ) ); ?>" alt="" width="480" height="200" loading="lazy"></div>
                     </div>
                   </article>
                   <article class="ingredients-slider__slide swiper-slide">
@@ -68,7 +68,7 @@
                         <h3 class="ingredients-slider__name">Activos naturales</h3>
                         <p class="ingredients-slider__text">Ashwagandha • Manzanilla • Cúrcuma • Jengibre • Mora</p>
                       </div>
-                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/verduras.png" alt="" width="480" height="200" loading="lazy"></div>
+                      <div class="ingredients-slider__media"><img class="ingredients-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'verduras.png' ) ); ?>" alt="" width="480" height="200" loading="lazy"></div>
                     </div>
                   </article>
                 </div>

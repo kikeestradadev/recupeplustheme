@@ -1,0 +1,14 @@
+---
+description: Always read docs/PROJECT.md before changing this theme
+alwaysApply: true
+---
+
+# Read project documentation first
+
+Before any edit, content seed, or architectural decision in this theme:
+
+1. Read [`docs/PROJECT.md`](docs/PROJECT.md) for overview, structure, ACF, posts/categories, single/guides layout, LP context, build steps, and TODOs.
+2. Follow [`AGENTS.md`](AGENTS.md).
+3. Apply the other `.cursor/rules/*.mdc` files (core-functions placement, shortcodes, Swiper, sitio original naming).
+
+Do not invent WooCommerce product UIs while `product-slider.php` is still intentionally static. Do not break working ACF → template wiring documented in PROJECT.md.

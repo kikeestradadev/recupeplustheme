@@ -1,0 +1,365 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PROJECT.md</title>
+</head>
+<body>
+<h1>Recupé Plus Theme — Project Documentation</h1>
+<blockquote>
+<p><strong>Read this file before changing anything.</strong><br>Active theme path: <code>/Applications/MAMP/htdocs/recupeplustheme/wp-content/themes/recupeplustheme</code><br>WordPress install: <code>/Applications/MAMP/htdocs/recupeplustheme</code></p>
+</blockquote>
+<hr>
+<h2>1. Overview</h2>
+<p>Custom WordPress theme (<strong>wpboilerplate</strong> / Recupé Plus) that ports the static marketing landing page into editable page modules (ACF Options), guides (posts), legal pages, and a single-post layout.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Path / URL</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>This theme</strong></td>
+<td><code>…/wp-content/themes/recupeplustheme</code></td>
+<td>Active WP theme (this repo)</td>
+</tr>
+<tr>
+<td><strong>This WP site</strong></td>
+<td><code>…/htdocs/recupeplustheme</code></td>
+<td>Local MAMP install</td>
+</tr>
+<tr>
+<td><strong>Landing page (LP)</strong></td>
+<td><code>/Users/enriqueestradanunez/Documents/repos/empresas/recupeplus/recupepluslp</code></td>
+<td>Static Pug/SCSS source; design reference + assets on GH Pages</td>
+</tr>
+<tr>
+<td><strong>El sitio original</strong></td>
+<td><code>/Applications/MAMP/htdocs/recupeplus</code></td>
+<td>Older Woodmart/Elementor shop — <strong>not</strong> this theme</td>
+</tr>
+</tbody></table>
+<p>Git remotes:</p>
+<ul>
+<li>Theme: <code>https://github.com/kikeestradadev/recupeplustheme.git</code> (<code>origin</code>, branch <code>main</code>)</li>
+<li>LP: <code>https://github.com/kikeestradadev/recupepluslp.git</code> (<code>origin</code>, branch <code>main</code>)</li>
+<li>LP live preview: <code>https://kikeestradadev.github.io/recupepluslp/</code> (also in LP <code>package.json</code> → <code>homepage</code>)</li>
+</ul>
+<hr>
+<h2>2. Directory structure (theme)</h2>
+<pre><code>recupeplustheme/
+├── functions.php              # Recursively includes all PHP under core-functions/
+├── header.php / footer.php
+├── front-page.php / page.php / single.php
+├── page-*.php                 # Named page templates (Guías, Home, Suplementos, legales…)
+├── core-functions/
+│   ├── admin/                 # ACF menus + field groups + custom admin screens
+│   ├── ajax/                  # Contact / community subscribe endpoints
+│   ├── core/                  # Setup, enqueues (CSS/JS, Swiper, lazysizes), LP assets helper, forms
+│   ├── widgets/               # Sidebars (e.g. top-widget)
+│   └── shortcodes/            # sc_*.php shortcodes
+├── template-parts/
+│   ├── content/               # content-single.php, content-page.php
+│   ├── static-modules/        # One folder per site section (home, guias, suplementos…)
+│   └── menu.php
+├── scss/
+│   ├── theme-styles.scss      # Prepros entry → theme-styles.css
+│   ├── core/                  # layout, fonts, breakpoints, hacks
+│   └── modules/               # All UI/module/shortcode SCSS (imported via modules.scss)
+├── js/
+│   ├── theme-scripts.js       # Prepros entry → root theme-scripts.js
+│   ├── components/            # ES modules per UI block
+│   └── admin/                 # Admin accordion / CRUD screens
+├── css/admin/
+├── docs/PROJECT.md            # This file
+├── AGENTS.md                  # AI/developer entry instructions
+├── .cursor/rules/             # Cursor always-applied rules
+└── prepros.config
+</code></pre>
+<p><strong>Convention:</strong> New PHP goes in <code>core-functions/{admin|core|shortcodes|widgets|ajax}/</code> — not theme root, not <code>core-functions/*.php</code> (see <code>.cursor/rules/01-core-functions-structure.mdc</code>).</p>
+<hr>
+<h2>3. Key templates</h2>
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>front-page.php</code> / <code>page-home.php</code></td>
+<td>Home modules via <code>home/home-modules.php</code></td>
+</tr>
+<tr>
+<td><code>page-guias.php</code></td>
+<td>Guías: banner, <strong>blog-filter</strong> (dynamic posts), community, help, guide slider</td>
+</tr>
+<tr>
+<td><code>page-suplementos.php</code></td>
+<td>Supplements modules (product slider currently <strong>static</strong>)</td>
+</tr>
+<tr>
+<td><code>page-donde-comprar.php</code></td>
+<td>Buy page modules</td>
+</tr>
+<tr>
+<td><code>page-nosotros.php</code></td>
+<td>About modules</td>
+</tr>
+<tr>
+<td><code>page-contacto.php</code></td>
+<td>Contact form</td>
+</tr>
+<tr>
+<td><code>page-preguntas-frecuentes.php</code></td>
+<td>FAQ page (ACF <code>pf_*</code> on the page)</td>
+</tr>
+<tr>
+<td><code>page-politica-de-privacidad.php</code> / <code>page-terminos-y-condiciones.php</code> / <code>page-politica-de-devoluciones.php</code></td>
+<td>Legal stubs/modules</td>
+</tr>
+<tr>
+<td><code>single.php</code></td>
+<td>Single post → <code>template-parts/content/content-single.php</code></td>
+</tr>
+<tr>
+<td><code>page.php</code></td>
+<td>Generic pages → <code>content-page.php</code></td>
+</tr>
+</tbody></table>
+<h3>Single post layout</h3>
+<ul>
+<li>File: <code>template-parts/content/content-single.php</code></li>
+<li>Featured image: LP-style <strong><code>post-banner</code></strong> (<code>section.post-banner</code> &gt; <code>figure</code> &gt; <code>img.post-banner__image</code>), built with <code>get_the_post_thumbnail_url()</code> (avoids WP inline image styles).</li>
+<li>Body: <code>main-container</code> &gt; <code>container</code> inside <code>article.post-content</code>.</li>
+<li>Styles: <code>scss/modules/_post-banner.scss</code>, <code>_post-content.scss</code>.</li>
+</ul>
+<h3>Guides grid (dynamic)</h3>
+<ul>
+<li>File: <code>template-parts/static-modules/guias/blog-filter.php</code></li>
+<li><code>WP_Query</code>: all published <code>post</code>, <code>posts_per_page =&gt; -1</code>, date DESC.</li>
+<li>Cards use existing <code>blog-filter__*</code> markup: title, permalink, featured image, category label(s).</li>
+<li><code>data-category</code> is space-separated chip slugs (<code>bienestar-diario</code> → <code>bienestar</code> for the chip).</li>
+<li>Client filter/pagination: <code>js/components/blogFilter.js</code> (supports multiple categories per card).</li>
+</ul>
+<hr>
+<h2>4. ACF field groups (high level)</h2>
+<p>Admin parent menu: <strong>Mantenimientos</strong> (<code>wpb-mantenimientos</code>) — flat submenu + accordion JS (<code>js/admin/mantenimientosMenu.js</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Options slug / location</th>
+<th>Notable fields</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>wpb-home-faqs</code></td>
+<td><code>home_faqs_title</code>, <code>home_faqs_intro</code>, repeater <strong><code>home_faqs</code></strong> (<code>question</code> / <code>answer</code>)</td>
+<td><code>home/faqs.php</code></td>
+</tr>
+<tr>
+<td>Page template Preguntas frecuentes</td>
+<td><code>pf_title</code>, <code>pf_intro</code>, repeater <strong><code>pf_faqs</code></strong></td>
+<td>Page ID <strong>136</strong>, <code>preguntas-frecuentes</code> module</td>
+</tr>
+<tr>
+<td><code>wpb-footer-content</code></td>
+<td>Footer columns, copyright, etc.</td>
+<td><code>shared/alt-footer.php</code></td>
+</tr>
+<tr>
+<td><code>wpb-contacto-global</code></td>
+<td>Global WhatsApp URL</td>
+<td>WhatsApp button, banners, contact CTAs via <code>wpb_acf_global_whatsapp_*</code></td>
+</tr>
+<tr>
+<td>Home / Nosotros / Guías / Suplementos / Dónde comprar</td>
+<td>Per-section <code>wpb-*</code> option pages</td>
+<td>Matching <code>static-modules/*</code></td>
+</tr>
+</tbody></table>
+<p>Helpers (prefer these over raw <code>get_field</code>): <code>wpb_acf_option_text</code>, <code>wpb_acf_option_image</code>, <code>wpb_acf_option_rows</code>, <code>wpb_acf_option_link</code> in <code>core-functions/admin/wpb_acf-helpers.php</code>.</p>
+<hr>
+<h2>5. Content (local DB — reference)</h2>
+<h3>Categories (do not delete casually)</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Term ID</th>
+<th>Slug</th>
+<th>Filter chip</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rutina</td>
+<td>23</td>
+<td><code>rutina</code></td>
+<td><code>rutina</code></td>
+</tr>
+<tr>
+<td>descanso</td>
+<td>24</td>
+<td><code>descanso</code></td>
+<td><code>descanso</code></td>
+</tr>
+<tr>
+<td>ingredientes</td>
+<td>25</td>
+<td><code>ingredientes</code></td>
+<td><code>ingredientes</code></td>
+</tr>
+<tr>
+<td>hongos</td>
+<td>26</td>
+<td><code>hongos</code></td>
+<td><code>hongos</code></td>
+</tr>
+<tr>
+<td>bienestar diario</td>
+<td>27</td>
+<td><code>bienestar-diario</code></td>
+<td><code>bienestar</code></td>
+</tr>
+</tbody></table>
+<h3>Published guide posts</h3>
+<p>Featured image for all: <strong><code>1post.png</code></strong>, attachment ID <strong>148</strong>.<br>Titles cleaned from raw <code>.docx</code> filenames (IDs, categories, featured image, and body content unchanged).</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Categories</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>140</td>
+<td>Hongos Cordyceps</td>
+<td>descanso (24), ingredientes (25)</td>
+</tr>
+<tr>
+<td>141</td>
+<td>¿Qué es la Salud Holística?</td>
+<td>rutina (23)</td>
+</tr>
+<tr>
+<td>142</td>
+<td>Ashwagandha para el Estrés</td>
+<td>ingredientes (25)</td>
+</tr>
+<tr>
+<td>143</td>
+<td>Dormir Es el Truco de Bienestar Más Subestimado</td>
+<td>bienestar diario (27)</td>
+</tr>
+<tr>
+<td>144</td>
+<td>Hongos Cola de Pavo</td>
+<td>ingredientes (25)</td>
+</tr>
+<tr>
+<td>145</td>
+<td>Hongos Melena de León</td>
+<td>rutina (23)</td>
+</tr>
+<tr>
+<td>146</td>
+<td>La Conexión Mente-Cuerpo</td>
+<td>rutina (23)</td>
+</tr>
+<tr>
+<td>147</td>
+<td>Reishi</td>
+<td>rutina (23)</td>
+</tr>
+</tbody></table>
+<p>Source docs (import origin): LP<br><code>public/assets/drive_22_set/Guias/Optimized Content/Recupe Plus/2. Spanish Content/*.docx</code></p>
+<p>Home FAQs (<code>home_faqs</code> options) and page 136 <code>pf_faqs</code>: <strong>10</strong> Q&amp;As each, copied from LP <code>#faqs</code> / <code>faqs-data.pug</code>.</p>
+<hr>
+<h2>6. Landing page (context repo)</h2>
+<ul>
+<li>Stack: Pug → HTML, SCSS → <code>public/styles.css</code>, assets under <code>public/assets/</code>.</li>
+<li>Post reference: <code>public/post.html</code> + <code>src/pug/components/post-banner.pug</code> / <code>post-content.pug</code>.</li>
+<li>FAQ source: <code>src/pug/data/faqs-data.pug</code>.</li>
+<li>Homepage URL in <code>package.json</code>: GH Pages link above.</li>
+<li>Theme static modules resolve LP CDN images via <code>wpb_lp_asset()</code> (see §8), not hardcoded full URLs.</li>
+</ul>
+<hr>
+<h2>7. Build process</h2>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Entry</th>
+<th>Output</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CSS</td>
+<td><code>scss/theme-styles.scss</code></td>
+<td><code>theme-styles.css</code></td>
+<td>Prepros (or <code>npx sass</code>)</td>
+</tr>
+<tr>
+<td>JS</td>
+<td><code>js/theme-scripts.js</code></td>
+<td><code>theme-scripts.js</code></td>
+<td>Prepros (or <code>npx esbuild … --bundle</code>)</td>
+</tr>
+</tbody></table>
+<p>PHP templates do <strong>not</strong> need a build step. After SCSS/JS edits, recompile before testing in the browser.</p>
+<p>Swiper: only enqueue when <code>wpb_front_needs_swiper</code> is true — see <code>.cursor/rules/06-swiper-performance.mdc</code>.</p>
+<hr>
+<h2>8. LP asset URLs</h2>
+<p>Static modules that still pull images from the landing-page CDN use:</p>
+<ul>
+<li>Constant: <code>WPB_LP_ASSETS_URL</code> (default <code>https://kikeestradadev.github.io/recupepluslp/assets</code>)</li>
+<li>Helper: <code>wpb_lp_asset( &#39;path/under/assets&#39; )</code> in <code>core-functions/core/wpb_lp-assets.php</code></li>
+<li>Filter: <code>wpb_lp_assets_url</code> to override the base</li>
+</ul>
+<p>Prefer Media Library / ACF images when a module is fully dynamic.</p>
+<h2>9. Cleanup changelog (theme hygiene)</h2>
+<p>Already applied (do not re-do casually):</p>
+<ol>
+<li><strong>Legacy PHP:</strong> moved <code>wpb_setup</code>, <code>wpb_set-css-js</code>, parent-theme enqueue helper into <code>core-functions/core/</code>; widget into <code>core-functions/widgets/wpb_top-widget.php</code>; removed empty <code>test.php</code>.</li>
+<li><strong>Security:</strong> deleted root <code>wp-cache.php</code> (Tiny File Manager v2.6 leftover).</li>
+<li><strong>SCSS convention:</strong> docs/rules/skills use <code>scss/modules/</code> + <code>modules.scss</code> (not <code>scss/components/</code>).</li>
+<li><strong>JS:</strong> wired <code>initWhenVisible</code> into <code>componentLoader</code>; removed unused stubs <code>module1.js</code>, <code>module2.js</code>, <code>internalModule.js</code>, <code>image.png</code>; kept helpers used via imports (<code>sliderLoader</code>, <code>swiperRoots</code>, <code>communitySubscribeForm</code>).</li>
+<li><strong>Assets:</strong> <code>WPB_LP_ASSETS_URL</code> + <code>wpb_lp_asset()</code> replace hardcoded GH Pages URLs in static modules / menu.</li>
+<li><strong>Posts 140–147:</strong> titles cleaned to readable Spanish (see §5); IDs, categories, featured image 148, and content kept.</li>
+</ol>
+<h2>10. Known TODOs / debt</h2>
+<ol>
+<li><strong>Supplements / Gomitas–Cápsulas product slider</strong> (<code>suplementos/product-slider.php</code>) is <strong>static HTML</strong> (LP assets via <code>wpb_lp_asset()</code> + <code>product.html</code> links). Make dynamic after <strong>WooCommerce</strong> is installed and products exist.</li>
+<li>Migrate remaining LP CDN images into the Media Library / ACF over time.</li>
+<li>Stub shortcodes <code>sc_name</code> / <code>sc_name2</code> are examples only.</li>
+<li>Legal page modules may still be stub/static copy — confirm with content owners before launch.</li>
+</ol>
+<hr>
+<h2>11. Development practices (expected)</h2>
+<ul>
+<li>Escape output: <code>esc_html</code>, <code>esc_url</code>, <code>esc_attr</code>; use <code>wp_kses_post</code> for rich text.</li>
+<li>Prefer <code>wpb_acf_option_*</code> helpers for Options fields.</li>
+<li>One visual module ≈ one PHP partial under <code>static-modules/{section}/</code> + SCSS in <code>scss/modules/_*.scss</code> + JS in <code>js/components/*.js</code> when interactive.</li>
+<li>Do not invent product data; wait for WooCommerce for commerce blocks.</li>
+<li>Do not call the old Woodmart install “Digital” — call it <strong>el sitio original</strong> (rule <code>07-sitio-original-naming.mdc</code>).</li>
+</ul>
+<hr>
+<h2>12. Quick local ops</h2>
+<pre><code class="language-bash"># Theme CSS
+npx sass scss/theme-styles.scss theme-styles.css --style=compressed --no-source-map
+
+# Theme JS
+npx esbuild js/theme-scripts.js --bundle --outfile=theme-scripts.js --format=iife --platform=browser
+
+# WP via MAMP PHP (example)
+/Applications/MAMP/bin/php/php8.4.1/bin/php -r &#39;/* bootstrap wp-load.php */&#39;
+# MySQL socket: /Applications/MAMP/tmp/mysql/mysql.sock
+</code></pre>
+<p>Page IDs of note: FAQ page <strong>136</strong>; posts <strong>140–147</strong>; featured attachment <strong>148</strong>.</p>
+
+</body>
+</html>

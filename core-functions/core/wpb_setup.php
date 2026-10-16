@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( !function_exists( 'wpb_setup' ) ):
 	function wpb_setup () {
 	//https://developer.wordpress.org/reference/functions/add_theme_support/

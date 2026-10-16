@@ -1,3 +1,5 @@
+import { initWhenVisible } from './initWhenVisible';
+
 const MEDIA_TIMEOUT_MS = 5000;
 const VIEWPORT_MARGIN = '80px 0px';
 
@@ -148,27 +150,9 @@ const componentLoader = (modules) => {
 		section.setAttribute('aria-busy', 'true');
 	});
 
-	if (!('IntersectionObserver' in window)) {
-		sections.forEach(activate);
-		return;
-	}
-
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (!entry.isIntersecting) return;
-				observer.unobserve(entry.target);
-				activate(entry.target);
-			});
-		},
-		{
-			root: null,
-			rootMargin: VIEWPORT_MARGIN,
-			threshold: 0.01,
-		}
-	);
-
-	sections.forEach((section) => observer.observe(section));
+	sections.forEach((section) => {
+		initWhenVisible(section, () => activate(section), VIEWPORT_MARGIN);
+	});
 };
 
 export default componentLoader;

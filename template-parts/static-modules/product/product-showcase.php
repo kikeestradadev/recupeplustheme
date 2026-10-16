@@ -21,10 +21,10 @@
             <div class="product-showcase__layout">
               <div class="product-showcase__gallery">
                 <div class="product-showcase__thumbs" role="list">
-                  <button class="product-showcase__thumb product-showcase__thumb--active" type="button" role="listitem" data-product-thumb data-src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp" aria-label="Ver Vitamin - imagen 1" aria-pressed="true"><img class="product-showcase__thumb-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp" alt="" width="80" height="80" loading="lazy"></button>
-                  <button class="product-showcase__thumb" type="button" role="listitem" data-product-thumb data-src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/gomitas/gomitas_1.webp" aria-label="Ver Vitamin - imagen 2" aria-pressed="false"><img class="product-showcase__thumb-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/gomitas/gomitas_1.webp" alt="" width="80" height="80" loading="lazy"></button>
+                  <button class="product-showcase__thumb product-showcase__thumb--active" type="button" role="listitem" data-product-thumb data-src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp' ) ); ?>" aria-label="Ver Vitamin - imagen 1" aria-pressed="true"><img class="product-showcase__thumb-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp' ) ); ?>" alt="" width="80" height="80" loading="lazy"></button>
+                  <button class="product-showcase__thumb" type="button" role="listitem" data-product-thumb data-src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/gomitas_1.webp' ) ); ?>" aria-label="Ver Vitamin - imagen 2" aria-pressed="false"><img class="product-showcase__thumb-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/gomitas_1.webp' ) ); ?>" alt="" width="80" height="80" loading="lazy"></button>
                 </div>
-                <div class="product-showcase__stage" data-product-zoom><img class="product-showcase__stage-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp" alt="Vitamin - imagen 1" width="720" height="720" data-product-stage><span class="product-showcase__zoom-hint" aria-hidden="true">Ampliar</span></div>
+                <div class="product-showcase__stage" data-product-zoom><img class="product-showcase__stage-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp' ) ); ?>" alt="Vitamin - imagen 1" width="720" height="720" data-product-stage><span class="product-showcase__zoom-hint" aria-hidden="true">Ampliar</span></div>
               </div>
               <div class="product-showcase__summary">
                 <h1 class="product-showcase__title">Vitamin</h1>
@@ -117,19 +117,19 @@
             <section class="product-showcase__related">
               <h2 class="product-showcase__related-title">Productos relacionados</h2>
               <div class="product-showcase__related-grid">
-                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/capsulas/individuales/activity.webp" alt="Activity" width="280" height="280" loading="lazy"></a>
+                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/activity.webp' ) ); ?>" alt="Activity" width="280" height="280" loading="lazy"></a>
                   <p class="product-showcase__related-category">Hongos Medicinales</p>
                   <h3 class="product-showcase__related-name"><a href="product.html">Activity</a></h3>
                   <p class="product-showcase__related-price"><span>₡25 000</span><span class="product-showcase__related-price-note">IVA incluido</span></p>
                   <p class="product-showcase__related-text">Para activar tu energía antes de moverte.</p><a class="product-showcase__related-link" href="product.html">Ver producto →</a>
                 </article>
-                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/capsulas/individuales/momento.webp" alt="Memento" width="280" height="280" loading="lazy"></a>
+                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/momento.webp' ) ); ?>" alt="Memento" width="280" height="280" loading="lazy"></a>
                   <p class="product-showcase__related-category">Hongos Medicinales</p>
                   <h3 class="product-showcase__related-name"><a href="product.html">Memento</a></h3>
                   <p class="product-showcase__related-price"><span>₡25 000</span><span class="product-showcase__related-price-note">IVA incluido</span></p>
                   <p class="product-showcase__related-text">Para acompañar tus momentos de enfoque.</p><a class="product-showcase__related-link" href="product.html">Ver producto →</a>
                 </article>
-                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/dos_formas/capsulas/individuales/recovery.webp" alt="Recovery" width="280" height="280" loading="lazy"></a>
+                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/recovery.webp' ) ); ?>" alt="Recovery" width="280" height="280" loading="lazy"></a>
                   <p class="product-showcase__related-category">Hongos Medicinales</p>
                   <h3 class="product-showcase__related-name"><a href="product.html">Recovery</a></h3>
                   <p class="product-showcase__related-price"><span>₡25 000</span><span class="product-showcase__related-price-note">IVA incluido</span></p>

@@ -1,5 +1,5 @@
 ---
-description: Cada shortcode tiene un partial SCSS en components con kebab-case e import en _components.scss
+description: Cada shortcode tiene un partial SCSS en scss/modules/ con kebab-case e import en modules.scss
 alwaysApply: true
 ---
 
@@ -7,13 +7,15 @@ alwaysApply: true
 
 Este theme compila SASS. **Cada shortcode es un componente visual** y debe tener su partial SCSS.
 
+**Realidad de este proyecto:** los estilos de UI viven en `scss/modules/` (agregados por `scss/modules/modules.scss`), no en `scss/components/`. Usa `modules/` para shortcodes y módulos de página.
+
 ## Naming
 
 | Origen (shortcode) | Partial SCSS |
 |---|---|
-| `sc_name` | `scss/components/_name.scss` |
-| `sc_top_banner` | `scss/components/_top-banner.scss` |
-| `sc_main_slider_test` | `scss/components/_main-slider-test.scss` |
+| `sc_name` | `scss/modules/_name.scss` |
+| `sc_top_banner` | `scss/modules/_top-banner.scss` |
+| `sc_main_slider_test` | `scss/modules/_main-slider-test.scss` |
 
 Regla de conversión:
 
@@ -23,8 +25,8 @@ Regla de conversión:
 
 ## Obligatorio al crear un shortcode
 
-1. Crear `scss/components/_<nombre-kebab>.scss`.
-2. Agregar el import en `scss/components/_components.scss`:
+1. Crear `scss/modules/_<nombre-kebab>.scss`.
+2. Agregar el import en `scss/modules/modules.scss`:
 
 ```scss
 @import "main-slider-test";
@@ -32,21 +34,24 @@ Regla de conversión:
 
 (SASS resuelve `_main-slider-test.scss` sin el guion bajo ni la extensión.)
 
-3. No poner estilos del shortcode en `_components.scss` ni en layout/global: solo en su partial.
+3. No poner estilos del shortcode en `modules.scss` inline ni en layout/global: solo en su partial.
 4. Recompilar SASS (Prepros) para que salga en `theme-styles.css`.
 
 ## Estructura
 
 ```
-scss/components/
-├── _components.scss          ← solo imports de componentes
-├── _main-menu.scss           ← ejemplo de componente
-└── _main-slider-test.scss    ← shortcode sc_main_slider_test
+scss/
+├── theme-styles.scss          ← entry (importa modules/modules)
+└── modules/
+    ├── modules.scss           ← solo imports de módulos/componentes
+    ├── _main-menu.scss
+    └── _main-slider-test.scss ← ejemplo shortcode
 ```
 
 ## Prohibido
 
 - Shortcode PHP sin su partial SCSS
-- Estilos del shortcode solo en `_components.scss` inline
-- Partial sin `@import` en `_components.scss`
+- Estilos del shortcode solo en `modules.scss` inline
+- Partial sin `@import` en `modules.scss`
 - Usar snake_case en el nombre del partial (`_main_slider_test.scss`)
+- Crear una carpeta paralela `scss/components/` sin migrar el entry

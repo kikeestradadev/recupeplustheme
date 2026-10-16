@@ -8,7 +8,7 @@
 <section class="main-slider" aria-label="Productos y beneficios destacados" data-main-slider>
         <div class="main-slider__swiper swiper">
           <div class="main-slider__wrapper swiper-wrapper">
-            <article class="main-slider__slide main-slider__slide--performance swiper-slide"><img class="main-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/slide1.jpg" alt="Mujer entrenando con cuerdas de batalla" width="1024" height="683" loading="eager" fetchpriority="high">
+            <article class="main-slider__slide main-slider__slide--performance swiper-slide"><img class="main-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'slide1.jpg' ) ); ?>" alt="Mujer entrenando con cuerdas de batalla" width="1024" height="683" loading="eager" fetchpriority="high">
               <div class="main-slider__overlay" aria-hidden="true"></div>
               <div class="main-container main-slider__content">
                 <div class="container main-slider__content-inner">
@@ -21,7 +21,7 @@
                 </div>
               </div>
             </article>
-            <article class="main-slider__slide main-slider__slide--gummies swiper-slide"><img class="main-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/slide2.jpg" alt="Gomitas funcionales Recupé Plus de sabores naranja y frutos rojos" width="1024" height="683" loading="lazy" fetchpriority="auto">
+            <article class="main-slider__slide main-slider__slide--gummies swiper-slide"><img class="main-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'slide2.jpg' ) ); ?>" alt="Gomitas funcionales Recupé Plus de sabores naranja y frutos rojos" width="1024" height="683" loading="lazy" fetchpriority="auto">
               <div class="main-slider__overlay" aria-hidden="true"></div>
               <div class="main-container main-slider__content">
                 <div class="container main-slider__content-inner">
@@ -34,7 +34,7 @@
                 </div>
               </div>
             </article>
-            <article class="main-slider__slide main-slider__slide--mushrooms swiper-slide"><img class="main-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/slide3.jpg" alt="Selección de hongos medicinales sobre una superficie de madera" width="1024" height="683" loading="lazy" fetchpriority="auto">
+            <article class="main-slider__slide main-slider__slide--mushrooms swiper-slide"><img class="main-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'slide3.jpg' ) ); ?>" alt="Selección de hongos medicinales sobre una superficie de madera" width="1024" height="683" loading="lazy" fetchpriority="auto">
               <div class="main-slider__overlay" aria-hidden="true"></div>
               <div class="main-container main-slider__content">
                 <div class="container main-slider__content-inner">

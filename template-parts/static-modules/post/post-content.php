@@ -63,7 +63,7 @@
                 <h2 class="post-content__section-title">¿Cómo la Nutrición y la Suplementación Alimentan el Cuerpo de Forma Natural?</h2>
                 <p class="post-content__text">Una alimentación basada en alimentos enteros y nutritivos es fundamental. Frutas, vegetales, granos integrales, grasas saludables y proteínas limpias aportan lo que tus células necesitan para funcionar. También ofrecen antioxidantes, vitaminas y minerales que combaten la inflamación y protegen contra enfermedades.</p>
                 <p class="post-content__text">Los ingredientes funcionales como los hongos medicinales aportan beneficios adicionales. Reishi, Cordyceps, Lion’s Mane y Turkey Tail son aliados naturales del sistema inmune, la energía y la función cerebral.</p>
-                <figure class="post-content__figure"><img class="post-content__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/2.png" alt="Ingredientes naturales y hongos medicinales para el bienestar" width="400" height="400" loading="lazy">
+                <figure class="post-content__figure"><img class="post-content__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/guias/blogimages/2.png' ) ); ?>" alt="Ingredientes naturales y hongos medicinales para el bienestar" width="400" height="400" loading="lazy">
                   <figcaption class="post-content__caption">Los hongos medicinales aportan apoyo funcional a la rutina holística.</figcaption>
                 </figure>
                 <p class="post-content__text">Los suplementos Recupé Plus están diseñados para metas específicas. Recupé Plus Recovery apoya la recuperación muscular y reduce el estrés después del ejercicio. Recupé Plus Activity mejora la resistencia física y la energía. Recupé Plus Memento potencia la claridad mental. Recupé Plus Armor fortalece las defensas con antioxidantes y vitamina C.</p>
@@ -79,7 +79,7 @@
                 <h2 class="post-content__section-title">¿Por Qué el Sueño es Clave Para la Recuperación y el Bienestar?</h2>
                 <p class="post-content__text">Dormir bien es fundamental para la sanación, la energía y la claridad mental. Dormir poco o mal puede causar inflamación, subir de peso y generar fatiga o niebla mental.</p>
                 <p class="post-content__text">Para dormir mejor naturalmente podés reducir el uso de pantallas antes de dormir, practicar técnicas de relajación o meditación, y tomar suplementos naturales como Recupé Plus Serenity.</p>
-                <figure class="post-content__figure"><img class="post-content__image" src="https://kikeestradadev.github.io/recupepluslp/assets/drive_24_julio/guias/blogimages/6.png" alt="Ritual de descanso y bienestar nocturno" width="400" height="400" loading="lazy">
+                <figure class="post-content__figure"><img class="post-content__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/guias/blogimages/6.png' ) ); ?>" alt="Ritual de descanso y bienestar nocturno" width="400" height="400" loading="lazy">
                   <figcaption class="post-content__caption">Un ambiente calmado y hábitos simples mejoran la calidad del sueño.</figcaption>
                 </figure>
                 <p class="post-content__text">El magnesio en C-MAGNIFIC ayuda a calmar el sistema nervioso. Crear un ambiente oscuro, fresco y silencioso también mejora la calidad del descanso.</p>

@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Función que maneja el shortcode
 function scName() {
     return '<h1>This is a ShortCode Example</h1>';

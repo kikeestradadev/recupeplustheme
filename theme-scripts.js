@@ -1,4 +1,28 @@
 (() => {
+  // js/components/initWhenVisible.js
+  var initWhenVisible = (el, start, rootMargin = "200px") => {
+    if (!el || typeof start !== "function") {
+      return;
+    }
+    if (!("IntersectionObserver" in window)) {
+      start();
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          start();
+          io.disconnect();
+        });
+      },
+      { rootMargin }
+    );
+    io.observe(el);
+  };
+
   // js/components/componentLoader.js
   var MEDIA_TIMEOUT_MS = 5e3;
   var VIEWPORT_MARGIN = "80px 0px";
@@ -18,9 +42,8 @@
   };
   var unveilWithoutLibrary = (elements) => {
     elements.forEach((element) => {
-      var _a;
-      const picture = ((_a = element.parentElement) == null ? void 0 : _a.tagName) === "PICTURE" ? element.parentElement : null;
-      picture == null ? void 0 : picture.querySelectorAll("source[data-srcset]").forEach((source) => {
+      const picture = element.parentElement?.tagName === "PICTURE" ? element.parentElement : null;
+      picture?.querySelectorAll("source[data-srcset]").forEach((source) => {
         if (!source.getAttribute("srcset") && source.dataset.srcset) {
           source.srcset = source.dataset.srcset;
         }
@@ -31,8 +54,7 @@
     });
   };
   var unveilElements = (elements) => {
-    var _a, _b;
-    if ((_b = (_a = window.lazySizes) == null ? void 0 : _a.loader) == null ? void 0 : _b.unveil) {
+    if (window.lazySizes?.loader?.unveil) {
       elements.forEach((element) => window.lazySizes.loader.unveil(element));
       return;
     }
@@ -122,25 +144,9 @@
       section.classList.add("component-loader");
       section.setAttribute("aria-busy", "true");
     });
-    if (!("IntersectionObserver" in window)) {
-      sections.forEach(activate);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          observer.unobserve(entry.target);
-          activate(entry.target);
-        });
-      },
-      {
-        root: null,
-        rootMargin: VIEWPORT_MARGIN,
-        threshold: 0.01
-      }
-    );
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      initWhenVisible(section, () => activate(section), VIEWPORT_MARGIN);
+    });
   };
   var componentLoader_default = componentLoader;
 
@@ -180,7 +186,6 @@
           trigger.setAttribute("aria-expanded", "false");
         });
         const setMenuOpen = (open, restoreFocus = false) => {
-          var _a;
           root.classList.toggle("main-menu--open", open);
           if (toggle) {
             toggle.setAttribute("aria-expanded", String(open));
@@ -189,9 +194,9 @@
           if (panel)
             panel.setAttribute("aria-hidden", String(!desktopQuery.matches && !open));
           if (open && panel) {
-            (_a = panel.querySelector(".main-menu__link")) == null ? void 0 : _a.focus();
+            panel.querySelector(".main-menu__link")?.focus();
           } else if (restoreFocus) {
-            toggle == null ? void 0 : toggle.focus();
+            toggle?.focus();
           }
         };
         const setDropdownOpen = (item, open) => {
@@ -216,7 +221,6 @@
           }
         };
         const onKeydown = (event) => {
-          var _a;
           if (event.key !== "Escape") return;
           const wasOpen = root.classList.contains("main-menu--open");
           const focusedDropdown = dropdownItems.find(
@@ -225,7 +229,7 @@
           setMenuOpen(false, wasOpen);
           closeDropdowns();
           if (!wasOpen && focusedDropdown) {
-            (_a = focusedDropdown.querySelector("[data-main-menu-submenu-toggle], .main-menu__link")) == null ? void 0 : _a.focus();
+            focusedDropdown.querySelector("[data-main-menu-submenu-toggle], .main-menu__link")?.focus();
           }
         };
         const onViewportChange = () => {
@@ -253,8 +257,8 @@
             window.location.href = nextHref;
           }
         };
-        toggle == null ? void 0 : toggle.addEventListener("click", onToggle, { signal });
-        languageToggle == null ? void 0 : languageToggle.addEventListener("click", onLanguageToggle, { signal });
+        toggle?.addEventListener("click", onToggle, { signal });
+        languageToggle?.addEventListener("click", onLanguageToggle, { signal });
         dropdownItems.forEach((item) => {
           const trigger = item.querySelector(
             "[data-main-menu-submenu-toggle], .main-menu__link"
@@ -317,8 +321,8 @@
           }
           setMenuOpen(false);
           closeDropdowns();
-          toggle == null ? void 0 : toggle.removeAttribute("aria-controls");
-          panel == null ? void 0 : panel.removeAttribute("aria-hidden");
+          toggle?.removeAttribute("aria-controls");
+          panel?.removeAttribute("aria-hidden");
           mainMenuInstances.delete(root);
         };
         mainMenuInstances.set(root, destroy);
@@ -918,7 +922,6 @@
     const roots = scope.querySelectorAll("[data-blog-filter], .blog-filter");
     if (roots.length > 0) {
       roots.forEach((root) => {
-        var _a;
         if (blogFilterInstances.has(root)) return;
         const requestedPerPage = Number(root.dataset.perPage);
         const perPage = Number.isFinite(requestedPerPage) && requestedPerPage > 0 ? Math.floor(requestedPerPage) : 6;
@@ -939,13 +942,15 @@
         const desktopQuery = window.matchMedia("(min-width: 960px)");
         const controller = new AbortController();
         const { signal } = controller;
-        let activeFilter = ((_a = chips.find((chip) => chip.classList.contains("blog-filter__chip--active"))) == null ? void 0 : _a.dataset.filter) || "all";
+        let activeFilter = chips.find((chip) => chip.classList.contains("blog-filter__chip--active"))?.dataset.filter || "all";
         let currentPage = 1;
         let filtersSwiper = null;
         let postsSwiper = null;
-        const getFiltered = (items) => items.filter(
-          (item) => activeFilter === "all" || item.dataset.category === activeFilter
-        );
+        const getFiltered = (items) => items.filter((item) => {
+          if (activeFilter === "all") return true;
+          const cats = String(item.dataset.category || "").trim().split(/\s+/).filter(Boolean);
+          return cats.includes(activeFilter);
+        });
         const setChipState = () => {
           chips.forEach((chip) => {
             const active = chip.dataset.filter === activeFilter;
@@ -1151,12 +1156,11 @@
       const { signal } = controller;
       let tabsSwiper = null;
       const setActiveThumb = (thumb) => {
-        var _a;
         if (!stage || !thumb) return;
         const nextSrc = thumb.dataset.src;
         if (!nextSrc) return;
         stage.src = nextSrc;
-        stage.alt = ((_a = thumb.getAttribute("aria-label")) == null ? void 0 : _a.replace(/^Ver\s+/i, "")) || stage.alt;
+        stage.alt = thumb.getAttribute("aria-label")?.replace(/^Ver\s+/i, "") || stage.alt;
         thumbs.forEach((item) => {
           const isActive = item === thumb;
           item.classList.toggle("product-showcase__thumb--active", isActive);
@@ -1238,28 +1242,28 @@
         zoom.addEventListener("mousemove", onZoomMove, { signal });
         zoom.addEventListener("mouseleave", onZoomLeave, { signal });
       }
-      qtyDec == null ? void 0 : qtyDec.addEventListener(
+      qtyDec?.addEventListener(
         "click",
         () => {
-          updateQty(Number((qtyInput == null ? void 0 : qtyInput.value) || 1) - 1);
+          updateQty(Number(qtyInput?.value || 1) - 1);
         },
         { signal }
       );
-      qtyInc == null ? void 0 : qtyInc.addEventListener(
+      qtyInc?.addEventListener(
         "click",
         () => {
-          updateQty(Number((qtyInput == null ? void 0 : qtyInput.value) || 1) + 1);
+          updateQty(Number(qtyInput?.value || 1) + 1);
         },
         { signal }
       );
-      qtyInput == null ? void 0 : qtyInput.addEventListener(
+      qtyInput?.addEventListener(
         "change",
         () => {
           updateQty(Number(qtyInput.value) || 1);
         },
         { signal }
       );
-      cartForm == null ? void 0 : cartForm.addEventListener(
+      cartForm?.addEventListener(
         "submit",
         (event) => {
           event.preventDefault();
@@ -1613,16 +1617,15 @@
   }) => {
     if (instances.has(root)) return false;
     const form = root.querySelector(`.${block}__form`);
-    const input = form == null ? void 0 : form.querySelector(`.${block}__input`);
-    const submit = form == null ? void 0 : form.querySelector(`.${block}__submit`);
-    const statusEl = form == null ? void 0 : form.querySelector(statusSelector || `[data-${block}-status]`);
+    const input = form?.querySelector(`.${block}__input`);
+    const submit = form?.querySelector(`.${block}__submit`);
+    const statusEl = form?.querySelector(statusSelector || `[data-${block}-status]`);
     const config = getConfig();
     if (!form || !input || !submit) return false;
     const defaultLabel = submit.textContent;
     form.addEventListener(
       "submit",
       async (event) => {
-        var _a, _b;
         event.preventDefault();
         const email = input.value.trim();
         const i18n = config.i18n || {};
@@ -1658,8 +1661,8 @@
             body
           });
           const payload = await response.json();
-          const message = ((_a = payload == null ? void 0 : payload.data) == null ? void 0 : _a.message) || ((payload == null ? void 0 : payload.success) ? i18n.success : ((_b = payload == null ? void 0 : payload.data) == null ? void 0 : _b.code) === "duplicate_email" ? i18n.duplicate : i18n.error);
-          if (payload == null ? void 0 : payload.success) {
+          const message = payload?.data?.message || (payload?.success ? i18n.success : payload?.data?.code === "duplicate_email" ? i18n.duplicate : i18n.error);
+          if (payload?.success) {
             setStatus(statusEl, block, message || i18n.success, "success");
             form.reset();
           } else {
@@ -1772,12 +1775,12 @@
     roots.forEach((root) => {
       if (contactFormInstances.has(root)) return;
       const form = root.querySelector(".contact-form__form");
-      const submit = form == null ? void 0 : form.querySelector(".contact-form__submit");
-      const statusEl = form == null ? void 0 : form.querySelector("[data-contact-form-status]");
-      const nameInput = form == null ? void 0 : form.querySelector('[name="name"]');
-      const emailInput = form == null ? void 0 : form.querySelector('[name="email"]');
-      const phoneInput = form == null ? void 0 : form.querySelector('[name="phone"]');
-      const messageInput = form == null ? void 0 : form.querySelector('[name="message"]');
+      const submit = form?.querySelector(".contact-form__submit");
+      const statusEl = form?.querySelector("[data-contact-form-status]");
+      const nameInput = form?.querySelector('[name="name"]');
+      const emailInput = form?.querySelector('[name="email"]');
+      const phoneInput = form?.querySelector('[name="phone"]');
+      const messageInput = form?.querySelector('[name="message"]');
       const controller = new AbortController();
       const { signal } = controller;
       if (!form || !submit || !nameInput || !emailInput || !messageInput) return;
@@ -1785,12 +1788,11 @@
       form.addEventListener(
         "submit",
         async (event) => {
-          var _a;
           event.preventDefault();
           const i18n = config.i18n || {};
           const name = nameInput.value.trim();
           const email = emailInput.value.trim();
-          const phone = (phoneInput == null ? void 0 : phoneInput.value.trim()) || "";
+          const phone = phoneInput?.value.trim() || "";
           const message = messageInput.value.trim();
           if (!name || !email || !message || !emailInput.checkValidity()) {
             setStatus2(statusEl, i18n.invalid || "Revisa los campos e intenta de nuevo.", "error");
@@ -1820,8 +1822,8 @@
               body
             });
             const payload = await response.json();
-            const text = ((_a = payload == null ? void 0 : payload.data) == null ? void 0 : _a.message) || ((payload == null ? void 0 : payload.success) ? i18n.success : i18n.error);
-            if (payload == null ? void 0 : payload.success) {
+            const text = payload?.data?.message || (payload?.success ? i18n.success : i18n.error);
+            if (payload?.success) {
               setStatus2(statusEl, text || i18n.success, "success");
               form.reset();
             } else {

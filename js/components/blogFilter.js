@@ -40,9 +40,14 @@ const blogFilter = (scope = document) => {
 			let postsSwiper = null;
 
 			const getFiltered = (items) =>
-				items.filter(
-					(item) => activeFilter === 'all' || item.dataset.category === activeFilter
-				);
+				items.filter((item) => {
+					if (activeFilter === 'all') return true;
+					const cats = String(item.dataset.category || '')
+						.trim()
+						.split(/\s+/)
+						.filter(Boolean);
+					return cats.includes(activeFilter);
+				});
 
 			const setChipState = () => {
 				chips.forEach((chip) => {

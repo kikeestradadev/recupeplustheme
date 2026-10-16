@@ -19,7 +19,7 @@
                 <div class="guide-slider__wrapper swiper-wrapper">
                   <article class="guide-slider__slide swiper-slide">
                     <div class="guide-slider__card">
-                      <div class="guide-slider__media"><img class="guide-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/momento.jpeg" alt="" width="320" height="320" loading="lazy"></div>
+                      <div class="guide-slider__media"><img class="guide-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'momento.jpeg' ) ); ?>" alt="" width="320" height="320" loading="lazy"></div>
                       <div class="guide-slider__body">
                         <h3 class="guide-slider__name">Al empezar el día</h3>
                         <p class="guide-slider__products">C+Maglife - Antiox Vitamin</p>
@@ -28,7 +28,7 @@
                   </article>
                   <article class="guide-slider__slide swiper-slide">
                     <div class="guide-slider__card">
-                      <div class="guide-slider__media"><img class="guide-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/momento.jpeg" alt="" width="320" height="320" loading="lazy"></div>
+                      <div class="guide-slider__media"><img class="guide-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'momento.jpeg' ) ); ?>" alt="" width="320" height="320" loading="lazy"></div>
                       <div class="guide-slider__body">
                         <h3 class="guide-slider__name">Cuando trabajas o estudias</h3>
                         <p class="guide-slider__products">Memore - Antiox Vitamin</p>
@@ -37,7 +37,7 @@
                   </article>
                   <article class="guide-slider__slide swiper-slide">
                     <div class="guide-slider__card">
-                      <div class="guide-slider__media"><img class="guide-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/momento.jpeg" alt="" width="320" height="320" loading="lazy"></div>
+                      <div class="guide-slider__media"><img class="guide-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'momento.jpeg' ) ); ?>" alt="" width="320" height="320" loading="lazy"></div>
                       <div class="guide-slider__body">
                         <h3 class="guide-slider__name">Antes de entrenar o moverte</h3>
                         <p class="guide-slider__products">Activity - Memore</p>
@@ -46,7 +46,7 @@
                   </article>
                   <article class="guide-slider__slide swiper-slide">
                     <div class="guide-slider__card">
-                      <div class="guide-slider__media"><img class="guide-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/momento.jpeg" alt="" width="320" height="320" loading="lazy"></div>
+                      <div class="guide-slider__media"><img class="guide-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'momento.jpeg' ) ); ?>" alt="" width="320" height="320" loading="lazy"></div>
                       <div class="guide-slider__body">
                         <h3 class="guide-slider__name">Después de hacer ejercicio</h3>
                         <p class="guide-slider__products">Recovery - Antiox Vitamin</p>
@@ -55,7 +55,7 @@
                   </article>
                   <article class="guide-slider__slide swiper-slide">
                     <div class="guide-slider__card">
-                      <div class="guide-slider__media"><img class="guide-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/momento.jpeg" alt="" width="320" height="320" loading="lazy"></div>
+                      <div class="guide-slider__media"><img class="guide-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'momento.jpeg' ) ); ?>" alt="" width="320" height="320" loading="lazy"></div>
                       <div class="guide-slider__body">
                         <h3 class="guide-slider__name">Todos los días</h3>
                         <p class="guide-slider__products">C+Maglife - Vitamin Antiox - Memore</p>
@@ -64,7 +64,7 @@
                   </article>
                   <article class="guide-slider__slide swiper-slide">
                     <div class="guide-slider__card">
-                      <div class="guide-slider__media"><img class="guide-slider__image" src="https://kikeestradadev.github.io/recupepluslp/assets/momento.jpeg" alt="" width="320" height="320" loading="lazy"></div>
+                      <div class="guide-slider__media"><img class="guide-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'momento.jpeg' ) ); ?>" alt="" width="320" height="320" loading="lazy"></div>
                       <div class="guide-slider__body">
                         <h3 class="guide-slider__name">Antes de dormir</h3>
                         <p class="guide-slider__products">Serenity - Memore</p>

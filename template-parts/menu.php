@@ -78,7 +78,7 @@ endif;
 		<div class="main-container main-menu__shell">
 			<div class="container main-menu__container main-menu__inner">
 				<a class="main-menu__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<img class="main-menu__logo-img" src="https://kikeestradadev.github.io/recupepluslp/assets/logonegro.png" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="120" height="68">
+					<img class="main-menu__logo-img" src="<?php echo esc_url( wpb_lp_asset( 'logonegro.png' ) ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="120" height="68">
 				</a>
 				<div class="main-menu__panel" data-main-menu-panel>
 					<?php if ( ! empty( $menu_tree[0] ) ) : ?>
