@@ -1717,6 +1717,38 @@
   };
   var communitySplit_default = communitySplit;
 
+  // js/components/communityBanner.js
+  var communityBannerInstances = /* @__PURE__ */ new WeakMap();
+  var communityBanner = (scope = document) => {
+    const initialized = [];
+    const roots = scope.querySelectorAll(".community-banner");
+    if (roots.length === 0) {
+      return initialized;
+    }
+    roots.forEach((root) => {
+      if (communityBannerInstances.has(root)) return;
+      const controller = new AbortController();
+      const { signal } = controller;
+      const bound = bindCommunitySubscribeForm({
+        root,
+        block: "community-banner",
+        source: "community-banner",
+        statusSelector: "[data-community-banner-status]",
+        instances: communityBannerInstances,
+        signal
+      });
+      if (!bound) return;
+      const destroy = () => {
+        controller.abort();
+        communityBannerInstances.delete(root);
+      };
+      communityBannerInstances.set(root, destroy);
+      initialized.push(destroy);
+    });
+    return initialized;
+  };
+  var communityBanner_default = communityBanner;
+
   // js/components/newsletterBanner.js
   var newsletterBannerInstances = /* @__PURE__ */ new WeakMap();
   var newsletterBanner = (scope = document) => {
@@ -1858,6 +1890,7 @@
     blogFilter_default();
     foundersCards_default();
     communitySplit_default();
+    communityBanner_default();
     newsletterBanner_default();
     contactForm_default();
     if (typeof window.Prism !== "undefined" && document.querySelector('code[class*="language-"], [class*="language-"] code')) {

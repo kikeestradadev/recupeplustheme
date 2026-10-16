@@ -148,6 +148,10 @@
 				);
 			});
 
+			// Keep operational lists (Comunidad / Contactos) open by default.
+			var forceOpen = section.toLowerCase() === 'registros';
+			var startOpen = hasCurrent || forceOpen;
+
 			// Standalone (no prefix): keep as a normal link row.
 			if (!group.hasPrefix && children.length === 1) {
 				submenu.appendChild(children[0]);
@@ -155,13 +159,13 @@
 			}
 
 			var header = document.createElement('li');
-			header.className = 'wpb-mantenimientos-group' + (hasCurrent ? ' is-open' : '');
+			header.className = 'wpb-mantenimientos-group' + (startOpen ? ' is-open' : '');
 			header.setAttribute('data-wpb-section', section);
 
 			var toggle = document.createElement('button');
 			toggle.type = 'button';
 			toggle.className = 'wpb-mantenimientos-group__toggle';
-			toggle.setAttribute('aria-expanded', hasCurrent ? 'true' : 'false');
+			toggle.setAttribute('aria-expanded', startOpen ? 'true' : 'false');
 			toggle.innerHTML =
 				'<span class="dashicons dashicons-arrow-right-alt2" aria-hidden="true"></span>' +
 				'<span class="wpb-mantenimientos-group__label"></span>';
@@ -171,7 +175,7 @@
 			submenu.appendChild(header);
 
 			children.forEach(function (li) {
-				if (!hasCurrent) {
+				if (!startOpen) {
 					li.classList.add('wpb-mantenimientos-item--collapsed');
 				}
 				submenu.appendChild(li);

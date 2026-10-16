@@ -106,6 +106,15 @@ Admin parent menu: **Mantenimientos** (`wpb-mantenimientos`) — flat submenu + 
 | `wpb-contacto-global` | Global WhatsApp URL | WhatsApp button, banners, contact CTAs via `wpb_acf_global_whatsapp_*` |
 | Home / Nosotros / Guías / Suplementos / Dónde comprar | Per-section `wpb-*` option pages | Matching `static-modules/*` |
 
+**Registros (custom tables, under Mantenimientos accordion → Registros):**
+
+| Admin page | Slug / URL | Storage |
+|---|---|---|
+| Comunidad (email subscribers) | `admin.php?page=wpb-community-subscribers` | Table `{prefix}wpb_community_subscribers` via `wpb_community_subscriber_insert()` |
+| Contactos (contact form) | `admin.php?page=wpb-contact-messages` | Contact messages table |
+
+Subscribe AJAX: `admin-ajax.php` → `wpb_community_subscribe` (`core-functions/ajax/wpb_community-subscribe.php`). Sources: `community-split`, `community-banner`, `newsletter-banner`.
+
 Helpers (prefer these over raw `get_field`): `wpb_acf_option_text`, `wpb_acf_option_image`, `wpb_acf_option_rows`, `wpb_acf_option_link` in `core-functions/admin/wpb_acf-helpers.php`.
 
 ---

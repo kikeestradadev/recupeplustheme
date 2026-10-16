@@ -188,6 +188,40 @@
 		border: 0;
 	}
 
+	&__honeypot {
+		position: absolute;
+		left: -10000px;
+		top: auto;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	&__status {
+		margin: 0.75rem 0 0;
+		font-size: 0.875rem;
+		font-weight: 600;
+		line-height: 1.35;
+
+		&--pending {
+			color: #4a4a4a;
+		}
+
+		&--success {
+			color: #1b7a3d;
+		}
+
+		&--error {
+			color: #b42318;
+		}
+	}
+
+	&__submit:disabled {
+		opacity: 0.7;
+		cursor: wait;
+		transform: none;
+	}
+
 	@media (width >= $l) {
 		&__card {
 			padding: 1.75rem 2rem;

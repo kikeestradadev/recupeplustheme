@@ -17,6 +17,7 @@ import mainSlider from './components/mainSlider';
 import mainBanner from './components/mainBanner';
 import foundersCards from './components/foundersCards';
 import communitySplit from './components/communitySplit';
+import communityBanner from './components/communityBanner';
 import newsletterBanner from './components/newsletterBanner';
 import contactForm from './components/contactForm';
 
@@ -28,6 +29,7 @@ const initEagerComponents = () => {
 	blogFilter();
 	foundersCards();
 	communitySplit();
+	communityBanner();
 	newsletterBanner();
 	contactForm();
 

@@ -180,6 +180,27 @@
 <td>Matching <code>static-modules/*</code></td>
 </tr>
 </tbody></table>
+<p><strong>Registros (custom tables, under Mantenimientos accordion → Registros):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Admin page</th>
+<th>Slug / URL</th>
+<th>Storage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Comunidad (email subscribers)</td>
+<td><code>admin.php?page=wpb-community-subscribers</code></td>
+<td>Table <code>{prefix}wpb_community_subscribers</code> via <code>wpb_community_subscriber_insert()</code></td>
+</tr>
+<tr>
+<td>Contactos (contact form)</td>
+<td><code>admin.php?page=wpb-contact-messages</code></td>
+<td>Contact messages table</td>
+</tr>
+</tbody></table>
+<p>Subscribe AJAX: <code>admin-ajax.php</code> → <code>wpb_community_subscribe</code> (<code>core-functions/ajax/wpb_community-subscribe.php</code>). Sources: <code>community-split</code>, <code>community-banner</code>, <code>newsletter-banner</code>.</p>
 <p>Helpers (prefer these over raw <code>get_field</code>): <code>wpb_acf_option_text</code>, <code>wpb_acf_option_image</code>, <code>wpb_acf_option_rows</code>, <code>wpb_acf_option_link</code> in <code>core-functions/admin/wpb_acf-helpers.php</code>.</p>
 <hr>
 <h2>5. Content (local DB — reference)</h2>

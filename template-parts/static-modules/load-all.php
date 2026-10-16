@@ -28,7 +28,6 @@ get_template_part( 'template-parts/static-modules/suplementos/ingredients-slider
 get_template_part( 'template-parts/static-modules/guias/guides-banner' );
 get_template_part( 'template-parts/static-modules/guias/blog-filter' );
 get_template_part( 'template-parts/static-modules/guias/community-banner' );
-get_template_part( 'template-parts/static-modules/guias/help-guides' );
 get_template_part( 'template-parts/static-modules/guias/guide-slider' );
 get_template_part( 'template-parts/static-modules/donde-comprar/buy-banner' );
 get_template_part( 'template-parts/static-modules/donde-comprar/ways-slider' );

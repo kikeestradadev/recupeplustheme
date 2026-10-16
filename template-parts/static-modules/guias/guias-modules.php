@@ -12,4 +12,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_template_part( 'template-parts/static-modules/guias/guides-banner' );
 get_template_part( 'template-parts/static-modules/guias/blog-filter' );
 get_template_part( 'template-parts/static-modules/guias/community-banner' );
-get_template_part( 'template-parts/static-modules/guias/help-guides' );

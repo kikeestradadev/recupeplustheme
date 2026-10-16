@@ -36,7 +36,7 @@ function wpb_community_subscribe_handler() {
 		);
 	}
 
-	$allowed_sources = array( 'community-split', 'newsletter-banner' );
+	$allowed_sources = array( 'community-split', 'newsletter-banner', 'community-banner' );
 	$source          = isset( $_POST['source'] ) ? sanitize_key( wp_unslash( $_POST['source'] ) ) : 'community-split';
 	if ( ! in_array( $source, $allowed_sources, true ) ) {
 		$source = 'community-split';

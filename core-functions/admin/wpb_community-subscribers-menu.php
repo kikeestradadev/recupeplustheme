@@ -10,27 +10,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the Comunidad admin menu under Mantenimientos.
+ * Registers the Comunidad admin menu as a top-level screen.
  */
 function wpb_register_community_subscribers_menu() {
-	$parent = function_exists( 'wpb_mantenimientos_menu_slug' )
-		? wpb_mantenimientos_menu_slug()
-		: 'wpb-mantenimientos';
-
-	$hook = add_submenu_page(
-		$parent,
-		__( 'Comunidad', 'wpboilerplate' ),
-		__( 'Comunidad', 'wpboilerplate' ),
+	$hook = add_menu_page(
+		__( 'Comunidad — Suscriptores', 'wpboilerplate' ),
+		__( 'Registros — Comunidad', 'wpboilerplate' ),
 		'edit_pages',
 		'wpb-community-subscribers',
-		'wpb_render_community_subscribers_page'
+		'wpb_render_community_subscribers_page',
+		'dashicons-groups',
+		58
 	);
 
 	if ( $hook ) {
 		add_action( "admin_print_scripts-{$hook}", 'wpb_community_subscribers_enqueue_admin_assets' );
 	}
 }
-add_action( 'admin_menu', 'wpb_register_community_subscribers_menu', 100 );
+add_action( 'admin_menu', 'wpb_register_community_subscribers_menu', 60 );
 
 /**
  * Enqueues list-page JS (live email filter + AJAX pagination) for Comunidad admin.
