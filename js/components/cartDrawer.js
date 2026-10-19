@@ -1,25 +1,42 @@
 const cartDrawerInstances = new WeakMap();
 
-const getCartConfig = () => window.wpbCart || {};
+/** @returns {Record<string, unknown>} */
+export const getCartConfig = () => window.wpbCart || {};
 
-const wcAjaxUrl = (endpoint) => {
+/**
+ * Build a WooCommerce AJAX endpoint URL from localized cart config.
+ *
+ * @param {string} endpoint WC ajax endpoint name.
+ * @returns {string}
+ */
+export const wcAjaxUrl = (endpoint) => {
 	const cfg = getCartConfig();
-	if (cfg.ajaxUrl && cfg.ajaxUrl.includes('%%endpoint%%')) {
-		return cfg.ajaxUrl.replace('%%endpoint%%', endpoint);
+	if (cfg.ajaxUrl && String(cfg.ajaxUrl).includes('%%endpoint%%')) {
+		return String(cfg.ajaxUrl).replace('%%endpoint%%', endpoint);
 	}
 	return `${cfg.wcAjaxUrl || '/?wc-ajax='}${endpoint}`;
 };
 
-const parseProductQtys = (content) => {
+/**
+ * Parse product qty map from the cart drawer content node.
+ *
+ * @param {Element | null | undefined} content
+ * @returns {Record<string, number>}
+ */
+export const parseProductQtys = (content) => {
 	try {
 		const raw = content?.getAttribute('data-cart-product-qtys') || '{}';
-		return JSON.parse(raw);
+		const parsed = JSON.parse(raw);
+		return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
 	} catch (error) {
 		return {};
 	}
 };
 
-const syncShowcaseWithCart = () => {
+/**
+ * Keep showcase qty inputs and cart counters in sync with drawer fragments.
+ */
+export const syncShowcaseWithCart = () => {
 	const content = document.querySelector('[data-cart-drawer-content]');
 	const total =
 		Number(content?.getAttribute('data-cart-total-count')) ||
@@ -49,14 +66,27 @@ const syncShowcaseWithCart = () => {
 	}
 };
 
-const applyFragments = (fragments) => {
+/**
+ * Apply WooCommerce cart fragments to matching DOM nodes.
+ *
+ * @param {Record<string, string> | null | undefined} fragments
+ */
+export const applyFragments = (fragments) => {
 	if (!fragments || typeof fragments !== 'object') return;
 
 	Object.keys(fragments).forEach((selector) => {
 		if (!selector || selector === 'wpb_cart_product_qtys') return;
 		const html = fragments[selector];
 		if (typeof html !== 'string') return;
-		document.querySelectorAll(selector).forEach((node) => {
+
+		let nodes;
+		try {
+			nodes = document.querySelectorAll(selector);
+		} catch (error) {
+			return;
+		}
+
+		nodes.forEach((node) => {
 			const template = document.createElement('template');
 			template.innerHTML = html.trim();
 			const next = template.content.firstElementChild;

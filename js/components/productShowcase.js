@@ -2,7 +2,8 @@ import { addToCartAjax, openCartDrawer } from './cartDrawer';
 
 const productShowcaseInstances = new WeakMap();
 
-const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+/** Clamp a numeric value into [min, max] (used by qty controls). */
+export const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
 const productShowcase = (scope = document) => {
 	const roots = scope.querySelectorAll('[data-product-showcase], .product-showcase');
