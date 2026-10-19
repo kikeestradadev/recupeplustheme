@@ -1,111 +1,134 @@
 <?php
 /**
- * Static module: product-slider
+ * Suplementos product slider — WooCommerce products by category.
  *
  * @package wpboilerplate
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$groups = array(
+	array(
+		'key'      => 'gomitas',
+		'title'    => __( 'Gomitas', 'wpboilerplate' ),
+		'subtitle' => __( 'Ricas, prácticas y deliciosas. Ideales para sumar bienestar todos los días.', 'wpboilerplate' ),
+	),
+	array(
+		'key'      => 'capsulas',
+		'title'    => __( 'Cápsulas', 'wpboilerplate' ),
+		'subtitle' => __( 'Productos especializados con hongos y activos naturales para acompañar tu energía, enfoque, recuperación e inmunidad.', 'wpboilerplate' ),
+	),
+);
+
+$modifier_map = array();
+if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
+	foreach ( wpb_wc_catalog_definition() as $row ) {
+		$modifier_map[ $row['slug'] ] = $row['modifier'];
+	}
+}
 ?>
 <section class="product-slider">
-        <div class="main-container product-slider__shell">
-          <div class="container product-slider__container">
-            <div class="product-slider__group product-slider__group--gomitas" id="gomitas">
-              <div class="product-slider__inner">
-                <header class="product-slider__header">
-                  <h2 class="product-slider__title">Gomitas</h2>
-                  <p class="product-slider__subtitle">Ricas, prácticas y deliciosas. Ideales para sumar bienestar todos los días.</p>
-                </header>
-                <div class="product-slider__slider">
-                  <button class="product-slider__nav product-slider__nav--prev" type="button" aria-label="Anterior"></button>
-                  <button class="product-slider__nav product-slider__nav--next" type="button" aria-label="Siguiente"></button>
-                  <div class="product-slider__swiper swiper">
-                    <div class="product-slider__wrapper swiper-wrapper">
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--vitamin"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp' ) ); ?>" alt="Vitamin" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">Vitamin</a></h3>
-                            <p class="product-slider__text">Mora + vitamina C para cuidar tus defensas todos los días.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--antiox"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/antoox.webp' ) ); ?>" alt="Antiox" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">Antiox</a></h3>
-                            <p class="product-slider__text">Para sumar antioxidantes a tu rutina.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--cmagnific"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/c_maginific.webp' ) ); ?>" alt="C-Magnific" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">C-Magnific</a></h3>
-                            <p class="product-slider__text">Magnesio + vitamina C para tu bienestar diario.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--serenity"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/serenity.webp' ) ); ?>" alt="Serenity" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">Serenity</a></h3>
-                            <p class="product-slider__text">Para bajar revoluciones y crear tu ritual de descanso.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--more"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/more.webp' ) ); ?>" alt="More" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">More</a></h3>
-                            <p class="product-slider__text">Hongos funcionales + vitamina C para tu bienestar diario.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                    </div>
-                    <div class="product-slider__pagination swiper-pagination"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-slider__group product-slider__group--capsulas" id="capsulas">
-              <div class="product-slider__inner">
-                <header class="product-slider__header">
-                  <h2 class="product-slider__title">Cápsulas</h2>
-                  <p class="product-slider__subtitle">Productos especializados con hongos y activos naturales para acompañar tu energía, enfoque, recuperación e inmunidad.</p>
-                </header>
-                <div class="product-slider__slider">
-                  <button class="product-slider__nav product-slider__nav--prev" type="button" aria-label="Anterior"></button>
-                  <button class="product-slider__nav product-slider__nav--next" type="button" aria-label="Siguiente"></button>
-                  <div class="product-slider__swiper swiper">
-                    <div class="product-slider__wrapper swiper-wrapper">
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--momento"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/momento.webp' ) ); ?>" alt="Momento" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">Momento</a></h3>
-                            <p class="product-slider__text">Para acompañar tus momentos de enfoque.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--activity"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/activity.webp' ) ); ?>" alt="Activity" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">Activity</a></h3>
-                            <p class="product-slider__text">Para activar tu energía antes de moverte.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="product-slider__slide swiper-slide">
-                        <div class="product-slider__card product-slider__card--recovery"><a class="product-slider__media" href="product.html"><img class="product-slider__image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/recovery.webp' ) ); ?>" alt="Recovery" width="280" height="180" loading="lazy"></a>
-                          <div class="product-slider__body">
-                            <h3 class="product-slider__name"><a class="product-slider__name-link" href="product.html">Recovery</a></h3>
-                            <p class="product-slider__text">Para acompañar tu recuperación después de hacer ejercicio.</p><a class="product-slider__link" href="product.html">Conocer más →</a>
-                          </div>
-                        </div>
-                      </article>
-                    </div>
-                    <div class="product-slider__pagination swiper-pagination"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+	<div class="main-container product-slider__shell">
+		<div class="container product-slider__container">
+			<?php foreach ( $groups as $group ) : ?>
+				<?php
+				$products = function_exists( 'wpb_wc_products_by_category' )
+					? wpb_wc_products_by_category( $group['key'] )
+					: array();
+				?>
+				<div class="product-slider__group product-slider__group--<?php echo esc_attr( $group['key'] ); ?>" id="<?php echo esc_attr( $group['key'] ); ?>">
+					<div class="product-slider__inner">
+						<header class="product-slider__header">
+							<h2 class="product-slider__title"><?php echo esc_html( $group['title'] ); ?></h2>
+							<p class="product-slider__subtitle"><?php echo esc_html( $group['subtitle'] ); ?></p>
+						</header>
+
+						<?php if ( empty( $products ) ) : ?>
+							<p class="product-slider__empty"><?php esc_html_e( 'Pronto verás los productos de esta categoría.', 'wpboilerplate' ); ?></p>
+						<?php else : ?>
+							<div class="product-slider__slider">
+								<button class="product-slider__nav product-slider__nav--prev" type="button" aria-label="<?php esc_attr_e( 'Anterior', 'wpboilerplate' ); ?>"></button>
+								<button class="product-slider__nav product-slider__nav--next" type="button" aria-label="<?php esc_attr_e( 'Siguiente', 'wpboilerplate' ); ?>"></button>
+								<div class="product-slider__swiper swiper">
+									<div class="product-slider__wrapper swiper-wrapper">
+										<?php foreach ( $products as $product ) : ?>
+											<?php
+											if ( ! $product instanceof WC_Product ) {
+												continue;
+											}
+											$product_id = $product->get_id();
+											$permalink  = get_permalink( $product_id );
+											$slug       = $product->get_slug();
+											$modifier   = isset( $modifier_map[ $slug ] ) ? $modifier_map[ $slug ] : sanitize_html_class( $slug );
+											$image_url  = wp_get_attachment_image_url( $product->get_image_id(), 'medium' );
+											if ( ! $image_url ) {
+												$image_url = wc_placeholder_img_src( 'medium' );
+											}
+											$blurb = $product->get_short_description();
+											$blurb = $blurb ? wp_strip_all_tags( $blurb ) : '';
+											if ( '' === $blurb ) {
+												$blurb = wp_strip_all_tags( $product->get_description() );
+											}
+											// Prefer first sentence / first line for card text.
+											$lines = preg_split( '/\R+/', $blurb );
+											$blurb = isset( $lines[0] ) ? trim( $lines[0] ) : $blurb;
+											if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
+												foreach ( wpb_wc_catalog_definition() as $row ) {
+													if ( $row['slug'] === $slug ) {
+														$blurb = $row['text'];
+														break;
+													}
+												}
+											}
+											?>
+											<article class="product-slider__slide swiper-slide">
+												<div class="product-slider__card product-slider__card--<?php echo esc_attr( $modifier ); ?>">
+													<a class="product-slider__media" href="<?php echo esc_url( $permalink ); ?>">
+														<img
+															class="product-slider__image"
+															src="<?php echo esc_url( $image_url ); ?>"
+															alt="<?php echo esc_attr( $product->get_name() ); ?>"
+															width="280"
+															height="180"
+															loading="lazy"
+														>
+													</a>
+													<div class="product-slider__body">
+														<h3 class="product-slider__name">
+															<a class="product-slider__name-link" href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $product->get_name() ); ?></a>
+														</h3>
+														<?php if ( $blurb ) : ?>
+															<p class="product-slider__text"><?php echo esc_html( $blurb ); ?></p>
+														<?php endif; ?>
+														<div class="product-slider__actions">
+															<a class="product-slider__link" href="<?php echo esc_url( $permalink ); ?>"><?php esc_html_e( 'Conocer más →', 'wpboilerplate' ); ?></a>
+															<?php if ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
+																<button
+																	class="product-slider__add ajax_add_to_cart"
+																	type="button"
+																	data-product_id="<?php echo esc_attr( (string) $product_id ); ?>"
+																	data-product-id="<?php echo esc_attr( (string) $product_id ); ?>"
+																	data-quantity="1"
+																	data-wpb-add-to-cart
+																>
+																	<?php esc_html_e( 'Agregar', 'wpboilerplate' ); ?>
+																</button>
+															<?php endif; ?>
+														</div>
+													</div>
+												</div>
+											</article>
+										<?php endforeach; ?>
+									</div>
+									<div class="product-slider__pagination swiper-pagination"></div>
+								</div>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>

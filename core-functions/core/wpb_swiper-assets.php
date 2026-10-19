@@ -16,7 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function wpb_front_needs_swiper() {
 	$needs = is_front_page()
-		|| is_page( array( 'home', 'suplementos', 'donde-comprar', 'guias', 'nosotros' ) )
+		|| is_singular( 'product' )
+		|| is_page( array( 'home', 'suplementos', 'donde-comprar', 'guias', 'nosotros', 'product', 'producto' ) )
 		|| is_page_template(
 			array(
 				'page-home.php',
@@ -24,6 +25,7 @@ function wpb_front_needs_swiper() {
 				'page-donde-comprar.php',
 				'page-guias.php',
 				'page-nosotros.php',
+				'page-product.php',
 			)
 		);
 

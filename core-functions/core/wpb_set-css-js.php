@@ -18,14 +18,8 @@ if ( !function_exists( 'wpb_enqueue_styles' ) ) :
                 filemtime($child_theme_css_path) // Número de versión para el control de cache
             );
 
-            // Agregar filtro para modificar el tag de enlace de CSS con preload
-            add_filter('style_loader_tag', 'wpb_add_preload_to_styles', 10, 4);
-            function wpb_add_preload_to_styles($html, $handle, $href, $media) {
-                if ($handle === 'child-theme-styles') {
-                    $html = '<link rel="preload" href="' . $href . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="' . $href . '"></noscript>';
-                }
-                return $html;
-            }
+            // Load theme CSS synchronously. Async preload delayed logo/layout rules and let
+            // the 2560–5000px logo bitmap paint at near-viewport size (height:auto + max-width:100%).
         }
     }
 endif;

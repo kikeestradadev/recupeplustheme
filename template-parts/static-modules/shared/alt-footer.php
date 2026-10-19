@@ -190,8 +190,9 @@ $social_icon = static function ( $platform ) {
 									class="alt-footer__logo-img"
 									src="<?php echo esc_url( $logo['url'] ); ?>"
 									alt="<?php echo esc_attr( $logo_alt ); ?>"
-									width="<?php echo esc_attr( (string) ( $logo['width'] ? $logo['width'] : 140 ) ); ?>"
-									height="<?php echo esc_attr( (string) ( $logo['height'] ? $logo['height'] : 80 ) ); ?>"
+									width="105"
+									height="63"
+									decoding="async"
 								>
 							</a>
 						<?php endif; ?>

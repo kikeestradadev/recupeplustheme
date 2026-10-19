@@ -77,8 +77,23 @@ endif;
 	<nav class="main-menu" aria-label="Navegación principal" data-main-menu>
 		<div class="main-container main-menu__shell">
 			<div class="container main-menu__container main-menu__inner">
+				<?php
+				$logo_id  = 135; // Media Library: logonegro
+				$logo_src = wp_get_attachment_image_url( $logo_id, 'medium' );
+				if ( ! $logo_src ) {
+					$logo_src = function_exists( 'wpb_lp_asset' ) ? wpb_lp_asset( 'logonegro.png' ) : '';
+				}
+				?>
 				<a class="main-menu__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<img class="main-menu__logo-img" src="<?php echo esc_url( wpb_lp_asset( 'logonegro.png' ) ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="120" height="68">
+					<img
+						class="main-menu__logo-img"
+						src="<?php echo esc_url( $logo_src ); ?>"
+						alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+						width="105"
+						height="63"
+						decoding="async"
+						fetchpriority="high"
+					>
 				</a>
 				<div class="main-menu__panel" data-main-menu-panel>
 					<?php if ( ! empty( $menu_tree[0] ) ) : ?>
@@ -92,12 +107,28 @@ endif;
 						<span class="main-menu__cta-short">Comprar</span>
 						<span class="main-menu__cta-full">Comprar ahora</span>
 					</a>
-					<a class="main-menu__cart" href="#" aria-label="Carrito de compras">
+					<?php
+					$cart_count = function_exists( 'wpb_cart_contents_count' ) ? wpb_cart_contents_count() : 0;
+					?>
+					<button
+						class="main-menu__cart"
+						type="button"
+						data-cart-drawer-open
+						aria-label="<?php esc_attr_e( 'Carrito de compras', 'wpboilerplate' ); ?>"
+						aria-expanded="false"
+						aria-haspopup="dialog"
+						aria-controls="cart-drawer"
+					>
 						<svg class="main-menu__cart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 							<path d="M6 8h12l-1 12H7L6 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
 							<path d="M9 8V7a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
 						</svg>
-					</a>
+						<?php
+						if ( function_exists( 'wpb_cart_drawer_badge_html' ) ) {
+							echo wpb_cart_drawer_badge_html( $cart_count ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						}
+						?>
+					</button>
 					<button class="main-menu__language" type="button" data-main-menu-language data-locale="es" data-es-href="#" data-en-href="#" data-es-label="Español" data-en-label="English" aria-label="Cambiar a English">
 						<span class="main-menu__language-flag" data-flag="es" aria-hidden="true">
 							<svg class="main-menu__language-flag-img" width="24" height="18" viewBox="0 0 24 18" aria-hidden="true">

@@ -68,8 +68,13 @@
 
 	&__logo-img {
 		display: block;
+		box-sizing: border-box;
 		width: auto;
-		height: 3rem;
+		max-width: 105px;
+		height: 63px;
+		max-height: 63px;
+		object-fit: contain;
+		object-position: left center;
 	}
 
 	&__text {

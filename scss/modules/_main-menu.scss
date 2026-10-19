@@ -52,11 +52,20 @@
 
 	&__logo-img {
 		display: block;
-		width: auto;
-		height: 2.5rem;
+		box-sizing: border-box;
+		width: 105px;
+		max-width: 105px;
+		height: 63px;
+		max-height: 63px;
+		object-fit: contain;
+		object-position: left center;
 
-		@media (width >= $lg) {
-			height: 3.9rem;
+		/* Mobile / tablet header (< $lg 1280px) */
+		@media (width < $lg) {
+			width: 68px;
+			max-width: 68px;
+			height: 40px;
+			max-height: 40px;
 		}
 	}
 
@@ -345,20 +354,6 @@
 		border-radius: 0.15rem;
 		overflow: hidden;
 		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
-	}
-
-	&__cart {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		color: var(--header-color, #1f2024);
-		text-decoration: none;
-		transition: color 0.2s ease;
-
-		&:hover,
-		&:focus-visible {
-			color: var(--color-orange, #ff9100);
-		}
 	}
 
 	&__cart-icon {

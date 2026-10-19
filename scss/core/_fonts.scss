@@ -78,4 +78,31 @@ a {
 img {
 	max-width : 100%;
 	height    : auto;
+
+	/* Keep branded logos from expanding to intrinsic bitmap size (often 2k–5k px)
+	   before/without component CSS. Match component sizes so this higher-specificity
+	   rule (img.class) does not lock the header logo to the mobile size on desktop. */
+	&.main-menu__logo-img {
+		width: 105px;
+		max-width: 105px;
+		height: 63px;
+		max-height: 63px;
+		object-fit: contain;
+
+		@media (width < $lg) {
+			width: 68px;
+			max-width: 68px;
+			height: 40px;
+			max-height: 40px;
+		}
+	}
+
+	&.alt-footer__logo-img,
+	&.main-footer__logo-img {
+		width: auto;
+		max-width: 105px;
+		height: 63px;
+		max-height: 63px;
+		object-fit: contain;
+	}
 }

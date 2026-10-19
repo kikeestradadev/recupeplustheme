@@ -1,142 +1,288 @@
 <?php
 /**
- * Static module: product-showcase
+ * Product showcase — layout from LP, data from WooCommerce.
  *
  * @package wpboilerplate
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$product = isset( $args['product'] ) && $args['product'] instanceof WC_Product
+	? $args['product']
+	: ( function_exists( 'wpb_wc_resolve_showcase_product' ) ? wpb_wc_resolve_showcase_product() : null );
+
+if ( ! $product instanceof WC_Product ) {
+	echo '<section class="product-showcase"><div class="main-container"><div class="container"><p>' . esc_html__( 'No hay productos de WooCommerce publicados todavía.', 'wpboilerplate' ) . '</p></div></div></section>';
+	return;
+}
+
+$gallery  = function_exists( 'wpb_wc_product_gallery_images' ) ? wpb_wc_product_gallery_images( $product ) : array();
+$related  = function_exists( 'wpb_wc_related_products' ) ? wpb_wc_related_products( $product, 8 ) : array();
+$category = function_exists( 'wpb_wc_primary_category' ) ? wpb_wc_primary_category( $product ) : array(
+	'label' => '',
+	'url'   => home_url( '/suplementos/' ),
+);
+$price    = function_exists( 'wpb_wc_format_display_price' ) ? wpb_wc_format_display_price( $product ) : wp_strip_all_tags( $product->get_price_html() );
+$name     = $product->get_name();
+$permalink = get_permalink( $product->get_id() );
+$add_url  = $product->add_to_cart_url();
+$short    = $product->get_short_description();
+$long     = $product->get_description();
+$review_count = (int) $product->get_review_count();
+
+if ( empty( $gallery ) ) {
+	$placeholder = wc_placeholder_img_src( 'large' );
+	$gallery     = array(
+		array(
+			'src' => $placeholder ? $placeholder : '',
+			'alt' => $name,
+		),
+	);
+}
+
+$short_paragraphs = array_values(
+	array_filter(
+		array_map( 'trim', preg_split( '/\R+/', wp_strip_all_tags( $short ) ) ?: array() )
+	)
+);
+if ( empty( $short_paragraphs ) && $short ) {
+	$short_paragraphs = array( wp_strip_all_tags( $short ) );
+}
 ?>
-<section class="product-showcase" data-product-showcase>
-        <div class="main-container product-showcase__shell">
-          <div class="container product-showcase__container product-showcase__inner">
-            <nav class="product-showcase__breadcrumbs" aria-label="Miga de pan">
-              <ol class="product-showcase__crumbs">
-                <li class="product-showcase__crumb"><a class="product-showcase__crumb-link" href="./">Inicio</a><span class="product-showcase__crumb-sep" aria-hidden="true">/</span>
-                </li>
-                <li class="product-showcase__crumb"><a class="product-showcase__crumb-link" href="suplementos.html#gomitas">Gomitas</a><span class="product-showcase__crumb-sep" aria-hidden="true">/</span>
-                </li>
-                <li class="product-showcase__crumb"><span class="product-showcase__crumb-current" aria-current="page">Vitamin</span>
-                </li>
-              </ol>
-            </nav>
-            <div class="product-showcase__layout">
-              <div class="product-showcase__gallery">
-                <div class="product-showcase__thumbs" role="list">
-                  <button class="product-showcase__thumb product-showcase__thumb--active" type="button" role="listitem" data-product-thumb data-src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp' ) ); ?>" aria-label="Ver Vitamin - imagen 1" aria-pressed="true"><img class="product-showcase__thumb-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp' ) ); ?>" alt="" width="80" height="80" loading="lazy"></button>
-                  <button class="product-showcase__thumb" type="button" role="listitem" data-product-thumb data-src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/gomitas_1.webp' ) ); ?>" aria-label="Ver Vitamin - imagen 2" aria-pressed="false"><img class="product-showcase__thumb-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/gomitas_1.webp' ) ); ?>" alt="" width="80" height="80" loading="lazy"></button>
-                </div>
-                <div class="product-showcase__stage" data-product-zoom><img class="product-showcase__stage-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/gomitas/individuales/vitamin.webp' ) ); ?>" alt="Vitamin - imagen 1" width="720" height="720" data-product-stage><span class="product-showcase__zoom-hint" aria-hidden="true">Ampliar</span></div>
-              </div>
-              <div class="product-showcase__summary">
-                <h1 class="product-showcase__title">Vitamin</h1>
-                <p class="product-showcase__price"><span class="product-showcase__price-value">₡8 900</span><span class="product-showcase__price-note">IVA incluido</span></p>
-                <div class="product-showcase__excerpt">
-                  <p>Suplemento alimenticio en gomitas a base de mora y vitamina C.</p>
-                  <p>Apoya tus defensas todos los días con una fórmula práctica y deliciosa. Ideal para sumar bienestar a tu rutina sin complicarte.</p>
-                </div>
-                <form class="product-showcase__cart" action="#" method="post" data-product-cart>
-                  <div class="product-showcase__qty" data-product-qty>
-                    <button class="product-showcase__qty-btn" type="button" data-product-qty-dec aria-label="Disminuir cantidad">−</button>
-                    <input class="product-showcase__qty-input" type="number" name="quantity" min="1" max="20" value="1" inputmode="numeric" aria-label="Cantidad" data-product-qty-input>
-                    <button class="product-showcase__qty-btn" type="button" data-product-qty-inc aria-label="Aumentar cantidad">+</button>
-                  </div>
-                  <button class="product-showcase__add" type="submit">Añadir al carrito</button>
-                </form>
-                <button class="product-showcase__wishlist" type="button">Agregar a lista de deseos</button>
-                <p class="product-showcase__meta"><span>Categoría:</span><a href="suplementos.html#gomitas">Gomitas Funcionales</a></p>
-              </div>
-            </div>
-            <div class="product-showcase__tabs" data-product-tabs>
-              <div class="product-showcase__tabs-bar">
-                <button class="product-showcase__tabs-nav product-showcase__tabs-nav--prev" type="button" aria-label="Tabs anteriores"></button>
-                <button class="product-showcase__tabs-nav product-showcase__tabs-nav--next" type="button" aria-label="Tabs siguientes"></button>
-                <div class="product-showcase__tabs-fade product-showcase__tabs-fade--start" aria-hidden="true"></div>
-                <div class="product-showcase__tabs-fade product-showcase__tabs-fade--end" aria-hidden="true"></div>
-                <div class="product-showcase__tabs-swiper swiper" data-product-tabs-swiper>
-                  <div class="product-showcase__tabs-wrapper swiper-wrapper" role="tablist" aria-label="Información del producto">
-                    <div class="product-showcase__tabs-slide swiper-slide">
-                      <button class="product-showcase__tab product-showcase__tab--active" type="button" role="tab" id="product-tab-descripcion" aria-controls="product-panel-descripcion" aria-selected="true" tabindex="0" data-product-tab="descripcion">Descripción</button>
-                    </div>
-                    <div class="product-showcase__tabs-slide swiper-slide">
-                      <button class="product-showcase__tab" type="button" role="tab" id="product-tab-adicional" aria-controls="product-panel-adicional" aria-selected="false" tabindex="-1" data-product-tab="adicional">Información adicional</button>
-                    </div>
-                    <div class="product-showcase__tabs-slide swiper-slide">
-                      <button class="product-showcase__tab" type="button" role="tab" id="product-tab-valoraciones" aria-controls="product-panel-valoraciones" aria-selected="false" tabindex="-1" data-product-tab="valoraciones">Valoraciones (0)</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="product-showcase__panel product-showcase__panel--active" role="tabpanel" id="product-panel-descripcion" aria-labelledby="product-tab-descripcion" data-product-panel="descripcion">
-                <h2 class="product-showcase__panel-title">RECUPÉ PLUS VITAMIN</h2>
-                <p class="product-showcase__panel-text">Nuestras gomitas Vitamin combinan el sabor de la mora con vitamina C para acompañar tu sistema inmune de forma simple y cotidiana.</p>
-                <p class="product-showcase__panel-text">Pensadas para quienes buscan un hábito fácil: una gomita rica, práctica y con activos pensados para tu bienestar diario.</p>
-                <p class="product-showcase__panel-text">Beneficios de Vitamin en tu rutina:</p>
-                <ol class="product-showcase__benefits">
-                  <li class="product-showcase__benefit">
-                    <h3 class="product-showcase__benefit-title">1. Defensas:</h3>
-                    <p class="product-showcase__benefit-text">La vitamina C contribuye al funcionamiento normal del sistema inmunológico y ayuda a proteger las células del estrés oxidativo.</p>
-                  </li>
-                  <li class="product-showcase__benefit">
-                    <h3 class="product-showcase__benefit-title">2. Antioxidantes:</h3>
-                    <p class="product-showcase__benefit-text">La mora aporta antocianinas y otros compuestos que acompañan una rutina enfocada en el bienestar celular.</p>
-                  </li>
-                  <li class="product-showcase__benefit">
-                    <h3 class="product-showcase__benefit-title">3. Hábitos simples:</h3>
-                    <p class="product-showcase__benefit-text">Formato gomita para sumar constancia sin fricción: ideal para la oficina, el gym o el día a día.</p>
-                  </li>
-                  <li class="product-showcase__benefit">
-                    <h3 class="product-showcase__benefit-title">4. Bienestar diario:</h3>
-                    <p class="product-showcase__benefit-text">Una opción práctica para complementar alimentación y estilo de vida activos.</p>
-                  </li>
-                </ol>
-                <p class="product-showcase__panel-text">Al integrar Vitamin en tu rutina, sumás un apoyo concreto a tus defensas con un producto pensado para disfrutarse todos los días.</p>
-              </div>
-              <div class="product-showcase__panel" role="tabpanel" id="product-panel-adicional" aria-labelledby="product-tab-adicional" hidden data-product-panel="adicional">
-                <table class="product-showcase__table">
-                  <tbody>
-                    <tr>
-                      <th scope="row">Marca</th>
-                      <td>Recupé Plus</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Formato</th>
-                      <td>Gomitas</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Activos</th>
-                      <td>Mora, Vitamina C</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="product-showcase__panel" role="tabpanel" id="product-panel-valoraciones" aria-labelledby="product-tab-valoraciones" hidden data-product-panel="valoraciones">
-                <h2 class="product-showcase__panel-title">Valoraciones</h2>
-                <p class="product-showcase__panel-text">No hay valoraciones aún.</p>
-                <p class="product-showcase__panel-cta">Sé el primero en valorar “Vitamin”</p>
-              </div>
-            </div>
-            <section class="product-showcase__related">
-              <h2 class="product-showcase__related-title">Productos relacionados</h2>
-              <div class="product-showcase__related-grid">
-                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/activity.webp' ) ); ?>" alt="Activity" width="280" height="280" loading="lazy"></a>
-                  <p class="product-showcase__related-category">Hongos Medicinales</p>
-                  <h3 class="product-showcase__related-name"><a href="product.html">Activity</a></h3>
-                  <p class="product-showcase__related-price"><span>₡25 000</span><span class="product-showcase__related-price-note">IVA incluido</span></p>
-                  <p class="product-showcase__related-text">Para activar tu energía antes de moverte.</p><a class="product-showcase__related-link" href="product.html">Ver producto →</a>
-                </article>
-                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/momento.webp' ) ); ?>" alt="Memento" width="280" height="280" loading="lazy"></a>
-                  <p class="product-showcase__related-category">Hongos Medicinales</p>
-                  <h3 class="product-showcase__related-name"><a href="product.html">Memento</a></h3>
-                  <p class="product-showcase__related-price"><span>₡25 000</span><span class="product-showcase__related-price-note">IVA incluido</span></p>
-                  <p class="product-showcase__related-text">Para acompañar tus momentos de enfoque.</p><a class="product-showcase__related-link" href="product.html">Ver producto →</a>
-                </article>
-                <article class="product-showcase__related-card"><a class="product-showcase__related-media" href="product.html"><img class="product-showcase__related-image" src="<?php echo esc_url( wpb_lp_asset( 'drive_24_julio/dos_formas/capsulas/individuales/recovery.webp' ) ); ?>" alt="Recovery" width="280" height="280" loading="lazy"></a>
-                  <p class="product-showcase__related-category">Hongos Medicinales</p>
-                  <h3 class="product-showcase__related-name"><a href="product.html">Recovery</a></h3>
-                  <p class="product-showcase__related-price"><span>₡25 000</span><span class="product-showcase__related-price-note">IVA incluido</span></p>
-                  <p class="product-showcase__related-text">Para acompañar tu recuperación después de hacer ejercicio.</p><a class="product-showcase__related-link" href="product.html">Ver producto →</a>
-                </article>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
+<section class="product-showcase" data-product-showcase data-product-id="<?php echo esc_attr( (string) $product->get_id() ); ?>">
+	<div class="main-container product-showcase__shell">
+		<div class="container product-showcase__container product-showcase__inner">
+			<nav class="product-showcase__breadcrumbs" aria-label="Miga de pan">
+				<ol class="product-showcase__crumbs">
+					<li class="product-showcase__crumb">
+						<a class="product-showcase__crumb-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Inicio', 'wpboilerplate' ); ?></a>
+						<span class="product-showcase__crumb-sep" aria-hidden="true">/</span>
+					</li>
+					<li class="product-showcase__crumb">
+						<a class="product-showcase__crumb-link" href="<?php echo esc_url( $category['url'] ); ?>"><?php echo esc_html( $category['label'] ); ?></a>
+						<span class="product-showcase__crumb-sep" aria-hidden="true">/</span>
+					</li>
+					<li class="product-showcase__crumb">
+						<span class="product-showcase__crumb-current" aria-current="page"><?php echo esc_html( $name ); ?></span>
+					</li>
+				</ol>
+			</nav>
+
+			<div class="product-showcase__layout">
+				<div class="product-showcase__gallery">
+					<div class="product-showcase__thumbs" role="list">
+						<?php foreach ( $gallery as $index => $image ) : ?>
+							<button
+								class="product-showcase__thumb<?php echo 0 === $index ? ' product-showcase__thumb--active' : ''; ?>"
+								type="button"
+								role="listitem"
+								data-product-thumb
+								data-src="<?php echo esc_url( $image['src'] ); ?>"
+								aria-label="<?php echo esc_attr( sprintf( __( 'Ver %s', 'wpboilerplate' ), $image['alt'] ) ); ?>"
+								aria-pressed="<?php echo 0 === $index ? 'true' : 'false'; ?>"
+							>
+								<img class="product-showcase__thumb-image" src="<?php echo esc_url( $image['src'] ); ?>" alt="" width="80" height="80" loading="lazy">
+							</button>
+						<?php endforeach; ?>
+					</div>
+					<div class="product-showcase__stage" data-product-zoom>
+						<img
+							class="product-showcase__stage-image"
+							src="<?php echo esc_url( $gallery[0]['src'] ); ?>"
+							alt="<?php echo esc_attr( $gallery[0]['alt'] ); ?>"
+							width="720"
+							height="720"
+							data-product-stage
+						>
+						<span class="product-showcase__zoom-hint" aria-hidden="true"><?php esc_html_e( 'Ampliar', 'wpboilerplate' ); ?></span>
+					</div>
+				</div>
+
+				<div class="product-showcase__summary">
+					<h1 class="product-showcase__title"><?php echo esc_html( $name ); ?></h1>
+					<p class="product-showcase__price">
+						<span class="product-showcase__price-value"><?php echo esc_html( $price ); ?></span>
+						<span class="product-showcase__price-note"><?php esc_html_e( 'IVA incluido', 'wpboilerplate' ); ?></span>
+					</p>
+					<?php if ( ! empty( $short_paragraphs ) ) : ?>
+						<div class="product-showcase__excerpt">
+							<?php foreach ( $short_paragraphs as $paragraph ) : ?>
+								<p><?php echo esc_html( $paragraph ); ?></p>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
+
+					<?php if ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
+						<?php
+						$cart_count   = function_exists( 'wpb_cart_contents_count' ) ? wpb_cart_contents_count() : 0;
+						$line_in_cart = 0;
+						if ( function_exists( 'WC' ) && WC()->cart ) {
+							foreach ( WC()->cart->get_cart() as $cart_item ) {
+								if ( (int) $cart_item['product_id'] === (int) $product->get_id() ) {
+									$line_in_cart += (int) $cart_item['quantity'];
+								}
+							}
+						}
+						$qty_value = $line_in_cart > 0 ? $line_in_cart : 1;
+						?>
+						<form class="product-showcase__cart cart" action="<?php echo esc_url( $permalink ); ?>" method="post" enctype="multipart/form-data" data-product-cart>
+							<div class="product-showcase__qty" data-product-qty>
+								<button class="product-showcase__qty-btn" type="button" data-product-qty-dec aria-label="<?php esc_attr_e( 'Disminuir cantidad', 'wpboilerplate' ); ?>">−</button>
+								<input
+									class="product-showcase__qty-input qty"
+									type="number"
+									name="quantity"
+									min="1"
+									max="20"
+									value="<?php echo esc_attr( (string) $qty_value ); ?>"
+									inputmode="numeric"
+									aria-label="<?php esc_attr_e( 'Cantidad', 'wpboilerplate' ); ?>"
+									data-product-qty-input
+								>
+								<button class="product-showcase__qty-btn" type="button" data-product-qty-inc aria-label="<?php esc_attr_e( 'Aumentar cantidad', 'wpboilerplate' ); ?>">+</button>
+							</div>
+							<button class="product-showcase__add single_add_to_cart_button button alt" type="submit" name="add-to-cart" value="<?php echo esc_attr( (string) $product->get_id() ); ?>">
+								<?php echo esc_html( $product->single_add_to_cart_text() ); ?>
+								<span
+									class="product-showcase__cart-count"
+									data-cart-count
+									<?php echo $cart_count < 1 ? ' hidden' : ''; ?>
+								><?php echo esc_html( (string) $cart_count ); ?></span>
+							</button>
+						</form>
+					<?php endif; ?>
+
+					<button class="product-showcase__wishlist" type="button"><?php esc_html_e( 'Agregar a lista de deseos', 'wpboilerplate' ); ?></button>
+					<p class="product-showcase__meta">
+						<span><?php esc_html_e( 'Categoría:', 'wpboilerplate' ); ?></span>
+						<a href="<?php echo esc_url( $category['url'] ); ?>"><?php echo esc_html( $category['label'] ); ?></a>
+					</p>
+				</div>
+			</div>
+
+			<div class="product-showcase__tabs" data-product-tabs>
+				<div class="product-showcase__tabs-bar">
+					<button class="product-showcase__tabs-nav product-showcase__tabs-nav--prev" type="button" aria-label="<?php esc_attr_e( 'Tabs anteriores', 'wpboilerplate' ); ?>"></button>
+					<button class="product-showcase__tabs-nav product-showcase__tabs-nav--next" type="button" aria-label="<?php esc_attr_e( 'Tabs siguientes', 'wpboilerplate' ); ?>"></button>
+					<div class="product-showcase__tabs-fade product-showcase__tabs-fade--start" aria-hidden="true"></div>
+					<div class="product-showcase__tabs-fade product-showcase__tabs-fade--end" aria-hidden="true"></div>
+					<div class="product-showcase__tabs-swiper swiper" data-product-tabs-swiper>
+						<div class="product-showcase__tabs-wrapper swiper-wrapper" role="tablist" aria-label="<?php esc_attr_e( 'Información del producto', 'wpboilerplate' ); ?>">
+							<div class="product-showcase__tabs-slide swiper-slide">
+								<button class="product-showcase__tab product-showcase__tab--active" type="button" role="tab" id="product-tab-descripcion" aria-controls="product-panel-descripcion" aria-selected="true" tabindex="0" data-product-tab="descripcion"><?php esc_html_e( 'Descripción', 'wpboilerplate' ); ?></button>
+							</div>
+							<div class="product-showcase__tabs-slide swiper-slide">
+								<button class="product-showcase__tab" type="button" role="tab" id="product-tab-adicional" aria-controls="product-panel-adicional" aria-selected="false" tabindex="-1" data-product-tab="adicional"><?php esc_html_e( 'Información adicional', 'wpboilerplate' ); ?></button>
+							</div>
+							<div class="product-showcase__tabs-slide swiper-slide">
+								<button class="product-showcase__tab" type="button" role="tab" id="product-tab-valoraciones" aria-controls="product-panel-valoraciones" aria-selected="false" tabindex="-1" data-product-tab="valoraciones">
+									<?php echo esc_html( sprintf( __( 'Valoraciones (%d)', 'wpboilerplate' ), $review_count ) ); ?>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="product-showcase__panel product-showcase__panel--active" role="tabpanel" id="product-panel-descripcion" aria-labelledby="product-tab-descripcion" data-product-panel="descripcion">
+					<h2 class="product-showcase__panel-title"><?php echo esc_html( sprintf( 'RECUPÉ PLUS %s', strtoupper( $name ) ) ); ?></h2>
+					<?php if ( $long ) : ?>
+						<div class="product-showcase__panel-content">
+							<?php echo wp_kses_post( wpautop( $long ) ); ?>
+						</div>
+					<?php elseif ( ! empty( $short_paragraphs ) ) : ?>
+						<?php foreach ( $short_paragraphs as $paragraph ) : ?>
+							<p class="product-showcase__panel-text"><?php echo esc_html( $paragraph ); ?></p>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</div>
+
+				<div class="product-showcase__panel" role="tabpanel" id="product-panel-adicional" aria-labelledby="product-tab-adicional" hidden data-product-panel="adicional">
+					<table class="product-showcase__table">
+						<tbody>
+							<tr>
+								<th scope="row"><?php esc_html_e( 'Marca', 'wpboilerplate' ); ?></th>
+								<td>Recupé Plus</td>
+							</tr>
+							<tr>
+								<th scope="row"><?php esc_html_e( 'SKU', 'wpboilerplate' ); ?></th>
+								<td><?php echo esc_html( $product->get_sku() ? $product->get_sku() : (string) $product->get_id() ); ?></td>
+							</tr>
+							<tr>
+								<th scope="row"><?php esc_html_e( 'Categoría', 'wpboilerplate' ); ?></th>
+								<td><?php echo esc_html( $category['label'] ); ?></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="product-showcase__panel" role="tabpanel" id="product-panel-valoraciones" aria-labelledby="product-tab-valoraciones" hidden data-product-panel="valoraciones">
+					<h2 class="product-showcase__panel-title"><?php esc_html_e( 'Valoraciones', 'wpboilerplate' ); ?></h2>
+					<?php if ( $review_count > 0 ) : ?>
+						<?php comments_template(); ?>
+					<?php else : ?>
+						<p class="product-showcase__panel-text"><?php esc_html_e( 'No hay valoraciones aún.', 'wpboilerplate' ); ?></p>
+						<p class="product-showcase__panel-cta"><?php echo esc_html( sprintf( __( 'Sé el primero en valorar “%s”', 'wpboilerplate' ), $name ) ); ?></p>
+					<?php endif; ?>
+				</div>
+			</div>
+
+			<?php if ( ! empty( $related ) ) : ?>
+				<section class="product-showcase__related" data-lazy-component>
+					<h2 class="product-showcase__related-title"><?php esc_html_e( 'Productos relacionados', 'wpboilerplate' ); ?></h2>
+					<div class="product-showcase__related-slider">
+						<button
+							class="product-showcase__related-nav product-showcase__related-nav--prev"
+							type="button"
+							aria-label="<?php esc_attr_e( 'Productos relacionados anteriores', 'wpboilerplate' ); ?>"
+							data-product-related-prev
+						></button>
+						<button
+							class="product-showcase__related-nav product-showcase__related-nav--next"
+							type="button"
+							aria-label="<?php esc_attr_e( 'Productos relacionados siguientes', 'wpboilerplate' ); ?>"
+							data-product-related-next
+						></button>
+						<div class="product-showcase__related-swiper swiper" data-product-related-swiper>
+							<div class="product-showcase__related-wrapper swiper-wrapper">
+								<?php foreach ( $related as $related_product ) : ?>
+									<?php
+									$related_url   = get_permalink( $related_product->get_id() );
+									$related_image = wp_get_attachment_image_url( $related_product->get_image_id(), 'medium' );
+									if ( ! $related_image ) {
+										$related_image = wc_placeholder_img_src( 'medium' );
+									}
+									$related_price = function_exists( 'wpb_wc_format_display_price' )
+										? wpb_wc_format_display_price( $related_product )
+										: wp_strip_all_tags( $related_product->get_price_html() );
+									?>
+									<article class="product-showcase__related-card swiper-slide">
+										<a class="product-showcase__related-media" href="<?php echo esc_url( $related_url ); ?>">
+											<img
+												class="product-showcase__related-image lazyload"
+												data-src="<?php echo esc_url( $related_image ); ?>"
+												alt="<?php echo esc_attr( $related_product->get_name() ); ?>"
+												width="280"
+												height="280"
+											>
+										</a>
+										<h3 class="product-showcase__related-name">
+											<a href="<?php echo esc_url( $related_url ); ?>"><?php echo esc_html( $related_product->get_name() ); ?></a>
+										</h3>
+										<p class="product-showcase__related-price">
+											<span><?php echo esc_html( $related_price ); ?></span>
+											<span class="product-showcase__related-price-note"><?php esc_html_e( 'IVA incluido', 'wpboilerplate' ); ?></span>
+										</p>
+										<a class="product-showcase__related-link" href="<?php echo esc_url( $related_url ); ?>"><?php esc_html_e( 'Ver producto →', 'wpboilerplate' ); ?></a>
+									</article>
+								<?php endforeach; ?>
+							</div>
+							<div class="product-showcase__related-pagination swiper-pagination" data-product-related-pagination></div>
+						</div>
+					</div>
+				</section>
+			<?php endif; ?>
+		</div>
+	</div>
+</section>

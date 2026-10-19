@@ -12,6 +12,7 @@ import ingredientsSlider from './components/ingredientsSlider';
 import blogSlider from './components/blogSlider';
 import blogFilter from './components/blogFilter';
 import productShowcase from './components/productShowcase';
+import cartDrawer from './components/cartDrawer';
 import mushroomsSplit from './components/mushroomsSplit';
 import mainSlider from './components/mainSlider';
 import mainBanner from './components/mainBanner';
@@ -25,6 +26,7 @@ const initEagerComponents = () => {
 	mainMenu();
 	mainSlider();
 	mainBanner();
+	cartDrawer();
 	productShowcase();
 	blogFilter();
 	foundersCards();
