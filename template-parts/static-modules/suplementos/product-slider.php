@@ -32,6 +32,14 @@ if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 <section class="product-slider">
 	<div class="main-container product-slider__shell">
 		<div class="container product-slider__container">
+			<div class="product-slider__filters" role="group" aria-label="<?php esc_attr_e( 'Presentación', 'wpboilerplate' ); ?>">
+				<button class="product-slider__filter product-slider__filter--active" type="button" data-product-filter="tarro" aria-pressed="true">
+					<?php esc_html_e( 'Productos en envase', 'wpboilerplate' ); ?>
+				</button>
+				<button class="product-slider__filter" type="button" data-product-filter="bolsa" aria-pressed="false">
+					<?php esc_html_e( 'Paquetes de bolsas', 'wpboilerplate' ); ?>
+				</button>
+			</div>
 			<?php foreach ( $groups as $group ) : ?>
 				<?php
 				$products = function_exists( 'wpb_wc_products_by_category' )
@@ -58,10 +66,13 @@ if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 											if ( ! $product instanceof WC_Product ) {
 												continue;
 											}
-											$product_id = $product->get_id();
-											$permalink  = get_permalink( $product_id );
-											$slug       = $product->get_slug();
-											$modifier   = isset( $modifier_map[ $slug ] ) ? $modifier_map[ $slug ] : sanitize_html_class( $slug );
+											$product_id    = $product->get_id();
+											$permalink     = get_permalink( $product_id );
+											$slug          = $product->get_slug();
+											$base_slug     = preg_replace( '/-bolsa$/', '', $slug );
+											$modifier      = isset( $modifier_map[ $base_slug ] ) ? $modifier_map[ $base_slug ] : sanitize_html_class( $base_slug );
+											$presentacion  = function_exists( 'wpb_wc_product_presentacion' ) ? wpb_wc_product_presentacion( $product ) : 'tarro';
+											$present_label = function_exists( 'wpb_wc_product_presentacion_label' ) ? wpb_wc_product_presentacion_label( $presentacion ) : '';
 											$image_url  = wp_get_attachment_image_url( $product->get_image_id(), 'medium' );
 											if ( ! $image_url ) {
 												$image_url = wc_placeholder_img_src( 'medium' );
@@ -76,14 +87,14 @@ if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 											$blurb = isset( $lines[0] ) ? trim( $lines[0] ) : $blurb;
 											if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 												foreach ( wpb_wc_catalog_definition() as $row ) {
-													if ( $row['slug'] === $slug ) {
+													if ( $row['slug'] === $base_slug ) {
 														$blurb = $row['text'];
 														break;
 													}
 												}
 											}
 											?>
-											<article class="product-slider__slide swiper-slide">
+											<article class="product-slider__slide swiper-slide<?php echo 'tarro' === $presentacion ? '' : ' product-slider__slide--hidden'; ?>" data-presentacion="<?php echo esc_attr( $presentacion ); ?>">
 												<div class="product-slider__card product-slider__card--<?php echo esc_attr( $modifier ); ?>">
 													<a class="product-slider__media" href="<?php echo esc_url( $permalink ); ?>">
 														<img
@@ -91,11 +102,15 @@ if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 															src="<?php echo esc_url( $image_url ); ?>"
 															alt="<?php echo esc_attr( $product->get_name() ); ?>"
 															width="280"
-															height="180"
+															height="400"
 															loading="lazy"
+															decoding="async"
 														>
 													</a>
 													<div class="product-slider__body">
+														<?php if ( $present_label ) : ?>
+															<p class="product-slider__presentacion"><?php echo esc_html( $present_label ); ?></p>
+														<?php endif; ?>
 														<h3 class="product-slider__name">
 															<a class="product-slider__name-link" href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $product->get_name() ); ?></a>
 														</h3>
@@ -125,6 +140,7 @@ if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 									<div class="product-slider__pagination swiper-pagination"></div>
 								</div>
 							</div>
+							<p class="product-slider__empty" data-product-filter-empty hidden><?php esc_html_e( 'No hay productos de esta presentación en la categoría.', 'wpboilerplate' ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>

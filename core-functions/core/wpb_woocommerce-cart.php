@@ -60,7 +60,10 @@ function wpb_cart_item_variation_label( WC_Product $product ) {
 		}
 	}
 
-	$parts = array_filter( array( $cat, implode( ' + ', $attrs ) ) );
+	$presentacion = function_exists( 'wpb_wc_product_presentacion' )
+		? wpb_wc_product_presentacion_label( wpb_wc_product_presentacion( $product ) )
+		: '';
+	$parts        = array_filter( array( $cat, implode( ' + ', $attrs ), $presentacion ) );
 	return implode( ' · ', $parts );
 }
 

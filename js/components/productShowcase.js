@@ -1,4 +1,5 @@
 import { addToCartAjax, openCartDrawer } from './cartDrawer';
+import { applyProductFilter } from './productSlider';
 
 const productShowcaseInstances = new WeakMap();
 
@@ -115,6 +116,8 @@ const productShowcase = (scope = document) => {
 						}
 					}
 				});
+				const relatedRoot = root.querySelector('.product-showcase__related');
+				if (relatedRoot) applyProductFilter(relatedRoot, 'tarro');
 			} catch (error) {
 				relatedSwiper = null;
 			}

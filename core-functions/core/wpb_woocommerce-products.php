@@ -234,17 +234,19 @@ function wpb_wc_product_gallery_images( WC_Product $product ) {
 
 	$images = array();
 	foreach ( $ids as $attachment_id ) {
-		$url = wp_get_attachment_image_url( $attachment_id, 'large' );
+		$url = wp_get_attachment_image_url( $attachment_id, 'full' );
 		if ( ! $url ) {
 			continue;
 		}
-		$alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+		$thumb = wp_get_attachment_image_url( $attachment_id, 'woocommerce_gallery_thumbnail' );
+		$alt   = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
 		if ( '' === $alt ) {
 			$alt = $product->get_name();
 		}
 		$images[] = array(
-			'src' => $url,
-			'alt' => $alt,
+			'src'   => $url,
+			'thumb' => $thumb ? $thumb : $url,
+			'alt'   => $alt,
 		);
 	}
 
@@ -337,4 +339,41 @@ function wpb_wc_primary_category( WC_Product $product ) {
 		'label' => $term->name,
 		'url'   => home_url( '/suplementos/' . ( $anchor ? '#' . $anchor : '' ) ),
 	);
+}
+
+/**
+ * Presentation key for a catalog product: tarro or bolsa.
+ *
+ * @param WC_Product $product Product.
+ * @return string
+ */
+function wpb_wc_product_presentacion( WC_Product $product ) {
+	$value = $product->get_meta( '_wpb_presentacion', true );
+	return 'bolsa' === $value ? 'bolsa' : 'tarro';
+}
+
+/**
+ * Visible label for a presentation key.
+ *
+ * @param string $key tarro|bolsa.
+ * @return string
+ */
+function wpb_wc_product_presentacion_label( $key ) {
+	if ( 'bolsa' === $key ) {
+		return __( 'Paquetes de bolsas', 'wpboilerplate' );
+	}
+	return __( 'Productos en tarros', 'wpboilerplate' );
+}
+
+/**
+ * Technical sheet attachment. Only jar products keep one.
+ *
+ * @param WC_Product $product Product.
+ * @return int
+ */
+function wpb_wc_product_ficha_id( WC_Product $product ) {
+	if ( 'tarro' !== wpb_wc_product_presentacion( $product ) ) {
+		return 0;
+	}
+	return (int) $product->get_meta( '_wpb_ficha_tecnica', true );
 }

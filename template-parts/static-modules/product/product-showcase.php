@@ -29,8 +29,11 @@ $name     = $product->get_name();
 $permalink = get_permalink( $product->get_id() );
 $add_url  = $product->add_to_cart_url();
 $short    = $product->get_short_description();
-$long     = $product->get_description();
 $review_count = (int) $product->get_review_count();
+$presentacion  = function_exists( 'wpb_wc_product_presentacion' ) ? wpb_wc_product_presentacion( $product ) : 'tarro';
+$present_label = function_exists( 'wpb_wc_product_presentacion_label' ) ? wpb_wc_product_presentacion_label( $presentacion ) : '';
+$ficha_id      = function_exists( 'wpb_wc_product_ficha_id' ) ? wpb_wc_product_ficha_id( $product ) : 0;
+$ficha_url     = $ficha_id ? wp_get_attachment_image_url( $ficha_id, 'full' ) : '';
 
 if ( empty( $gallery ) ) {
 	$placeholder = wc_placeholder_img_src( 'large' );
@@ -83,7 +86,7 @@ if ( empty( $short_paragraphs ) && $short ) {
 								aria-label="<?php echo esc_attr( sprintf( __( 'Ver %s', 'wpboilerplate' ), $image['alt'] ) ); ?>"
 								aria-pressed="<?php echo 0 === $index ? 'true' : 'false'; ?>"
 							>
-								<img class="product-showcase__thumb-image" src="<?php echo esc_url( $image['src'] ); ?>" alt="" width="80" height="80" loading="lazy">
+								<img class="product-showcase__thumb-image" src="<?php echo esc_url( ! empty( $image['thumb'] ) ? $image['thumb'] : $image['src'] ); ?>" alt="" width="80" height="80" loading="lazy" decoding="async">
 							</button>
 						<?php endforeach; ?>
 					</div>
@@ -94,6 +97,9 @@ if ( empty( $short_paragraphs ) && $short ) {
 							alt="<?php echo esc_attr( $gallery[0]['alt'] ); ?>"
 							width="720"
 							height="720"
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
 							data-product-stage
 						>
 						<span class="product-showcase__zoom-hint" aria-hidden="true"><?php esc_html_e( 'Ampliar', 'wpboilerplate' ); ?></span>
@@ -101,6 +107,9 @@ if ( empty( $short_paragraphs ) && $short ) {
 				</div>
 
 				<div class="product-showcase__summary">
+					<?php if ( $present_label ) : ?>
+						<p class="product-showcase__presentacion"><?php echo esc_html( $present_label ); ?></p>
+					<?php endif; ?>
 					<h1 class="product-showcase__title"><?php echo esc_html( $name ); ?></h1>
 					<p class="product-showcase__price">
 						<span class="product-showcase__price-value"><?php echo esc_html( $price ); ?></span>
@@ -154,7 +163,6 @@ if ( empty( $short_paragraphs ) && $short ) {
 						</form>
 					<?php endif; ?>
 
-					<button class="product-showcase__wishlist" type="button"><?php esc_html_e( 'Agregar a lista de deseos', 'wpboilerplate' ); ?></button>
 					<p class="product-showcase__meta">
 						<span><?php esc_html_e( 'Categoría:', 'wpboilerplate' ); ?></span>
 						<a href="<?php echo esc_url( $category['url'] ); ?>"><?php echo esc_html( $category['label'] ); ?></a>
@@ -170,11 +178,13 @@ if ( empty( $short_paragraphs ) && $short ) {
 					<div class="product-showcase__tabs-fade product-showcase__tabs-fade--end" aria-hidden="true"></div>
 					<div class="product-showcase__tabs-swiper swiper" data-product-tabs-swiper>
 						<div class="product-showcase__tabs-wrapper swiper-wrapper" role="tablist" aria-label="<?php esc_attr_e( 'Información del producto', 'wpboilerplate' ); ?>">
+							<?php if ( $ficha_url ) : ?>
+								<div class="product-showcase__tabs-slide swiper-slide">
+									<button class="product-showcase__tab product-showcase__tab--active" type="button" role="tab" id="product-tab-ficha" aria-controls="product-panel-ficha" aria-selected="true" tabindex="0" data-product-tab="ficha"><?php esc_html_e( 'Ficha técnica', 'wpboilerplate' ); ?></button>
+								</div>
+							<?php endif; ?>
 							<div class="product-showcase__tabs-slide swiper-slide">
-								<button class="product-showcase__tab product-showcase__tab--active" type="button" role="tab" id="product-tab-descripcion" aria-controls="product-panel-descripcion" aria-selected="true" tabindex="0" data-product-tab="descripcion"><?php esc_html_e( 'Descripción', 'wpboilerplate' ); ?></button>
-							</div>
-							<div class="product-showcase__tabs-slide swiper-slide">
-								<button class="product-showcase__tab" type="button" role="tab" id="product-tab-adicional" aria-controls="product-panel-adicional" aria-selected="false" tabindex="-1" data-product-tab="adicional"><?php esc_html_e( 'Información adicional', 'wpboilerplate' ); ?></button>
+								<button class="product-showcase__tab<?php echo $ficha_url ? '' : ' product-showcase__tab--active'; ?>" type="button" role="tab" id="product-tab-adicional" aria-controls="product-panel-adicional" aria-selected="<?php echo $ficha_url ? 'false' : 'true'; ?>" tabindex="<?php echo $ficha_url ? '-1' : '0'; ?>" data-product-tab="adicional"><?php esc_html_e( 'Información adicional', 'wpboilerplate' ); ?></button>
 							</div>
 							<div class="product-showcase__tabs-slide swiper-slide">
 								<button class="product-showcase__tab" type="button" role="tab" id="product-tab-valoraciones" aria-controls="product-panel-valoraciones" aria-selected="false" tabindex="-1" data-product-tab="valoraciones">
@@ -185,20 +195,13 @@ if ( empty( $short_paragraphs ) && $short ) {
 					</div>
 				</div>
 
-				<div class="product-showcase__panel product-showcase__panel--active" role="tabpanel" id="product-panel-descripcion" aria-labelledby="product-tab-descripcion" data-product-panel="descripcion">
-					<h2 class="product-showcase__panel-title"><?php echo esc_html( sprintf( 'RECUPÉ PLUS %s', strtoupper( $name ) ) ); ?></h2>
-					<?php if ( $long ) : ?>
-						<div class="product-showcase__panel-content">
-							<?php echo wp_kses_post( wpautop( $long ) ); ?>
-						</div>
-					<?php elseif ( ! empty( $short_paragraphs ) ) : ?>
-						<?php foreach ( $short_paragraphs as $paragraph ) : ?>
-							<p class="product-showcase__panel-text"><?php echo esc_html( $paragraph ); ?></p>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</div>
+				<?php if ( $ficha_url ) : ?>
+					<div class="product-showcase__panel product-showcase__panel--active" role="tabpanel" id="product-panel-ficha" aria-labelledby="product-tab-ficha" data-product-panel="ficha">
+						<img class="product-showcase__ficha" src="<?php echo esc_url( $ficha_url ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ficha técnica de %s', 'wpboilerplate' ), $name ) ); ?>" width="1855" height="2400" loading="lazy" decoding="async" fetchpriority="low">
+					</div>
+				<?php endif; ?>
 
-				<div class="product-showcase__panel" role="tabpanel" id="product-panel-adicional" aria-labelledby="product-tab-adicional" hidden data-product-panel="adicional">
+				<div class="product-showcase__panel<?php echo $ficha_url ? '' : ' product-showcase__panel--active'; ?>" role="tabpanel" id="product-panel-adicional" aria-labelledby="product-tab-adicional" data-product-panel="adicional"<?php echo $ficha_url ? ' hidden' : ''; ?>>
 					<table class="product-showcase__table">
 						<tbody>
 							<tr>
@@ -213,6 +216,12 @@ if ( empty( $short_paragraphs ) && $short ) {
 								<th scope="row"><?php esc_html_e( 'Categoría', 'wpboilerplate' ); ?></th>
 								<td><?php echo esc_html( $category['label'] ); ?></td>
 							</tr>
+							<?php if ( $present_label ) : ?>
+								<tr>
+									<th scope="row"><?php esc_html_e( 'Presentación', 'wpboilerplate' ); ?></th>
+									<td><?php echo esc_html( $present_label ); ?></td>
+								</tr>
+							<?php endif; ?>
 						</tbody>
 					</table>
 				</div>
@@ -231,6 +240,14 @@ if ( empty( $short_paragraphs ) && $short ) {
 			<?php if ( ! empty( $related ) ) : ?>
 				<section class="product-showcase__related" data-lazy-component>
 					<h2 class="product-showcase__related-title"><?php esc_html_e( 'Productos relacionados', 'wpboilerplate' ); ?></h2>
+					<div class="product-slider__filters" role="group" aria-label="<?php esc_attr_e( 'Presentación', 'wpboilerplate' ); ?>">
+						<button class="product-slider__filter product-slider__filter--active" type="button" data-product-filter="tarro" aria-pressed="true">
+							<?php esc_html_e( 'Productos en envase', 'wpboilerplate' ); ?>
+						</button>
+						<button class="product-slider__filter" type="button" data-product-filter="bolsa" aria-pressed="false">
+							<?php esc_html_e( 'Paquetes de bolsas', 'wpboilerplate' ); ?>
+						</button>
+					</div>
 					<div class="product-showcase__related-slider">
 						<button
 							class="product-showcase__related-nav product-showcase__related-nav--prev"
@@ -256,8 +273,11 @@ if ( empty( $short_paragraphs ) && $short ) {
 									$related_price = function_exists( 'wpb_wc_format_display_price' )
 										? wpb_wc_format_display_price( $related_product )
 										: wp_strip_all_tags( $related_product->get_price_html() );
+									$related_presentacion = function_exists( 'wpb_wc_product_presentacion' )
+										? wpb_wc_product_presentacion( $related_product )
+										: 'tarro';
 									?>
-									<article class="product-showcase__related-card swiper-slide">
+									<article class="product-showcase__related-card swiper-slide<?php echo 'tarro' === $related_presentacion ? '' : ' product-showcase__related-card--hidden'; ?>" data-presentacion="<?php echo esc_attr( $related_presentacion ); ?>">
 										<a class="product-showcase__related-media" href="<?php echo esc_url( $related_url ); ?>">
 											<img
 												class="product-showcase__related-image lazyload"
@@ -281,6 +301,7 @@ if ( empty( $short_paragraphs ) && $short ) {
 							<div class="product-showcase__related-pagination swiper-pagination" data-product-related-pagination></div>
 						</div>
 					</div>
+					<p class="product-slider__empty" data-product-filter-empty hidden><?php esc_html_e( 'No hay productos de esta presentación.', 'wpboilerplate' ); ?></p>
 				</section>
 			<?php endif; ?>
 		</div>

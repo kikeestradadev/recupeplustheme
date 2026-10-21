@@ -26,6 +26,8 @@ const initEagerComponents = () => {
 	mainMenu();
 	mainSlider();
 	mainBanner();
+	// Catalog slider and the related-products filter.
+	productSlider();
 	cartDrawer();
 	productShowcase();
 	blogFilter();
@@ -69,3 +71,4 @@ if (document.readyState === 'loading') {
 } else {
 	initComponents();
 }
+

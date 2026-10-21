@@ -99,10 +99,14 @@
 	}
 
 	&__thumb {
-		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
 		flex: 0 0 4.25rem;
 		width: 4.25rem;
-		padding: 0;
+		aspect-ratio: 1;
+		padding: 8px;
 		border: 1px solid transparent;
 		border-radius: 0.65rem;
 		background: #f6f6f6;
@@ -145,13 +149,23 @@
 		display: block;
 		width: 100%;
 		height: 100%;
+		max-width: 100%;
 		object-fit: contain;
+		object-position: center;
 		transform: scale(1);
 		transform-origin: center center;
 		transition: transform 0.12s ease-out;
 		will-change: transform;
 		pointer-events: none;
 		user-select: none;
+
+		// Only the image inside the hover/zoom stage. WooCommerce's
+		// `.woocommerce img { height: auto }` was cropping this one.
+		.woocommerce .product-showcase__stage &,
+		.woocommerce-page .product-showcase__stage & {
+			height: 100%;
+			max-width: 100%;
+		}
 	}
 
 	&__zoom-hint {
@@ -326,27 +340,6 @@
 
 		&[hidden] {
 			display: none;
-		}
-	}
-
-	&__wishlist {
-		display: inline-flex;
-		align-items: center;
-		justify-self: center;
-		width: max-content;
-		padding: 0;
-		border: 0;
-		background: transparent;
-		color: #6b6b6b;
-		font: inherit;
-		font-size: 0.9rem;
-		text-decoration: underline;
-		text-underline-offset: 0.2em;
-		cursor: pointer;
-
-		&:hover,
-		&:focus-visible {
-			color: var(--product-showcase-accent);
 		}
 	}
 
@@ -542,6 +535,23 @@
 		}
 	}
 
+	&__presentacion {
+		margin: 0 0 0.35rem;
+		color: var(--product-showcase-accent, #ff9100);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	&__ficha {
+		display: block;
+		width: min(100%, 42rem);
+		height: auto;
+		margin: 0;
+		background: #fff;
+	}
+
 	&__panel-title {
 		margin: 0;
 		color: var(--header-color, #1f2024);
@@ -700,6 +710,10 @@
 		box-sizing: border-box;
 		width: var(--product-showcase-related-card-width);
 		height: auto;
+
+		&--hidden {
+			display: none !important;
+		}
 	}
 
 	&__related-pagination {
@@ -739,8 +753,16 @@
 		display: block;
 		width: 100%;
 		height: 100%;
+		max-width: 100%;
 		object-fit: contain;
 		object-position: center;
+
+		// WooCommerce's `.woocommerce img { height: auto }` was cropping these.
+		.woocommerce .product-showcase__related-media &,
+		.woocommerce-page .product-showcase__related-media & {
+			height: 100%;
+			max-width: 100%;
+		}
 	}
 
 	&__related-category {
@@ -844,10 +866,6 @@
 		&__add {
 			width: auto;
 			max-width: none;
-		}
-
-		&__wishlist {
-			justify-self: start;
 		}
 
 		&__meta {
