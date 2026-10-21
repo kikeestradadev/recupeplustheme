@@ -114,6 +114,25 @@
 		display: block;
 	}
 
+	&__notice {
+		margin: 0;
+		padding: 0.75rem 1.25rem;
+		background: #fff6e8;
+		color: var(--cart-drawer-ink);
+		font-size: 0.8125rem;
+		line-height: 1.4;
+		border-bottom: 1px solid var(--cart-drawer-line);
+
+		&[hidden] {
+			display: none !important;
+		}
+
+		&--error {
+			background: #fff1f0;
+			color: #8a2b2b;
+		}
+	}
+
 	&__body {
 		display: flex;
 		flex-direction: column;

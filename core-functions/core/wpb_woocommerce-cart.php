@@ -335,13 +335,18 @@ function wpb_cart_enqueue_scripts() {
 			'cartUrl'       => wc_get_cart_url(),
 			'checkoutUrl'   => wc_get_checkout_url(),
 			'cartNonce'     => wp_create_nonce( 'wpb_cart' ),
+			'cartHash'      => WC()->cart ? WC()->cart->get_cart_hash() : '',
 			'cartCount'     => wpb_cart_contents_count(),
 			'productQtys'   => $product_qtys,
 			'i18n'          => array(
-				'added'   => __( 'Añadido al carrito', 'wpboilerplate' ),
-				'error'   => __( 'No se pudo actualizar el carrito.', 'wpboilerplate' ),
-				'empty'   => __( 'Tu carrito está vacío.', 'wpboilerplate' ),
-				'continue'=> __( 'Seguir comprando', 'wpboilerplate' ),
+				'added'    => __( 'Añadido al carrito', 'wpboilerplate' ),
+				'error'    => __( 'No se pudo actualizar el carrito.', 'wpboilerplate' ),
+				'empty'    => __( 'Tu carrito está vacío.', 'wpboilerplate' ),
+				'continue' => __( 'Seguir comprando', 'wpboilerplate' ),
+				'retry'    => __( 'Conexión inestable. Reintentando…', 'wpboilerplate' ),
+				'rollback' => __( 'No se pudo actualizar el carrito. Se restauró la cantidad anterior.', 'wpboilerplate' ),
+				'conflict' => __( 'El carrito cambió en otra ventana. Mostramos la versión más reciente.', 'wpboilerplate' ),
+				'addError' => __( 'No se pudo agregar el producto. Intenta de nuevo.', 'wpboilerplate' ),
 			),
 		)
 	);
@@ -359,6 +364,19 @@ function wpb_wc_ajax_update_cart_item() {
 
 	if ( ! $key || ! WC()->cart ) {
 		wp_send_json_error( array( 'message' => 'missing' ), 400 );
+	}
+
+	$client_hash  = isset( $_POST['cart_hash'] ) ? wc_clean( wp_unslash( $_POST['cart_hash'] ) ) : '';
+	$current_hash = WC()->cart->get_cart_hash();
+	if ( $client_hash && $current_hash && ! hash_equals( $current_hash, $client_hash ) ) {
+		wp_send_json(
+			array(
+				'code'      => 'cart_conflict',
+				'cart_hash' => $current_hash,
+				'fragments' => apply_filters( 'woocommerce_add_to_cart_fragments', array() ),
+			),
+			409
+		);
 	}
 
 	if ( $qty < 1 ) {

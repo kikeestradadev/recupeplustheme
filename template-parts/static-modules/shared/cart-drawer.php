@@ -58,6 +58,7 @@ if ( function_exists( 'WC' ) && WC()->cart ) {
 				</svg>
 			</button>
 		</header>
+		<p class="cart-drawer__notice" data-cart-drawer-notice role="status" aria-live="polite" hidden></p>
 
 		<?php
 		// Body HTML is shared with WC fragments. Avoid class widget_shopping_cart_content
