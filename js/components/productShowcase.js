@@ -117,7 +117,13 @@ const productShowcase = (scope = document) => {
 					}
 				});
 				const relatedRoot = root.querySelector('.product-showcase__related');
-				if (relatedRoot) applyProductFilter(relatedRoot, 'tarro');
+				if (relatedRoot) {
+					const activeFilter = relatedRoot.querySelector('[data-product-filter][aria-pressed="true"]');
+					applyProductFilter(
+						relatedRoot,
+						activeFilter ? activeFilter.getAttribute('data-product-filter') : 'tarro'
+					);
+				}
 			} catch (error) {
 				relatedSwiper = null;
 			}
@@ -286,6 +292,36 @@ const productShowcase = (scope = document) => {
 			);
 		});
 
+		const filterScroller = root.querySelector('.product-showcase__related .product-slider__filters');
+		const filterPrev = root.querySelector('[data-product-filter-prev]');
+		const filterNext = root.querySelector('[data-product-filter-next]');
+
+		const updateFilterArrows = () => {
+			if (!filterScroller || !filterPrev || !filterNext) return;
+
+			const maxScroll = filterScroller.scrollWidth - filterScroller.clientWidth;
+			filterPrev.disabled = maxScroll <= 1 || filterScroller.scrollLeft <= 1;
+			filterNext.disabled = maxScroll <= 1 || filterScroller.scrollLeft >= maxScroll - 1;
+		};
+
+		const scrollFilters = (direction) => {
+			if (!filterScroller) return;
+
+			const amount = Math.max(120, Math.round(filterScroller.clientWidth * 0.75));
+			filterScroller.scrollBy({ left: direction * amount, behavior: 'smooth' });
+		};
+
+		filterPrev?.addEventListener('click', () => scrollFilters(-1), { signal });
+		filterNext?.addEventListener('click', () => scrollFilters(1), { signal });
+		filterScroller?.addEventListener('scroll', updateFilterArrows, { signal, passive: true });
+
+		if (typeof ResizeObserver !== 'undefined' && filterScroller) {
+			const filterObserver = new ResizeObserver(updateFilterArrows);
+			filterObserver.observe(filterScroller);
+			signal.addEventListener('abort', () => filterObserver.disconnect(), { once: true });
+		}
+
+		updateFilterArrows();
 		updateTabsEnhancement();
 		initRelatedSwiper();
 		if (typeof desktopQuery.addEventListener === 'function') {

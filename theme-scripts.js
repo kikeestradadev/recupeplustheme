@@ -487,13 +487,13 @@
       button.classList.toggle("product-slider__filter--active", active);
       button.setAttribute("aria-pressed", active ? "true" : "false");
     });
-    root.querySelectorAll("[data-presentacion]").forEach((slide) => {
-      const show = productSlideMatches(slide.getAttribute("data-presentacion"), value);
+    root.querySelectorAll("[data-presentacion], [data-product-group]").forEach((slide) => {
+      const show = productSlideMatches(slide.getAttribute("data-product-group") || slide.getAttribute("data-presentacion"), value);
       slide.classList.toggle(hiddenClassFor(slide), !show);
     });
     const groups = root.matches(".product-showcase__related") ? [root] : [...root.querySelectorAll(".product-slider__group")];
     groups.forEach((group) => {
-      const slides = group.querySelectorAll("[data-presentacion]");
+      const slides = group.querySelectorAll("[data-presentacion], [data-product-group]");
       if (!slides.length) return;
       const visible = [...slides].some((slide) => !slide.classList.contains(hiddenClassFor(slide)));
       const empty = group.querySelector("[data-product-filter-empty]");
@@ -516,6 +516,31 @@
       });
     });
   };
+  var bindFilterArrows = (root) => {
+    if (root.dataset.filterArrowsBound === "true") return;
+    const scroller = root.querySelector(".product-slider__filter-bar .product-slider__filters");
+    const prev = root.querySelector("[data-slider-filter-prev]");
+    const next = root.querySelector("[data-slider-filter-next]");
+    if (!scroller || !prev || !next) return;
+    root.dataset.filterArrowsBound = "true";
+    const updateFilterArrows = () => {
+      const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+      prev.disabled = maxScroll <= 1 || scroller.scrollLeft <= 1;
+      next.disabled = maxScroll <= 1 || scroller.scrollLeft >= maxScroll - 1;
+    };
+    const scrollFilters = (direction) => {
+      const amount = Math.max(120, Math.round(scroller.clientWidth * 0.75));
+      scroller.scrollBy({ left: direction * amount, behavior: "smooth" });
+    };
+    prev.addEventListener("click", () => scrollFilters(-1));
+    next.addEventListener("click", () => scrollFilters(1));
+    scroller.addEventListener("scroll", updateFilterArrows, { passive: true });
+    if (typeof ResizeObserver !== "undefined") {
+      const observer = new ResizeObserver(updateFilterArrows);
+      observer.observe(scroller);
+    }
+    updateFilterArrows();
+  };
   var productSlider = (scope = document) => {
     const instances = [];
     const roots = [
@@ -524,6 +549,7 @@
     ];
     roots.forEach((root) => {
       bindProductFilter(root);
+      bindFilterArrows(root);
     });
     if (roots.length > 0 && typeof Swiper !== "undefined") {
       roots.forEach((root) => {
@@ -566,7 +592,8 @@
           );
           instances.push(instance);
         });
-        applyProductFilter(root, "tarro");
+        const activeFilter = root.querySelector('[data-product-filter][aria-pressed="true"]');
+        applyProductFilter(root, activeFilter ? activeFilter.getAttribute("data-product-filter") : "tarro");
       });
     }
     return instances;
@@ -1927,7 +1954,10 @@
             }
           });
           const relatedRoot = root.querySelector(".product-showcase__related");
-          if (relatedRoot) applyProductFilter(relatedRoot, "tarro");
+          if (relatedRoot) {
+            const activeFilter = relatedRoot.querySelector('[data-product-filter][aria-pressed="true"]');
+            applyProductFilter(relatedRoot, activeFilter ? activeFilter.getAttribute("data-product-filter") : "tarro");
+          }
         } catch (error) {
           relatedSwiper = null;
         }
@@ -2071,6 +2101,29 @@
           { signal }
         );
       });
+      const filterScroller = root.querySelector(".product-showcase__related .product-slider__filters");
+      const filterPrev = root.querySelector("[data-product-filter-prev]");
+      const filterNext = root.querySelector("[data-product-filter-next]");
+      const updateFilterArrows = () => {
+        if (!filterScroller || !filterPrev || !filterNext) return;
+        const maxScroll = filterScroller.scrollWidth - filterScroller.clientWidth;
+        filterPrev.disabled = maxScroll <= 1 || filterScroller.scrollLeft <= 1;
+        filterNext.disabled = maxScroll <= 1 || filterScroller.scrollLeft >= maxScroll - 1;
+      };
+      const scrollFilters = (direction) => {
+        if (!filterScroller) return;
+        const amount = Math.max(120, Math.round(filterScroller.clientWidth * 0.75));
+        filterScroller.scrollBy({ left: direction * amount, behavior: "smooth" });
+      };
+      filterPrev?.addEventListener("click", () => scrollFilters(-1), { signal });
+      filterNext?.addEventListener("click", () => scrollFilters(1), { signal });
+      filterScroller?.addEventListener("scroll", updateFilterArrows, { signal, passive: true });
+      if (typeof ResizeObserver !== "undefined" && filterScroller) {
+        const filterObserver = new ResizeObserver(updateFilterArrows);
+        filterObserver.observe(filterScroller);
+        signal.addEventListener("abort", () => filterObserver.disconnect(), { once: true });
+      }
+      updateFilterArrows();
       updateTabsEnhancement();
       initRelatedSwiper();
       if (typeof desktopQuery.addEventListener === "function") {

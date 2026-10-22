@@ -32,13 +32,27 @@ if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 <section class="product-slider">
 	<div class="main-container product-slider__shell">
 		<div class="container product-slider__container">
-			<div class="product-slider__filters" role="group" aria-label="<?php esc_attr_e( 'Presentación', 'wpboilerplate' ); ?>">
-				<button class="product-slider__filter product-slider__filter--active" type="button" data-product-filter="tarro" aria-pressed="true">
-					<?php esc_html_e( 'Productos en envase', 'wpboilerplate' ); ?>
-				</button>
-				<button class="product-slider__filter" type="button" data-product-filter="bolsa" aria-pressed="false">
-					<?php esc_html_e( 'Paquetes de bolsas', 'wpboilerplate' ); ?>
-				</button>
+			<div class="product-slider__filter-bar">
+				<button
+					class="product-slider__filter-arrow product-slider__filter-arrow--prev"
+					type="button"
+					data-slider-filter-prev
+					aria-label="<?php esc_attr_e( 'Presentaciones anteriores', 'wpboilerplate' ); ?>"
+				></button>
+				<div class="product-slider__filters" role="group" aria-label="<?php esc_attr_e( 'Presentación', 'wpboilerplate' ); ?>">
+					<button class="product-slider__filter product-slider__filter--active" type="button" data-product-filter="tarro" aria-pressed="true">
+						<?php esc_html_e( 'Productos en envase', 'wpboilerplate' ); ?>
+					</button>
+					<button class="product-slider__filter" type="button" data-product-filter="bolsa" aria-pressed="false">
+						<?php esc_html_e( 'Paquetes de bolsas', 'wpboilerplate' ); ?>
+					</button>
+				</div>
+				<button
+					class="product-slider__filter-arrow product-slider__filter-arrow--next"
+					type="button"
+					data-slider-filter-next
+					aria-label="<?php esc_attr_e( 'Presentaciones siguientes', 'wpboilerplate' ); ?>"
+				></button>
 			</div>
 			<?php foreach ( $groups as $group ) : ?>
 				<?php
@@ -71,69 +85,41 @@ if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
 											$slug          = $product->get_slug();
 											$base_slug     = preg_replace( '/-bolsa$/', '', $slug );
 											$modifier      = isset( $modifier_map[ $base_slug ] ) ? $modifier_map[ $base_slug ] : sanitize_html_class( $base_slug );
-											$presentacion  = function_exists( 'wpb_wc_product_presentacion' ) ? wpb_wc_product_presentacion( $product ) : 'tarro';
-											$present_label = function_exists( 'wpb_wc_product_presentacion_label' ) ? wpb_wc_product_presentacion_label( $presentacion ) : '';
-											$image_url  = wp_get_attachment_image_url( $product->get_image_id(), 'medium' );
+											$presentacion = function_exists( 'wpb_wc_product_presentacion' ) ? wpb_wc_product_presentacion( $product ) : 'tarro';
+											$image_url    = wp_get_attachment_image_url( $product->get_image_id(), 'medium' );
 											if ( ! $image_url ) {
 												$image_url = wc_placeholder_img_src( 'medium' );
 											}
-											$blurb = $product->get_short_description();
-											$blurb = $blurb ? wp_strip_all_tags( $blurb ) : '';
-											if ( '' === $blurb ) {
-												$blurb = wp_strip_all_tags( $product->get_description() );
-											}
-											// Prefer first sentence / first line for card text.
-											$lines = preg_split( '/\R+/', $blurb );
-											$blurb = isset( $lines[0] ) ? trim( $lines[0] ) : $blurb;
-											if ( function_exists( 'wpb_wc_catalog_definition' ) ) {
-												foreach ( wpb_wc_catalog_definition() as $row ) {
-													if ( $row['slug'] === $base_slug ) {
-														$blurb = $row['text'];
-														break;
-													}
-												}
-											}
+											$price = function_exists( 'wpb_wc_format_display_price' )
+												? wpb_wc_format_display_price( $product )
+												: wp_strip_all_tags( $product->get_price_html() );
 											?>
 											<article class="product-slider__slide swiper-slide<?php echo 'tarro' === $presentacion ? '' : ' product-slider__slide--hidden'; ?>" data-presentacion="<?php echo esc_attr( $presentacion ); ?>">
-												<div class="product-slider__card product-slider__card--<?php echo esc_attr( $modifier ); ?>">
-													<a class="product-slider__media" href="<?php echo esc_url( $permalink ); ?>">
+												<a class="product-slider__card product-slider__card--<?php echo esc_attr( $modifier ); ?>" href="<?php echo esc_url( $permalink ); ?>">
+													<div class="product-slider__media">
 														<img
 															class="product-slider__image"
 															src="<?php echo esc_url( $image_url ); ?>"
-															alt="<?php echo esc_attr( $product->get_name() ); ?>"
+															alt=""
 															width="280"
 															height="400"
 															loading="lazy"
 															decoding="async"
 														>
-													</a>
+													</div>
 													<div class="product-slider__body">
-														<?php if ( $present_label ) : ?>
-															<p class="product-slider__presentacion"><?php echo esc_html( $present_label ); ?></p>
-														<?php endif; ?>
 														<h3 class="product-slider__name">
-															<a class="product-slider__name-link" href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $product->get_name() ); ?></a>
+															<span class="product-slider__name-link"><?php echo esc_html( $product->get_name() ); ?></span>
 														</h3>
-														<?php if ( $blurb ) : ?>
-															<p class="product-slider__text"><?php echo esc_html( $blurb ); ?></p>
-														<?php endif; ?>
+														<p class="product-slider__price">
+															<span><?php echo esc_html( $price ); ?></span>
+															<span class="product-slider__price-note"><?php esc_html_e( 'IVA', 'wpboilerplate' ); ?></span>
+														</p>
 														<div class="product-slider__actions">
-															<a class="product-slider__link" href="<?php echo esc_url( $permalink ); ?>"><?php esc_html_e( 'Conocer más →', 'wpboilerplate' ); ?></a>
-															<?php if ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
-																<button
-																	class="product-slider__add ajax_add_to_cart"
-																	type="button"
-																	data-product_id="<?php echo esc_attr( (string) $product_id ); ?>"
-																	data-product-id="<?php echo esc_attr( (string) $product_id ); ?>"
-																	data-quantity="1"
-																	data-wpb-add-to-cart
-																>
-																	<?php esc_html_e( 'Agregar', 'wpboilerplate' ); ?>
-																</button>
-															<?php endif; ?>
+															<span class="product-slider__link"><?php esc_html_e( 'Conocer más →', 'wpboilerplate' ); ?></span>
 														</div>
 													</div>
-												</div>
+												</a>
 											</article>
 										<?php endforeach; ?>
 									</div>

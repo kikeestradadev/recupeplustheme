@@ -9,6 +9,10 @@ const hiddenClassFor = (slide) => (
 		: 'product-slider__slide--hidden'
 );
 
+const slideFilterKey = (slide) => (
+	slide.getAttribute('data-product-group') || slide.getAttribute('data-presentacion')
+);
+
 export const applyProductFilter = (root, value) => {
 	root.querySelectorAll('[data-product-filter]').forEach((button) => {
 		const active = button.getAttribute('data-product-filter') === value;
@@ -16,8 +20,8 @@ export const applyProductFilter = (root, value) => {
 		button.setAttribute('aria-pressed', active ? 'true' : 'false');
 	});
 
-	root.querySelectorAll('[data-presentacion]').forEach((slide) => {
-		const show = productSlideMatches(slide.getAttribute('data-presentacion'), value);
+	root.querySelectorAll('[data-presentacion], [data-product-group]').forEach((slide) => {
+		const show = productSlideMatches(slideFilterKey(slide), value);
 		slide.classList.toggle(hiddenClassFor(slide), !show);
 	});
 
@@ -26,7 +30,7 @@ export const applyProductFilter = (root, value) => {
 		: [...root.querySelectorAll('.product-slider__group')];
 
 	groups.forEach((group) => {
-		const slides = group.querySelectorAll('[data-presentacion]');
+		const slides = group.querySelectorAll('[data-presentacion], [data-product-group]');
 		if (!slides.length) return;
 		const visible = [...slides].some((slide) => !slide.classList.contains(hiddenClassFor(slide)));
 		const empty = group.querySelector('[data-product-filter-empty]');
@@ -52,6 +56,39 @@ const bindProductFilter = (root) => {
 	});
 };
 
+const bindFilterArrows = (root) => {
+	if (root.dataset.filterArrowsBound === 'true') return;
+
+	const scroller = root.querySelector('.product-slider__filter-bar .product-slider__filters');
+	const prev = root.querySelector('[data-slider-filter-prev]');
+	const next = root.querySelector('[data-slider-filter-next]');
+	if (!scroller || !prev || !next) return;
+
+	root.dataset.filterArrowsBound = 'true';
+
+	const updateFilterArrows = () => {
+		const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+		prev.disabled = maxScroll <= 1 || scroller.scrollLeft <= 1;
+		next.disabled = maxScroll <= 1 || scroller.scrollLeft >= maxScroll - 1;
+	};
+
+	const scrollFilters = (direction) => {
+		const amount = Math.max(120, Math.round(scroller.clientWidth * 0.75));
+		scroller.scrollBy({ left: direction * amount, behavior: 'smooth' });
+	};
+
+	prev.addEventListener('click', () => scrollFilters(-1));
+	next.addEventListener('click', () => scrollFilters(1));
+	scroller.addEventListener('scroll', updateFilterArrows, { passive: true });
+
+	if (typeof ResizeObserver !== 'undefined') {
+		const observer = new ResizeObserver(updateFilterArrows);
+		observer.observe(scroller);
+	}
+
+	updateFilterArrows();
+};
+
 const productSlider = (scope = document) => {
 	const instances = [];
 	const roots = [
@@ -61,6 +98,7 @@ const productSlider = (scope = document) => {
 
 	roots.forEach((root) => {
 		bindProductFilter(root);
+		bindFilterArrows(root);
 	});
 
 	if (roots.length > 0 && typeof Swiper !== 'undefined') {
@@ -107,7 +145,8 @@ const productSlider = (scope = document) => {
 
 				instances.push(instance);
 			});
-			applyProductFilter(root, 'tarro');
+			const activeFilter = root.querySelector('[data-product-filter][aria-pressed="true"]');
+			applyProductFilter(root, activeFilter ? activeFilter.getAttribute('data-product-filter') : 'tarro');
 		});
 	}
 
