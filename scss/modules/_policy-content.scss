@@ -1,0 +1,49 @@
+.policy-content {
+	margin-bottom: var(--section-gap);
+	padding: 6.5rem 0 4rem;
+	background: #fff;
+
+	&__container {
+		max-width: 48rem;
+	}
+
+	&__title {
+		margin: 0 0 1.5rem;
+		color: var(--header-color, #1f2024);
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+	}
+
+	&__body {
+		color: var(--paragraph-color, #1f2024);
+		font-size: 1rem;
+		line-height: 1.65;
+
+		h2,
+		h3 {
+			margin: 1.75rem 0 0.75rem;
+			color: var(--header-color, #1f2024);
+			font-size: 1.125rem;
+			font-weight: 700;
+			line-height: 1.3;
+		}
+
+		p,
+		li {
+			margin: 0 0 0.85rem;
+		}
+
+		ol,
+		ul {
+			margin: 0 0 0.85rem;
+			padding-left: 1.25rem;
+		}
+
+		li:last-child,
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

@@ -667,6 +667,15 @@ const cartDrawer = (scope = document) => {
 
 		const onOpenClick = (event) => {
 			event.preventDefault();
+			const account = document.querySelector('[data-account-drawer]');
+			if (account) {
+				account.classList.remove('account-drawer--open');
+				account.setAttribute('aria-hidden', 'true');
+				document.body.classList.remove('account-drawer-open');
+				document.querySelectorAll('[data-account-menu-toggle]').forEach((trigger) => {
+					trigger.setAttribute('aria-expanded', 'false');
+				});
+			}
 			setOpen(true);
 		};
 

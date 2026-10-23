@@ -78,7 +78,7 @@ $normalize_links = static function ( $rows ) {
 			}
 		} elseif ( is_string( $raw ) && '' !== trim( $raw ) ) {
 			$path = trim( $raw );
-			// Path + anchor choices (e.g. /suplementos/#gomitas) — keep as site URL.
+			// Path + anchor choices (e.g. /tienda/#gomitas) — keep as site URL.
 			if ( isset( $path[0] ) && '/' === $path[0] ) {
 				$url = home_url( $path );
 			} else {
@@ -226,8 +226,8 @@ $social_icon = static function ( $platform ) {
 				<?php endif; ?>
 
 				<?php if ( ! empty( $supplements ) ) : ?>
-					<nav class="alt-footer__col" aria-label="<?php echo esc_attr__( 'Suplementos', 'wpboilerplate' ); ?>">
-						<h2 class="alt-footer__title"><?php esc_html_e( 'Suplementos', 'wpboilerplate' ); ?></h2>
+					<nav class="alt-footer__col" aria-label="<?php echo esc_attr__( 'Tienda', 'wpboilerplate' ); ?>">
+						<h2 class="alt-footer__title"><?php esc_html_e( 'Tienda', 'wpboilerplate' ); ?></h2>
 						<ul class="alt-footer__list">
 							<?php foreach ( $supplements as $link ) : ?>
 								<li class="alt-footer__item">

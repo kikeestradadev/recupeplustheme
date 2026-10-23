@@ -103,10 +103,11 @@ endif;
 					<?php endif; ?>
 				</div>
 				<div class="main-menu__actions">
-					<a class="main-menu__cta" href="#" aria-label="Comprar ahora">
+					<a class="main-menu__cta" href="<?php echo esc_url( home_url( '/tienda/' ) ); ?>" aria-label="Comprar ahora">
 						<span class="main-menu__cta-short">Comprar</span>
 						<span class="main-menu__cta-full">Comprar ahora</span>
 					</a>
+					<?php get_template_part( 'template-parts/account-menu' ); ?>
 					<?php
 					$cart_count = function_exists( 'wpb_cart_contents_count' ) ? wpb_cart_contents_count() : 0;
 					?>

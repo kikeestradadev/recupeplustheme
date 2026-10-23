@@ -16,14 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Select choices for footer column page pickers.
  *
  * Keys are either page IDs (numeric string) or path+anchor strings
- * (e.g. `/suplementos/#gomitas`). Values are labels.
+ * (e.g. `/tienda/#gomitas`). Values are labels.
  *
  * @return array<string, string>
  */
 function wpb_footer_page_link_choices() {
 	$choices = array(
-		'/suplementos/#gomitas'  => __( 'Gomitas', 'wpboilerplate' ),
-		'/suplementos/#capsulas' => __( 'Cápsulas', 'wpboilerplate' ),
+		'/tienda/#gomitas'  => __( 'Gomitas', 'wpboilerplate' ),
+		'/tienda/#capsulas' => __( 'Cápsulas', 'wpboilerplate' ),
 	);
 
 	$priority_slugs = array(
@@ -165,7 +165,7 @@ function wpb_register_footer_fields() {
 			wpb_footer_links_repeater(
 				'field_wpb_footer_supplements',
 				'footer_supplements_links',
-				__( 'Columna Suplementos', 'wpboilerplate' )
+				__( 'Columna Tienda', 'wpboilerplate' )
 			),
 			wpb_footer_links_repeater(
 				'field_wpb_footer_help',
@@ -220,6 +220,25 @@ function wpb_register_footer_fields() {
 	);
 }
 add_action( 'acf/init', 'wpb_register_footer_fields' );
+
+/**
+ * Point the saved Gomitas and Cápsulas footer links at the tienda page.
+ */
+function wpb_footer_use_tienda_links() {
+	$map = array(
+		'/suplementos/#gomitas'  => '/tienda/#gomitas',
+		'/suplementos/#capsulas' => '/tienda/#capsulas',
+	);
+
+	foreach ( array( 0, 1 ) as $index ) {
+		$name  = 'options_footer_supplements_links_' . $index . '_link';
+		$value = get_option( $name );
+		if ( is_string( $value ) && isset( $map[ $value ] ) ) {
+			update_option( $name, $map[ $value ] );
+		}
+	}
+}
+add_action( 'init', 'wpb_footer_use_tienda_links' );
 
 wpb_acf_filter_empty_repeater(
 	'footer_social',

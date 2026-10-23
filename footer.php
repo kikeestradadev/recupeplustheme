@@ -15,6 +15,7 @@
 	<?php get_template_part( 'template-parts/static-modules/shared/alt-footer' ); ?>
 	<?php get_template_part( 'template-parts/static-modules/shared/whatsapp-button' ); ?>
 	<?php get_template_part( 'template-parts/static-modules/shared/cart-drawer' ); ?>
+	<?php get_template_part( 'template-parts/account-drawer' ); ?>
 	<?php wp_footer(); ?>
 	</body>
 </html>

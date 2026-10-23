@@ -1,0 +1,17 @@
+.tienda-banner {
+	margin-bottom: var(--section-gap);
+	background: #fff;
+
+	&__figure,
+	&__picture {
+		display: block;
+		width: 100%;
+		margin: 0;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}

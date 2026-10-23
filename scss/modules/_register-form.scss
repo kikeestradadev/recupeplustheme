@@ -1,0 +1,85 @@
+.register-page {
+	padding: 6.5rem 0 4rem;
+
+	.woocommerce-message {
+		margin: 0 0 1.25rem;
+		padding: 0.85rem 1rem;
+		border: 0;
+		border-radius: 0.5rem;
+		background: #e8f6ee;
+		color: var(--color-green-deep, #0b3d2e);
+		font-size: 1rem;
+		line-height: 1.5;
+	}
+
+	&__inner {
+		max-width: 28rem;
+	}
+
+	&__title {
+		margin: 0 0 1.25rem;
+		font-size: 1.75rem;
+	}
+}
+
+.register-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+
+	&__field {
+		margin: 0;
+
+		label {
+			display: block;
+			margin-bottom: 0.35rem;
+			font-size: 0.85rem;
+			font-weight: 600;
+		}
+
+		input {
+			width: 100%;
+			min-height: 2.75rem;
+			padding: 0.55rem 0.75rem;
+			border: 1px solid #e5e5e5;
+			border-radius: 0.5rem;
+			font: inherit;
+		}
+	}
+
+	&__errors {
+		margin: 0;
+		padding-left: 1.1rem;
+		color: #9f1239;
+		font-size: 0.875rem;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__note {
+		margin: 0;
+		color: #6b675f;
+		font-size: 0.8rem;
+	}
+
+	button {
+		min-height: 2.75rem;
+		border: 0;
+		border-radius: 0.5rem;
+		background: var(--color-orange, #ff9100);
+		color: #fff;
+		font: inherit;
+		font-weight: 700;
+		cursor: pointer;
+	}
+}
+
+.main-menu__account-create {
+	display: inline-block;
+	margin-top: 0.35rem;
+	color: var(--header-color, #1f2024);
+	font-weight: 700;
+	text-decoration: underline;
+}

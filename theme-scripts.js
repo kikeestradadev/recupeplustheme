@@ -1737,6 +1737,15 @@
       };
       const onOpenClick = (event) => {
         event.preventDefault();
+        const account = document.querySelector("[data-account-drawer]");
+        if (account) {
+          account.classList.remove("account-drawer--open");
+          account.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("account-drawer-open");
+          document.querySelectorAll("[data-account-menu-toggle]").forEach((trigger) => {
+            trigger.setAttribute("aria-expanded", "false");
+          });
+        }
         setOpen(true);
       };
       const onCloseClick = (event) => {
@@ -2696,6 +2705,101 @@
   };
   var contactForm_default = contactForm;
 
+  // js/components/accountMenu.js
+  var accountMenuInstances = /* @__PURE__ */ new WeakMap();
+  var accountMenu = (scope = document) => {
+    const cleanups = [];
+    scope.querySelectorAll("[data-account-drawer]").forEach((root) => {
+      if (accountMenuInstances.has(root)) return;
+      const panel = root.querySelector("[data-account-drawer-panel]");
+      const controller = new AbortController();
+      const { signal } = controller;
+      let lastFocus = null;
+      const setOpen = (open) => {
+        root.classList.toggle("account-drawer--open", open);
+        root.setAttribute("aria-hidden", open ? "false" : "true");
+        document.body.classList.toggle("account-drawer-open", open);
+        document.querySelectorAll("[data-account-menu-toggle]").forEach((trigger) => {
+          trigger.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        if (open) {
+          const cart = document.querySelector("[data-cart-drawer]");
+          if (cart) {
+            cart.classList.remove("cart-drawer--open");
+            cart.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("cart-drawer-open");
+          }
+          lastFocus = document.activeElement;
+          const focusTarget = root.querySelector("[data-account-drawer-close].account-drawer__close") || panel;
+          window.requestAnimationFrame(() => focusTarget?.focus?.());
+        } else if (lastFocus && typeof lastFocus.focus === "function") {
+          lastFocus.focus();
+          lastFocus = null;
+        }
+      };
+      document.querySelectorAll("[data-account-menu-toggle]").forEach((trigger) => {
+        trigger.setAttribute("aria-haspopup", "dialog");
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          setOpen(true);
+        }, { signal });
+      });
+      root.addEventListener("click", (event) => {
+        if (event.target.closest("[data-account-drawer-close]")) {
+          event.preventDefault();
+          setOpen(false);
+        }
+      }, { signal });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && root.classList.contains("account-drawer--open")) setOpen(false);
+      }, { signal });
+      const destroy = () => {
+        controller.abort();
+        accountMenuInstances.delete(root);
+      };
+      accountMenuInstances.set(root, destroy);
+      cleanups.push(destroy);
+    });
+    return () => cleanups.forEach((destroy) => destroy());
+  };
+  var accountMenu_default = accountMenu;
+
+  // js/components/registerForm.js
+  var PASSWORD_RULES = [
+    { test: (password) => password.length >= 8, message: "La contrase\xF1a debe tener al menos 8 caracteres." },
+    { test: (password) => /[A-Z]/.test(password), message: "La contrase\xF1a debe incluir al menos una letra may\xFAscula." },
+    { test: (password) => /[0-9]/.test(password), message: "La contrase\xF1a debe incluir al menos un n\xFAmero." },
+    { test: (password) => /[^A-Za-z0-9]/.test(password), message: "La contrase\xF1a debe incluir al menos un car\xE1cter especial." }
+  ];
+  var registrationPasswordErrors = (password, confirm) => {
+    const value = String(password ?? "");
+    const errors = PASSWORD_RULES.filter((rule) => !rule.test(value)).map((rule) => rule.message);
+    if (String(password ?? "") !== String(confirm ?? "")) errors.push("Las contrase\xF1as no coinciden.");
+    return errors;
+  };
+  var registerForm = (scope = document) => {
+    scope.querySelectorAll("[data-register-form]").forEach((form) => {
+      if (form.dataset.registerBound === "true") return;
+      form.dataset.registerBound = "true";
+      form.addEventListener("submit", (event) => {
+        const password = form.querySelector("[data-register-password]")?.value ?? "";
+        const confirm = form.querySelector("[data-register-password-confirm]")?.value ?? "";
+        const list = form.querySelector("[data-register-errors]");
+        const errors = registrationPasswordErrors(password, confirm);
+        if (!list) return;
+        list.replaceChildren();
+        errors.forEach((message) => {
+          const item = document.createElement("li");
+          item.textContent = message;
+          list.appendChild(item);
+        });
+        list.hidden = errors.length === 0;
+        if (errors.length) event.preventDefault();
+      });
+    });
+  };
+  var registerForm_default = registerForm;
+
   // js/theme-scripts.js
   var initEagerComponents = () => {
     mainMenu_default();
@@ -2703,6 +2807,8 @@
     mainBanner_default();
     productSlider_default();
     cartDrawer_default();
+    accountMenu_default();
+    registerForm_default();
     productShowcase_default();
     blogFilter_default();
     foundersCards_default();

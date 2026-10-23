@@ -39,7 +39,20 @@ function wpb_register_suplementos_fields() {
 				'supl_ing_cards',
 				__( 'Cards', 'wpboilerplate' ),
 				array(
-					wpb_acf_image_field( 'field_wpb_supl_ing_card_icon', 'icon', __( 'Ícono (opcional)', 'wpboilerplate' ) ),
+					array(
+						'key'           => 'field_wpb_supl_ing_card_icon',
+						'label'         => __( 'Ícono', 'wpboilerplate' ),
+						'name'          => 'icon',
+						'type'          => 'select',
+						'choices'       => array(
+							'citrus'     => __( 'Vitamina C', 'wpboilerplate' ),
+							'magnesium'  => __( 'Magnesio', 'wpboilerplate' ),
+							'ginger'     => __( 'Cúrcuma + jengibre', 'wpboilerplate' ),
+							'chamomile'  => __( 'Ashwagandha + manzanilla', 'wpboilerplate' ),
+						),
+						'allow_null'    => 1,
+						'return_format' => 'value',
+					),
 					wpb_acf_text_field( 'field_wpb_supl_ing_card_name', 'name', __( 'Nombre', 'wpboilerplate' ) ),
 					wpb_acf_textarea_field( 'field_wpb_supl_ing_card_text', 'text', __( 'Texto', 'wpboilerplate' ), 2 ),
 				),

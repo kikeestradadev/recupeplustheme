@@ -320,6 +320,35 @@
 		}
 	}
 
+	&__account {
+		position: relative;
+		flex: 0 0 auto;
+	}
+
+	&__account-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		border: 0;
+		border-radius: 0.5rem;
+		background: transparent;
+		color: var(--header-color, #1f2024);
+		cursor: pointer;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--color-orange, #ff9100);
+			transform: translateY(-1px);
+		}
+	}
+
+	&__account-icon {
+		display: block;
+	}
+
 	&__language {
 		display: inline-flex;
 		align-items: center;

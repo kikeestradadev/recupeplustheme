@@ -18,7 +18,8 @@ function wpb_register_guias_fields() {
 		__( 'Banner principal', 'wpboilerplate' ),
 		'wpb-guias-banner',
 		array(
-			wpb_acf_image_field( 'field_wpb_guias_banner_desktop', 'guias_banner_desktop', __( 'Imagen desktop', 'wpboilerplate' ), __( 'Desde 960px. Si subís una sola, se usa en todos los tamaños.', 'wpboilerplate' ) ),
+			wpb_acf_image_field( 'field_wpb_guias_banner_desktop', 'guias_banner_desktop', __( 'Imagen desktop', 'wpboilerplate' ), __( 'Desde 1280px. Si subís una sola, se usa en todos los tamaños.', 'wpboilerplate' ) ),
+			wpb_acf_image_field( 'field_wpb_guias_banner_tablet', 'guias_banner_tablet', __( 'Imagen tablet', 'wpboilerplate' ) ),
 			wpb_acf_image_field( 'field_wpb_guias_banner_mobile', 'guias_banner_mobile', __( 'Imagen móvil', 'wpboilerplate' ) ),
 		)
 	);
@@ -48,3 +49,29 @@ function wpb_register_guias_fields() {
 	);
 }
 add_action( 'acf/init', 'wpb_register_guias_fields' );
+
+/**
+ * Use the supplements banner images until Guías has its own tablet upload.
+ */
+function wpb_seed_guias_banner_images() {
+	if ( false !== get_option( 'options_guias_banner_tablet' ) ) {
+		return;
+	}
+
+	$fields = array(
+		'guias_banner_desktop' => array( 'supl_banner_desktop', 'field_wpb_guias_banner_desktop' ),
+		'guias_banner_tablet'  => array( 'supl_banner_tablet', 'field_wpb_guias_banner_tablet' ),
+		'guias_banner_mobile'  => array( 'supl_banner_mobile', 'field_wpb_guias_banner_mobile' ),
+	);
+
+	foreach ( $fields as $name => $source ) {
+		$image_id = get_option( 'options_' . $source[0] );
+		if ( ! $image_id ) {
+			continue;
+		}
+
+		update_option( 'options_' . $name, $image_id );
+		update_option( '_options_' . $name, $source[1] );
+	}
+}
+add_action( 'acf/init', 'wpb_seed_guias_banner_images', 20 );

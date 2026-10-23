@@ -9,11 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$desktop = function_exists( 'wpb_acf_option_image' ) ? wpb_acf_option_image( 'guias_banner_desktop' ) : null;
-$mobile  = function_exists( 'wpb_acf_option_image' ) ? wpb_acf_option_image( 'guias_banner_mobile' ) : null;
-$fallback = $mobile ? $mobile : $desktop;
-$desktop  = $desktop ? $desktop : $fallback;
-$mobile   = $mobile ? $mobile : $fallback;
+$picture = function_exists( 'wpb_acf_option_picture' ) ? wpb_acf_option_picture( 'guias_banner_desktop', 'guias_banner_tablet', 'guias_banner_mobile' ) : array(
+	'desktop' => null,
+	'tablet'  => null,
+	'mobile'  => null,
+);
+$mobile  = $picture['mobile'];
 
 if ( ! $mobile ) {
 	return;
@@ -22,8 +23,11 @@ if ( ! $mobile ) {
 <section class="guides-banner" aria-label="Guías Recupé Plus">
 	<figure class="guides-banner__figure">
 		<picture class="guides-banner__picture">
-			<?php if ( $desktop ) : ?>
-				<source media="(width >= 960px)" srcset="<?php echo esc_url( $desktop['url'] ); ?>">
+			<?php if ( $picture['desktop'] ) : ?>
+				<source media="(width >= 1280px)" srcset="<?php echo esc_url( $picture['desktop']['url'] ); ?>">
+			<?php endif; ?>
+			<?php if ( $picture['tablet'] ) : ?>
+				<source media="(width >= 1024px)" srcset="<?php echo esc_url( $picture['tablet']['url'] ); ?>">
 			<?php endif; ?>
 			<img
 				class="guides-banner__image"

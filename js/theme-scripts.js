@@ -13,6 +13,8 @@ import blogSlider from './components/blogSlider';
 import blogFilter from './components/blogFilter';
 import productShowcase from './components/productShowcase';
 import cartDrawer from './components/cartDrawer';
+import accountMenu from './components/accountMenu';
+import registerForm from './components/registerForm';
 import mushroomsSplit from './components/mushroomsSplit';
 import mainSlider from './components/mainSlider';
 import mainBanner from './components/mainBanner';
@@ -29,6 +31,8 @@ const initEagerComponents = () => {
 	// Catalog slider and the related-products filter.
 	productSlider();
 	cartDrawer();
+	accountMenu();
+	registerForm();
 	productShowcase();
 	blogFilter();
 	foundersCards();
